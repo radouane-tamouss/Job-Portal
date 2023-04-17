@@ -406,3 +406,19 @@ hr.invoice-above-table {
 .tox .tox-notification {
     display: none !important;
 }
+
+.btn-block{
+    width: 100%!important;
+}
+
+.w-100-p{
+    width: 100%!important;
+}
+
+.rounded-circle-custom{
+    border-radius:50%;
+    height:40px;
+    width:40px;
+    margin-right: 4px;
+    object-fit: cover;
+}
