@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminHomePageController;
+use App\Http\Controllers\Admin\AdminJobCategoryController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Front\TermsController;
@@ -39,6 +40,15 @@ Route::middleware(['admin:admin'])->group(function(){
     Route::get('/admin/home-page', [AdminHomePageController::class, 'index'])->name('admin_home_page');
     Route::post('/admin/edit-profile-submit', [AdminProfileController::class,'profile_submit'])->name('admin_profile_submit');
     Route::post('/admin/home-page/update', [AdminHomePageController::class, 'update'])->name('admin_home_page_update');
+
+    Route::get('/admin/job-category/view', [AdminJobCategoryController::class, 'index'])->name('admin_job_category');
+    Route::get('/admin/job-category/create',[AdminJobCategoryController::class,'create'])->name('admin_job_category_create');
+    Route::post('/admin/job-category/store', [AdminJobCategoryController::class, 'store'])->name('admin_job_category_store');
+    Route::get('/admin/job-category/edit/{id}',[AdminJobCategoryController::class,'edit'])->name('admin_job_category_edit');
+    Route::post('/admin/job-category/update/{id}', [AdminJobCategoryController::class, 'update'])->name('admin_job_category_update');
+
+
+
 });
 
 

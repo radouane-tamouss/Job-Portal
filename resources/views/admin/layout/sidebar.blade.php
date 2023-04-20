@@ -18,16 +18,19 @@
                     <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i>Terms</a></li>
                 </ul>
             </li>
+            <li class="nav-item dropdown active">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-hand-point-right"></i><span>Job Section</span></a>
+                <ul class="dropdown-menu">
+                    <li class="active"><a class="nav-link" href="{{route('admin_job_category')}}"><i class="fas fa-angle-right"></i>Job Category</a></li>
+                    <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i>Job_location</a></li>
+                </ul>
+            </li>
 
-            <li class=""><a class="nav-link" href="setting.html" 
+            {{-- <li class=""><a class="nav-link" href="setting.html" 
                 data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Setting"
-                ><i class="fas fa-hand-point-right"></i> <span>Setting</span></a></li>
+                ><i class="fas fa-hand-point-right"></i> <span>Job Category</span></a></li> --}}
 
-            <li class=""><a class="nav-link" href="form.html" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="form" ><i class="fas fa-hand-point-right"></i> <span>Form</span></a></li>
-
-            <li class=""><a class="nav-link" href="table.html" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="table"><i class="fas fa-hand-point-right"></i> <span>Table</span></a></li>
-
-            <li class=""><a class="nav-link" href="invoice.html" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="invoice"><i class="fas fa-hand-point-right"></i> <span>Invoice</span></a></li>
+  
 
         </ul>
     </aside>
