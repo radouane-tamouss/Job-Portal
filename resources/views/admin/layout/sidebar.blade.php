@@ -25,6 +25,9 @@
                     <li class=""><a class="nav-link" href=""><i class="fas fa-angle-right"></i>Job_location</a></li>
                 </ul>
             </li>
+            <li class="nav-item dropdown {{ Request::is('admin/package/*') ? 'active' : ''}}">
+                <a href="{{route('admin_package')}}" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Packages"><i class="fas fa-briefcase"></i><span>Package</span></a>
+            </li>
 
             {{-- <li class=""><a class="nav-link" href="setting.html" 
                 data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Setting"

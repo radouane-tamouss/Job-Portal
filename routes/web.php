@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminHomePageController;
 use App\Http\Controllers\Admin\AdminJobCategoryController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Front\TermsController;
 use App\Http\Controllers\Front\JobCategoryController;
 use App\Http\Controllers\Front\HomeController;
@@ -50,6 +51,12 @@ Route::middleware(['admin:admin'])->group(function(){
     Route::post('/admin/job-category/update/{id}', [AdminJobCategoryController::class, 'update'])->name('admin_job_category_update');
     Route::get('/admin/job-category/delete/{id}',[AdminJobCategoryController::class,'delete'])->name('admin_job_category_delete');
 
+    Route::get('/admin/package/view' , [AdminPackageController::class,'index'])->name('admin_package');
+    Route::get('/admin/package/create',[AdminPackageController::class,'create'])->name('admin_package_create');
+    Route::post('/admin/package/store', [AdminPackageController::class, 'store'])->name('admin_package_store');
+    Route::get('/admin/package/edit/{id}',[AdminPackageController::class,'edit'])->name('admin_package_edit');
+    Route::post('/admin/package/update/{id}', [AdminPackageController::class, 'update'])->name('admin_package_update');
+    Route::get('/admin/package/delete/{id}', [AdminPackageController::class,'delete'])->name('admin_package_delete');
 
 
 });

@@ -432,3 +432,9 @@ hr.invoice-above-table {
 .custom-tab .nav-pills .nav-link.active{
     background: #6777ef;
 }
+
+
+#example1_paginate .page-item.active .page-link{
+    color : white;
+    
+}
