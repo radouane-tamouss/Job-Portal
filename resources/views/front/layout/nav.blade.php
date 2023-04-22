@@ -1,7 +1,7 @@
 <div class="navbar-area" id="stickymenu">
     <!-- Menu For Mobile Device -->
     <div class="mobile-nav">
-        <a href="index.html" class="logo">
+        <a href="/" class="logo">
             <img src="{{ asset('uploads/logo.png')}}" alt="" />
         </a>
     </div>
@@ -10,7 +10,7 @@
     <div class="main-nav">
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="/">
                     <img src="{{ asset('uploads/logo.png')}}" alt="" />
                 </a>
                 <div
