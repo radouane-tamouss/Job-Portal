@@ -32,7 +32,13 @@ Route::get('job-categories', [JobCategoryController::class,'categories'])->name(
 Route::get('pricing', [PricingController::class,'index'])->name('pricing');
 Route::get('login',[LoginController::class,'index'])->name('login');
 Route::get('forget-password',[LoginController::class,'forget_password'])->name('forget_password');
-Route::get('signup',[SignupController::class,'index'])->name('signup');
+Route::get('create-account',[SignupController::class,'index'])->name('signup');
+
+Route::post('company-signup-submit',[SignupController::class,'company_signup_submit'])->name('company_signup_submit');
+Route::get('company_signup_verify/{token}/{email}',[SignupController::class,'company_signup_verify'])->name('company_signup_verify');
+
+
+
 
 // Admin
 

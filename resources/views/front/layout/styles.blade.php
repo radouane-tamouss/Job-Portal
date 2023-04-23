@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="{{asset('dist-front/css/animate.min.css')}}" />
         <link rel="stylesheet" href="{{asset('dist-front/css/magnific-popup.css')}}" />
         <link rel="stylesheet" href="{{asset('dist-front/css/owl.carousel.min.css')}}" />
+        <link rel="stylesheet" href="{{ asset('dist/css/iziToast.min.css') }}">
         <link rel="stylesheet" href="{{asset('dist-front/css/select2.min.css')}}" />
         <link rel="stylesheet" href="{{asset('dist-front/css/select2-bootstrap.min.css')}}" />
         <link rel="stylesheet" href="{{asset('dist-front/css/all.css')}}" />
