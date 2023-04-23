@@ -136,27 +136,27 @@ style="background-image: url('uploads/banner.jpg')"
                         @csrf
                         <div class="mb-3">
                             <label for="company_name" class="form-label">Company Name *</label>
-                            <input type="text" name="company_name" class="form-control"/>
+                            <input type="text" name="company_name" class="form-control" value="{{old('company_name')}}" />
                         </div>
                         <div class="mb-3">
                             <label for="person_name" class="form-label">Contact Person Name *</label>
-                            <input type="text" class="form-control" name="person_name"/>
+                            <input type="text" class="form-control" name="person_name" value="{{old('person_name')}}" />
                         </div>
                         <div class="mb-3">
                             <label for="username" class="form-label">Username *</label>
-                            <input type="text" class="form-control" name="username"/>
+                            <input type="text" class="form-control" name="username" value="{{old('username')}}" />
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email Address *</label>
-                            <input type="email" class="form-control" name="email"/>
+                            <input type="email" class="form-control" name="email" value="{{old('email')}}" />
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label" >Password *</label>
-                            <input type="password" class="form-control" name="password"/>
+                            <input type="password" class="form-control" name="password" />
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Confirm Password *</label>
-                            <input type="password" class="form-control" name="retype_password"/>
+                            <input type="password" class="form-control" name="retype_password" />
                         </div>
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary bg-website">
