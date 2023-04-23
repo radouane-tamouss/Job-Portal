@@ -13,6 +13,8 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PricingController;
 use App\Http\Controllers\Front\LoginController;
 use App\Http\Controllers\Front\SignupController;
+use App\Http\Controllers\Company\CompanyController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,14 +36,19 @@ Route::get('login',[LoginController::class,'index'])->name('login');
 Route::get('forget-password',[LoginController::class,'forget_password'])->name('forget_password');
 Route::get('create-account',[SignupController::class,'index'])->name('signup');
 
+
+// Company
 Route::post('company-signup-submit',[SignupController::class,'company_signup_submit'])->name('company_signup_submit');
 Route::get('company_signup_verify/{token}/{email}',[SignupController::class,'company_signup_verify'])->name('company_signup_verify');
+Route::post('company_login_submit',[LoginController::class,'company_login_submit'])->name('company_login_submit');
+Route::get('/company/logout',[LoginController::class,'company_logout'])->name('company_logout'); 
 
+Route::middleware(['company:company'])->group(function(){
+    Route::get('/company/dashboard', [CompanyController::class,'index'])->name('company_dashboard');
 
-
+});
 
 // Admin
-
 Route::get('/admin/login', [AdminLoginController::class,'index'])->name('admin_login');
 Route::get('/admin/forget_password', [AdminLoginController::class,'forget_password'])->name('admin_forget_password');
 Route::post('/admin/login-submit', [AdminLoginController::class,'login_submit'])->name('admin_login_submit');
@@ -72,6 +79,6 @@ Route::middleware(['admin:admin'])->group(function(){
     Route::get('/admin/package/delete/{id}', [AdminPackageController::class,'delete'])->name('admin_package_delete');
 
 
-});
+}); 
 
 
