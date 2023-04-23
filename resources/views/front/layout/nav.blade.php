@@ -18,7 +18,7 @@
                     id="navbarSupportedContent"
                 >
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item {{ Request::is('/') ? 'active' : ''}}">
                             <a href="{{route('home')}}" class="nav-link"
                                 >Home</a
                             >
@@ -33,8 +33,8 @@
                                 >Companies</a
                             >
                         </li>
-                        <li class="nav-item">
-                            <a href="pricing.html" class="nav-link"
+                        <li class="nav-item {{ Request::is('pricing') ? 'active' : ''}}">
+                            <a href="{{route('pricing')}} " class="nav-link"
                                 >Pricing</a
                             >
                         </li>

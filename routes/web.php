@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Front\TermsController;
 use App\Http\Controllers\Front\JobCategoryController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\PricingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ use App\Http\Controllers\Front\HomeController;
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('terms', [TermsController::class,'index'])->name('terms');
 Route::get('job-categories', [JobCategoryController::class,'categories'])->name('job_categories');
+Route::get('pricing', [PricingController::class,'index'])->name('pricing');
 
 // Admin
 
