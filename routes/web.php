@@ -11,6 +11,8 @@ use App\Http\Controllers\Front\TermsController;
 use App\Http\Controllers\Front\JobCategoryController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PricingController;
+use App\Http\Controllers\Front\LoginController;
+use App\Http\Controllers\Front\SignupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,9 @@ Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('terms', [TermsController::class,'index'])->name('terms');
 Route::get('job-categories', [JobCategoryController::class,'categories'])->name('job_categories');
 Route::get('pricing', [PricingController::class,'index'])->name('pricing');
+Route::get('login',[LoginController::class,'index'])->name('login');
+Route::get('forget-password',[LoginController::class,'forget_password'])->name('forget_password');
+Route::get('signup',[SignupController::class,'index'])->name('signup');
 
 // Admin
 
