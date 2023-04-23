@@ -35,10 +35,7 @@ class LoginController extends Controller
         }
     }
 
-    public function forget_password()
-    {
-        return view('front.forget_password');
-    }
+   
 
     public function company_logout()
     {

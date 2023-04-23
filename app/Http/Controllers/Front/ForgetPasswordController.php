@@ -1,43 +1,33 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Admin;
+use Auth;
+use App\Models\Company;
 use App\Mail\Websitemail;
 use Hash;
-use Auth;
 
-class AdminLoginController extends Controller
+class ForgetPasswordController extends Controller
 {
-    public function index()
-    {
-        // $pass = Hash::make('1234'); // this was made to hash the default password
-        // dd($pass);
-        return view ('admin.login');
+    public function company_forget_password(){
+        return view('front.company_forget_password');
     }
-
-    public function forget_password()
-    {
-        return view('admin.forget_password');
-    }
-
-    public function forget_password_submit(Request $request){
+    public function company_forget_password_submit(Request $request){
         $request->validate([
-            'email'=>'required|email'
+            'email' => 'required|email',
         ]);
-
-        $admin_data = Admin::where('email',$request->email)->first();
-        if(!$admin_data){
+        $company_data = Company::where('email',$request->email)->first();
+        if(!$company_data){
             return redirect()->back()->with('error','Email adress not found');
         }
 
         $token = hash('sha256', time());
 
-        $admin_data->token = $token;
-        $admin_data->update();
-        $reset_link = url('admin/reset-password/'.$token.'/'.$request->email);
+        $company_data->token = $token;
+        $company_data->update();
+        $reset_link = url('reset-password/company/'.$token.'/'.$request->email);
         $subject = 'Reset Password';
         $message = '
         <body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; background-color: #f2f3f8;" leftmargin="0">
@@ -106,60 +96,40 @@ class AdminLoginController extends Controller
     </table>
    
 </body>';
+//this is for html mail
+
         // $message.= '<a href=" '.$reset_link .'">reset link</a>';
 
         \Mail::to($request->email)->send(new Websitemail($subject,$message));
 
-        return redirect()->route('admin_login')->with('success','reset mail sent successfully to your email address');
+        return redirect()->route('login')->with('success','reset mail sent successfully to your email address');
     }
 
-    public function login_submit(Request $request)
+    public function company_reset_password($token,$email)
     {
-        $request->validate([
-            'email'=>'required|email',
-            'password' => 'required'
-        ]);
-
-        $credential =[
-            'email' => $request->email,
-            'password' => $request->password
-        ];
-
-        if ( Auth::guard('admin')->attempt(($credential))){
-            return redirect()->route('admin_home');
-        }else{
-            return redirect()->route('admin_login')->with('error','Email or Password is not correct!');
-        }
-    }
-
-    public function logout()
-    {
-        Auth::guard('admin')->logout();
-        return redirect()->route('admin_login');
-    }
-
-    public function reset_password($token,$email)
-    {
-        $admin_data = Admin::where('token',$token)->where('email',$email)->firstOrFail();
-        if(!$admin_data){
-            return redirect()->route('admin_login');
+        $company_data = Company::where('token',$token)->where('email',$email)->firstOrFail();
+        if(!$company_data){
+            return redirect()->route('login');
         }
 
-        return view('admin.reset_password',compact('token','email'));
+        return view('front.company_reset_password',compact('token','email'));
     }
 
-    public function reset_password_submit(Request $request){
+    public function company_reset_password_submit(Request $request){
         $request->validate([
             'password' => 'required',
-            'password_confirmation' => 'required|same:password'
+            'retype_password' => 'required|same:password'
         ]);
 
-        $admin_data = Admin::where('token',$request->token)->where('email',$request->email)->first();
+        $company_data = Company::where('token',$request->token)->where('email',$request->email)->first();
 
-        $admin_data->password = Hash::make($request->password);
-        $admin_data->token =''; // remove token
-        $admin_data->update();
-        return redirect()->route('admin_login')->with('success','Password reseted successfully');
+        $company_data->password = Hash::make($request->password);
+        $company_data->token =''; // remove token 
+        $company_data->update();
+        return redirect()->route('login')->with('success','Password reseted successfully!');
     
     }
+
+    
 }
+ 

@@ -13,6 +13,7 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PricingController;
 use App\Http\Controllers\Front\LoginController;
 use App\Http\Controllers\Front\SignupController;
+use App\Http\Controllers\Front\ForgetPasswordController;
 use App\Http\Controllers\Company\CompanyController;
 
 
@@ -33,8 +34,9 @@ Route::get('terms', [TermsController::class,'index'])->name('terms');
 Route::get('job-categories', [JobCategoryController::class,'categories'])->name('job_categories');
 Route::get('pricing', [PricingController::class,'index'])->name('pricing');
 Route::get('login',[LoginController::class,'index'])->name('login');
-Route::get('forget-password',[LoginController::class,'forget_password'])->name('forget_password');
 Route::get('create-account',[SignupController::class,'index'])->name('signup');
+Route::get('forget-password/company',[ForgetPasswordController::class,'company_forget_password'])->name('company_forget_password');
+Route::post('forget-password/company/submit',[ForgetPasswordController::class,'company_forget_password_submit'])->name('company_forget_password_submit');
 
 
 // Company
@@ -42,6 +44,9 @@ Route::post('company-signup-submit',[SignupController::class,'company_signup_sub
 Route::get('company_signup_verify/{token}/{email}',[SignupController::class,'company_signup_verify'])->name('company_signup_verify');
 Route::post('company_login_submit',[LoginController::class,'company_login_submit'])->name('company_login_submit');
 Route::get('/company/logout',[LoginController::class,'company_logout'])->name('company_logout'); 
+Route::get('reset-password/company/{token}/{email}', [ForgetPasswordController::class,'company_reset_password'])->name('company_reset_password');
+Route::post('reset-password/company/submit', [ForgetPasswordController::class,'company_reset_password_submit'])->name('company_reset_password_submit');
+
 
 Route::middleware(['company:company'])->group(function(){
     Route::get('/company/dashboard', [CompanyController::class,'index'])->name('company_dashboard');
