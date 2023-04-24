@@ -31,7 +31,27 @@
                     </div>
                     <div class="col-md-6 right-side">
                         <ul class="right">
-                            @if(!Auth::guard('company')->check())
+                            @if(Auth::guard('company')->check())
+                              <li class="menu">
+                                <a href="{{route('company_dashboard')}}"><i class="fas fa-user-circle"></i> Profile</a>
+                              </li>
+                              <li class="menu active">
+                                <a href="{{route('company_dashboard')}}"><i class="fas fa-chart-line"></i> Dashboard</a>
+                              </li>
+                              <li class="menu">
+                                <a href="{{route('company_logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                              </li>
+                            @elseif(Auth::guard('candidate')->check())
+                              <li class="menu">
+                                <a href="{{route('candidate_dashboard')}}"><i class="fas fa-user-circle"></i> Profile</a>
+                              </li>
+                              <li class="menu active">
+                                <a href="{{route('candidate_dashboard')}}"><i class="fas fa-chart-line"></i> Dashboard</a>
+                              </li>
+                              <li class="menu">
+                                <a href="{{route('candidate_logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                              </li>
+                            @else 
                             <li class="menu">
                                 <a href="{{route('login')}}"
                                     ><i class="fas fa-sign-in-alt"></i> Login</a
@@ -42,16 +62,6 @@
                                     ><i class="fas fa-user"></i> Sign Up</a
                                 >
                             </li>
-                            @else 
-                            <li class="menu">
-                                <a href="{{route('company_dashboard')}}"><i class="fas fa-user-circle"></i> Profile</a>
-                              </li>
-                              <li class="menu active">
-                                <a href="{{route('company_dashboard')}}"><i class="fas fa-chart-line"></i> Dashboard</a>
-                              </li>
-                              <li class="menu">
-                                <a href="{{route('company_logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                              </li>
                             @endif
                         </ul>
                     </div>

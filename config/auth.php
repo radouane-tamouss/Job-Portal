@@ -85,7 +85,7 @@ return [
             'driver' => 'eloquent', 
             'model' => App\Models\Company::class, //Company is the name of the model
         ],
-        'candidate' => [
+        'candidates' => [
             'driver' => 'eloquent', 
             'model' => App\Models\Candidate::class, //Candidate is the name of the model
         ],
