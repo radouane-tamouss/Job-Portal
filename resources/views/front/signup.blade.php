@@ -71,59 +71,35 @@ style="background-image: url('uploads/banner.jpg')"
                         aria-labelledby="pills-home-tab"
                         tabindex="0"
                     >
+                    <form action="{{route('candidate_signup_submit')}}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="mb-3">
-                            <label for="" class="form-label"
-                                >Candidate Name *</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                            />
+                            <label for="" class="form-label" >Candidate Name *</label>
+                            <input type="text" class="form-control"   name="name" value="{{old('name')}}"/>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label"
-                                >Username *</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                            />
+                            <label for="" class="form-label"  >Username *</label >
+                            <input type="text" class="form-control"   name="username" value="{{old('username')}}"/>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label"
-                                >Email Address *</label
-                            >
-                            <input
-                                type="text"
-                                class="form-control"
-                            />
+                            <label for="" class="form-label" >Email Address *</label >
+                            <input type="email"  class="form-control " name="email" value="{{old('email')}}"/>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label"
-                                >Password *</label
-                            >
-                            <input
-                                type="password"
-                                class="form-control"
-                            />
+                            <label for="" class="form-label" >Password *</label>
+                            <input type="password" class="form-control"   name="password"/>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label"
-                                >Confirm Password *</label
-                            >
-                            <input
-                                type="password"
-                                class="form-control"
-                            />
+                            <label for="" class="form-label" >Confirm Password *</label  >
+                            <input type="password" class="form-control"   name="retype_password"/>
                         </div>
                         <div class="mb-3">
-                            <button
-                                type="submit"
-                                class="btn btn-primary bg-website"
-                            >
+                            <button type="submit" class="btn btn-primary bg-website">
                                 Create Account
                             </button>
                         </div>
+                    </form>
+                    
                     </div>
                     <div
                         class="tab-pane fade"

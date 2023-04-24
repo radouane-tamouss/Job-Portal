@@ -15,6 +15,7 @@ use App\Http\Controllers\Front\LoginController;
 use App\Http\Controllers\Front\SignupController;
 use App\Http\Controllers\Front\ForgetPasswordController;
 use App\Http\Controllers\Company\CompanyController;
+use App\Http\Controllers\Candidate\CandidateController;
 
 
 /*
@@ -33,8 +34,10 @@ Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('terms', [TermsController::class,'index'])->name('terms');
 Route::get('job-categories', [JobCategoryController::class,'categories'])->name('job_categories');
 Route::get('pricing', [PricingController::class,'index'])->name('pricing');
+
 Route::get('login',[LoginController::class,'index'])->name('login');
 Route::get('create-account',[SignupController::class,'index'])->name('signup');
+
 Route::get('forget-password/company',[ForgetPasswordController::class,'company_forget_password'])->name('company_forget_password');
 Route::post('forget-password/company/submit',[ForgetPasswordController::class,'company_forget_password_submit'])->name('company_forget_password_submit');
 
@@ -48,9 +51,26 @@ Route::get('reset-password/company/{token}/{email}', [ForgetPasswordController::
 Route::post('reset-password/company/submit', [ForgetPasswordController::class,'company_reset_password_submit'])->name('company_reset_password_submit');
 
 
+
+//company middleware
 Route::middleware(['company:company'])->group(function(){
     Route::get('/company/dashboard', [CompanyController::class,'index'])->name('company_dashboard');
+    
+});
 
+
+//candidate
+Route::post('candidate-signup-submit',[SignupController::class,'candidate_signup_submit'])->name('candidate_signup_submit');
+Route::get('candidate_signup_verify/{token}/{email}',[SignupController::class,'candidate_signup_verify'])->name('candidate_signup_verify');
+Route::post('candidate_login_submit',[LoginController::class,'candidate_login_submit'])->name('candidate_login_submit');
+Route::get('/candidate/logout',[LoginController::class,'candidate_logout'])->name('candidate_logout'); 
+Route::get('reset-password/candidate/{token}/{email}', [ForgetPasswordController::class,'candidate_reset_password'])->name('candidate_reset_password');
+Route::post('reset-password/candidate/submit', [ForgetPasswordController::class,'candidate_reset_password_submit'])->name('candidate_reset_password_submit');
+
+//candidate middleware
+Route::middleware(['candidate:candidate'])->group(function(){
+    Route::get('/candidate/dashboard', [candidateController::class,'index'])->name('candidate_dashboard');
+    
 });
 
 // Admin

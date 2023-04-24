@@ -48,7 +48,12 @@ return [
             'driver' => 'session',
             'provider' => 'companies', //companies is the name of the table
         ],
+        'candidate' => [
+            'driver' => 'session',
+            'provider' => 'candidates', //cadndidates is the name of the table
+        ],
     ],
+    
 
     /*
     |--------------------------------------------------------------------------
@@ -80,6 +85,11 @@ return [
             'driver' => 'eloquent', 
             'model' => App\Models\Company::class, //Company is the name of the model
         ],
+        'candidate' => [
+            'driver' => 'eloquent', 
+            'model' => App\Models\Candidate::class, //Candidate is the name of the model
+        ],
+
 
 
         // 'users' => [
@@ -112,6 +122,18 @@ return [
         ],
         'admins' => [
             'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'companies' => [
+            'provider' => 'companies',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'candidates' => [
+            'provider' => 'candidates',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
