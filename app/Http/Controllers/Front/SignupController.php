@@ -15,6 +15,14 @@ use Auth;
 class SignupController extends Controller
 {
     public function index(){
+        if(Auth::guard('company')->check())
+        {
+            return redirect()->route('company_dashboard');
+        }
+        if(Auth::guard('candidate')->check())
+        {
+            return redirect()->route('candidate_dashboard');
+        } // if user is already logged in then redirect to dashboard
         return view('front.signup');
     }
 
