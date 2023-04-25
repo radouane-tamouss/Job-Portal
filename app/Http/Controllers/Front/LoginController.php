@@ -33,7 +33,8 @@ class LoginController extends Controller
 
         $credential =[
             'username' => $request->username,
-            'password' => $request->password
+            'password' => $request->password,
+            'status' => 1
         ];
 
         if ( Auth::guard('company')->attempt(($credential))){ //
@@ -64,7 +65,7 @@ class LoginController extends Controller
             'password' => $request->password
         ];
 
-        if ( Auth::guard('candidate')->attempt(($credential))){ //
+        if ( Auth::guard('candidate')->attempt(($credential))){ 
             return redirect()->route('candidate_dashboard');
         }else{
             return redirect()->route('login')->with('error','Email or Password is not correct!');

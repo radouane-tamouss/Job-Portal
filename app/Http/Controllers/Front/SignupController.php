@@ -85,7 +85,7 @@ class SignupController extends Controller
         $token = hash('sha256',time());
 
         $obj = new Candidate();
-        // $obj->name = $request->name;
+        
         $obj->name = $request->name;
         $obj->username = $request->username;
         $obj->email = $request->email;
