@@ -10,7 +10,7 @@
         >
     </li>
     <li class="list-group-item">
-        <a href="{{company-orders.html}}">Orders</a>
+        <a href="">Orders</a>
     </li>
     <li class="list-group-item">
         <a href="company-job-add.html"
