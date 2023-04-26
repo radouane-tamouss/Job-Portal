@@ -33,11 +33,13 @@
                                 >Companies</a
                             >
                         </li>
+                        @if(Auth::guard('company')->check())
                         <li class="nav-item {{ Request::is('pricing') ? 'active' : ''}}">
                             <a href="{{route('pricing')}} " class="nav-link"
                                 >Pricing</a
                             >
                         </li>
+                        @endif
                         <li class="nav-item">
                             <a href="faq.html" class="nav-link">FAQ</a>
                         </li>

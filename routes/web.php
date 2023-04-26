@@ -112,6 +112,11 @@ Route::middleware(['admin:admin'])->group(function(){
     Route::get('company/paypal/success', [CompanyController::class, 'paypal_success'])->name('company_paypal_success');
     Route::get('company/paypal/cancel', [CompanyController::class, 'paypal_cancel'])->name('company_paypal_cancel');
 
+    /* Stripe */
+    Route::post('company/stripe/payment', [CompanyController::class, 'stripe'])->name('company_stripe');
+    Route::get('company/stripe/success', [CompanyController::class, 'stripe_success'])->name('company_stripe_success');
+    Route::get('company/stripe/cancel', [CompanyController::class, 'stripe_cancel'])->name('company_stripe_cancel');
+
 
 
 

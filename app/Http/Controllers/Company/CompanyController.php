@@ -113,4 +113,73 @@ class CompanyController extends Controller
     {
         return redirect()->route('company_make_payment')->with('error','Payment is cancelled!');
     }
+
+
+
+    // STRIPE PAYMENT
+
+    public function stripe(Request $request)
+    {
+        $signle_package_data = Package::where('id',$request->package_id)->first(); //get package data
+
+        
+        \Stripe\Stripe::setApiKey(config('stripe.stripe_sk'));
+        $response = \Stripe\Checkout\Session::create([
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => 'usd',
+                        'product_data' => [
+                            'name' => $signle_package_data->package_name
+                        ],
+                        'unit_amount' => $signle_package_data->package_price * 100 ,
+                    ],
+                    'quantity' => 1,
+                ],
+            ],
+            'mode' => 'payment',
+            'success_url' => route('company_stripe_success'),
+            'cancel_url' => route('company_stripe_cancel'),
+        ]);
+
+        session()->put('package_id', $signle_package_data->id);
+        session()->put('package_price', $signle_package_data->package_price);
+        session()->put('package_days', $signle_package_data->package_days);
+
+        return redirect()->away($response->url);
+        
+    }
+
+    public function stripe_success()
+    {
+        $data['currently_active'] = 0;
+            Order::where('company_id' ,Auth::guard('company')->user()->id)->update($data);
+
+            
+            $obj = new order();
+            $obj->company_id = Auth::guard('company')->user()->id;
+            $obj->package_id = session()->get('package_id');
+            $obj->order_no = time();
+            $obj->paid_amount = session()->get('package_price');
+            $days = session()->get('package_days');
+            $obj->start_date = date('Y-m-d');
+            $obj->expire_date = date('Y-m-d', strtotime("+$days days"));
+            $obj->currently_active = 1;
+            $obj->payment_method = 'Stripe';
+            $obj->save();
+            
+            session()->forget('package_id');
+            session()->forget('package_price');
+            session()->forget('package_days');
+
+         return redirect()->route('company_make_payment')->with('succes','Payment is successful!');
+    }
+
+    public function stripe_cancel()
+    {
+        return redirect()->route('company_make_payment')->with('error','Payment is cancelled!');
+
+    }
+
+
 }

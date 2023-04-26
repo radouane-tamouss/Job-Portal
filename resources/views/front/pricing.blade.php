@@ -86,7 +86,7 @@ style="background-image: url('uploads/banner.jpg')"
                             </li>
                         </ul>
                         <div class="buy">
-                            <a href="" class="btn btn-primary">
+                            <a href="{{route('company_make_payment')}}" class="btn btn-primary">
                                 Choose Plan
                             </a>
                         </div>

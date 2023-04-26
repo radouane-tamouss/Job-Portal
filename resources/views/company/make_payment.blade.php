@@ -69,6 +69,8 @@ style="background-image: url('uploads/banner.jpg')"
                     </tr>
                     </form>
                     <tr>
+                    <form action="{{route('company_stripe')}}" method="POST">
+                            @csrf
                         <td>
                             <select name="package_id" class="form-select" id="">
                                 @foreach ($packages as $item)
@@ -81,6 +83,7 @@ style="background-image: url('uploads/banner.jpg')"
                                 >Pay with Card
                             </button>
                         </td>
+                    </form>
                     </tr>
                 </table>
             </div>
