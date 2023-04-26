@@ -9,7 +9,7 @@ use App\Models\Package;
 class PricingController extends Controller
 {
     public function index(){
-        $packages = Package::get();
+        $packages = Package::OrderBy('id','Asc')->get();
         return view('front.pricing',compact('packages'));
     }
 }
