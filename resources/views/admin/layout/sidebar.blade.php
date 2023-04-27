@@ -31,6 +31,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-briefcase"></i><span>Company Section</span></a>
                 <ul class="dropdown-menu">
                     <li class=""><a class="nav-link" href="{{route('admin_company_location')}}"><i class="fas fa-map-marker-alt m-1"></i>Company Location</a></li>
+                    <li class=""><a class="nav-link" href="{{route('admin_company_industry')}}"><i class="fas fa-industry m-1"></i>Company Industry</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown {{ Request::is('admin/package/*') ? 'active' : ''}}">
