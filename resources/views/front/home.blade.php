@@ -33,30 +33,14 @@
                                                 name=""
                                                 class="form-select select2"
                                             >
-                                                <option value="">
-                                                    {{$page_home_data->job_location}}
+                                            <option value="">
+                                                {{$page_home_data->job_location}}
+                                            </option>
+                                            @foreach($job_locations_select as $item)
+                                                <option value="{{$item->id}}">
+                                                    {{$item->name}}
                                                 </option>
-                                                <option value="">
-                                                    Australia
-                                                </option>
-                                                <option value="">
-                                                    Bangladesh
-                                                </option>
-                                                <option value="">
-                                                    Canada
-                                                </option>
-                                                <option value="">
-                                                    China
-                                                </option>
-                                                <option value="">
-                                                    India
-                                                </option>
-                                                <option value="">
-                                                    United Kingdom
-                                                </option>
-                                                <option value="">
-                                                    United States
-                                                </option>
+                                            @endforeach 
                                             </select>
                                         </div>
                                     </div>
