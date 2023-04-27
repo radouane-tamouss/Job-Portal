@@ -70,6 +70,13 @@ class CompanyController extends Controller
         }
     }
 
+    public function orders()
+    {
+        $orders = Order::with('rPackage')->OrderBy('id','DESC')->where('company_id',Auth::guard('company')->user()->id)->get();
+        return view('company.orders', compact('orders'));
+
+    }
+
     public function paypal_success(Request $request)
     {
         $provider = new PayPalClient;
@@ -180,6 +187,8 @@ class CompanyController extends Controller
         return redirect()->route('company_make_payment')->with('error','Payment is cancelled!');
 
     }
+
+    
 
 
 }

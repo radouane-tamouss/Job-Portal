@@ -56,6 +56,7 @@ Route::post('forget-password/company/submit',[ForgetPasswordController::class,'c
 Route::middleware(['company:company'])->group(function(){
     Route::get('/company/dashboard', [CompanyController::class,'index'])->name('company_dashboard');
     Route::get('/company/make-payment', [CompanyController::class,'make_payment'])->name('company_make_payment');
+    Route::get('company/orders', [CompanyController::class, 'orders'])->name('company_orders');
     
      /* PayPal */
      Route::post('company/paypal/payment', [CompanyController::class, 'paypal'])->name('company_paypal');
@@ -66,6 +67,8 @@ Route::middleware(['company:company'])->group(function(){
      Route::post('company/stripe/payment', [CompanyController::class, 'stripe'])->name('company_stripe');
      Route::get('company/stripe/success', [CompanyController::class, 'stripe_success'])->name('company_stripe_success');
      Route::get('company/stripe/cancel', [CompanyController::class, 'stripe_cancel'])->name('company_stripe_cancel');
+
+
  
  
  

@@ -2,7 +2,7 @@
     <!-- Menu For Mobile Device -->
     <div class="mobile-nav">
         <a href="/" class="logo">
-            <img src="{{ asset('uploads/logo.png')}}" alt="" />
+            <img src="{{asset('uploads/logo.png')}}" alt="logo"/>
         </a>
     </div>
 

@@ -9,8 +9,8 @@
             >Make Payment</a
         >
     </li>
-    <li class="list-group-item">
-        <a href="">Orders</a>
+    <li class="list-group-item {{Request::is('company/orders') ? 'active' : ''}}">
+        <a href="{{route('company_orders')}}">Orders</a>
     </li>
     <li class="list-group-item">
         <a href="company-job-add.html"
