@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminHomePageController;
 use App\Http\Controllers\Admin\AdminJobCategoryController;
 use App\Http\Controllers\Admin\AdminJobLocationController;
+use App\Http\Controllers\Admin\AdminJobTypeController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminPackageController;
@@ -122,6 +123,13 @@ Route::middleware(['admin:admin'])->group(function(){
     Route::get('/admin/job-location/edit/{id}',[AdminJobLocationController::class,'edit'])->name('admin_job_location_edit');
     Route::post('/admin/job-location/update/{id}', [AdminJobLocationController::class, 'update'])->name('admin_job_location_update');
     Route::get('/admin/job-location/delete/{id}',[AdminJobLocationController::class,'delete'])->name('admin_job_location_delete');
+
+    Route::get('/admin/job-type/view', [AdminJobTypeController::class, 'index'])->name('admin_job_type');
+    Route::get('/admin/job-type/create',[AdminJobTypeController::class,'create'])->name('admin_job_type_create');
+    Route::post('/admin/job-type/store', [AdminJobTypeController::class, 'store'])->name('admin_job_type_store');
+    Route::get('/admin/job-type/edit/{id}',[AdminJobTypeController::class,'edit'])->name('admin_job_type_edit');
+    Route::post('/admin/job-type/update/{id}', [AdminJobTypeController::class, 'update'])->name('admin_job_type_update');
+    Route::get('/admin/job-type/delete/{id}',[AdminJobTypeController::class,'delete'])->name('admin_job_type_delete');
 
     Route::get('/admin/package/view' , [AdminPackageController::class,'index'])->name('admin_package');
     Route::get('/admin/package/create',[AdminPackageController::class,'create'])->name('admin_package_create');
