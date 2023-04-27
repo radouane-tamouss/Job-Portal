@@ -61,6 +61,8 @@ Route::middleware(['company:company'])->group(function(){
     Route::get('/company/dashboard', [CompanyController::class,'index'])->name('company_dashboard');
     Route::get('/company/make-payment', [CompanyController::class,'make_payment'])->name('company_make_payment');
     Route::get('company/orders', [CompanyController::class, 'orders'])->name('company_orders');
+
+    Route::get('company/edit-profile', [CompanyController::class, 'edit_profile'])->name('company_edit_profile');
     
      /* PayPal */
      Route::post('company/paypal/payment', [CompanyController::class, 'paypal'])->name('company_paypal');

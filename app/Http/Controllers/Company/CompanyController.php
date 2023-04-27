@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Models\Order;
 use App\Models\Package;
+use App\Models\CompanyLocation;
 use Auth;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
@@ -23,6 +24,10 @@ class CompanyController extends Controller
         return view('company.make_payment', compact('current_plan','packages'));
     }
 
+    public function edit_profile(){
+        $company_locations = CompanyLocation::get();
+        return view('company.edit_profile',compact('company_locations'));
+    }
 
 
 

@@ -26,10 +26,11 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('website')->nullable();
-            $table->string('company_size')->nullable();
-            $table->integer('industry_id')->nullable();
+            $table->integer('company_size_id')->nullable();
+            $table->integer('company_industry_id')->nullable();
+            $table->integer('company_location_id')->nullable();
             $table->string('founded_on')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('oh_monday')->nullable(); // Opening Hours for monday to sunday
             $table->string('oh_tuesday')->nullable();
             $table->string('oh_wednesday')->nullable();
@@ -37,12 +38,12 @@ return new class extends Migration
             $table->string('oh_friday')->nullable();
             $table->string('oh_saturday')->nullable();
             $table->string('oh_sunday')->nullable();
-            $table->text('facebook')->nullable();
-            $table->text('twitter')->nullable();
-            $table->text('linkedin')->nullable();
-            $table->text('instagram')->nullable();
-            $table->text('youtube')->nullable();
-            $table->text('pinterest')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('youtube')->nullable();
+            $table->string('pinterest')->nullable();
             $table->text('map_code')->nullable();
             $table->tinyInteger('status');
 
