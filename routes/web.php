@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminJobCategoryController;
 use App\Http\Controllers\Admin\AdminJobLocationController;
 use App\Http\Controllers\Admin\AdminJobTypeController;
 use App\Http\Controllers\Admin\AdminJobExperienceController;
+use App\Http\Controllers\Admin\AdminCompanyLocationController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminPackageController;
@@ -145,6 +146,13 @@ Route::middleware(['admin:admin'])->group(function(){
     Route::get('/admin/package/edit/{id}',[AdminPackageController::class,'edit'])->name('admin_package_edit');
     Route::post('/admin/package/update/{id}', [AdminPackageController::class, 'update'])->name('admin_package_update');
     Route::get('/admin/package/delete/{id}', [AdminPackageController::class,'delete'])->name('admin_package_delete');
+
+    Route::get('/admin/company-location/view', [AdminCompanyLocationController::class, 'index'])->name('admin_company_location');
+    Route::get('/admin/company-location/create',[AdminCompanyLocationController::class,'create'])->name('admin_company_location_create');
+    Route::post('/admin/company-location/store', [AdminCompanyLocationController::class, 'store'])->name('admin_company_location_store');
+    Route::get('/admin/company-location/edit/{id}',[AdminCompanyLocationController::class,'edit'])->name('admin_company_location_edit');
+    Route::post('/admin/company-location/update/{id}', [AdminCompanyLocationController::class, 'update'])->name('admin_company_location_update');
+    Route::get('/admin/company-location/delete/{id}',[AdminCompanyLocationController::class,'delete'])->name('admin_company_location_delete');
 
    
 
