@@ -8,7 +8,10 @@ use App\Models\Company;
 use App\Models\Order;
 use App\Models\Package;
 use App\Models\CompanyLocation;
+use App\Models\CompanySize;
+use App\Models\CompanyIndustry;
 use Auth;
+use Illuminate\Validation\Rule;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class CompanyController extends Controller
@@ -25,9 +28,69 @@ class CompanyController extends Controller
     }
 
     public function edit_profile(){
-        $company_locations = CompanyLocation::get();
-        return view('company.edit_profile',compact('company_locations'));
+        $company_locations = CompanyLocation::OrderBy('name','asc')->get();
+        $company_sizes = CompanySize::OrderBy('name','asc')->get();
+        $company_industries = CompanyIndustry::OrderBy('name','asc')->get();
+        return view('company.edit_profile',compact('company_locations','company_industries','company_sizes'));
     }
+
+    public function edit_profile_update(Request $request){
+
+        $obj = Company::where('id', Auth::guard('company')->user()->id)->first();
+        $id = $obj->id;
+        $request->validate([
+            'company_name' => 'required',
+            'person_name' => 'required',
+            'username' => ['required','alpha_dash',Rule::unique('companies')->ignore($id)], 
+            'email' => ['required','email',Rule::unique('companies')->ignore($id)],
+        ]);
+        
+        if($request->hasFile('logo')){
+            $request->validate([
+                'logo' => 'required|mimes:jpg,jpeg,png,gif|max:2048',
+            ]);
+
+            if(Auth::guard('company')->user()->logo != ''){
+
+                unlink(public_path('uploads/'.$obj->logo));
+            }
+
+            $ext = $request->file('logo')->extension();
+            $final_name = 'company_logo'.time().'.'.$ext;
+            $request->file('logo')->move(public_path('uploads/'),$final_name);
+
+            $obj->logo = $final_name;
+        }
+        
+        $obj->company_name = $request->company_name;
+        $obj->person_name  = $request->person_name;
+        $obj->username  = $request->username;
+        $obj->email  = $request->email;
+        $obj->phone  = $request->phone;
+        $obj->address  = $request->address;
+        $obj->company_location_id  = $request->company_location_id;
+        $obj->company_size_id  = $request->company_size_id;
+        $obj->company_industry_id  = $request->company_industry_id;
+        $obj->founded_on  = $request->founded_on;
+        $obj->oh_monday  = $request->oh_monday;
+        $obj->oh_tuesday  = $request->oh_tuesday;
+        $obj->oh_wednesday  = $request->oh_wednesday;
+        $obj->oh_thursday  = $request->oh_thursday;
+        $obj->oh_friday  = $request->oh_friday;
+        $obj->oh_saturday  = $request->oh_saturday;
+        $obj->oh_sunday  = $request->oh_sunday;
+        $obj->map_code  = $request->map_code;
+        $obj->website  = $request->website;
+        $obj->facebook  = $request->facebook;
+        $obj->twitter  = $request->twitter;
+        $obj->linkedin  = $request->linkedin;
+        $obj->instagram  = $request->instagram;
+        $obj->youtube  = $request->youtube;
+        
+        $obj->update();
+        return redirect()->back()->with('success', 'Company Profile Updated Successfully');
+    }
+
 
 
 

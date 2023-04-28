@@ -32,13 +32,14 @@ style="background-image: url('uploads/banner.jpg')"
             </div>
         </div>
         <div class="col-lg-9 col-md-12">
-            <form action="" method="post">
+            <form action="{{route('company_edit_profile_update')}}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="">Existing Logo</label>
                         @if(Auth::guard('company')->user()->logo == '')
                         <div class="form-group">
-                            <img  src="{{asset('uploads/default-company-logo.png')}}" alt="" class="logo"/>
+                            <img  src="{{asset('uploads/default-company-logo.png')}}" alt="default logo" class="logo"/>
                         </div>
                         @else
                         <div class="form-group">
@@ -75,7 +76,7 @@ style="background-image: url('uploads/banner.jpg')"
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">Username</label>
+                        <label for="">Username *</label>
                         <div class="form-group">
                             <input
                                 type="text"
@@ -119,16 +120,168 @@ style="background-image: url('uploads/banner.jpg')"
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">Location</label>
+                        <label for="">Location *</label>
                         <div class="form-group">
                             <select
                                 name="company_location_id"
                                 class="form-control select2"
+                                
                             >
                                 @foreach($company_locations as $item)
-                                <option value="{{$item->name}}"> {{$item->name}} </option>
+                                <option value="{{$item->id}}"> {{$item->name}} </option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="">Company Size *</label>
+                        <div class="form-group">
+                            <select
+                            name="company_size_id"
+                            class="form-control select2"
+                            >
+                            @foreach($company_sizes as $item)
+                                <option value="{{$item->id}}"> {{$item->name}} </option>
+                            @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="">Founded On *</label>
+                        <div class="form-group">
+                            <select
+                                name="founded_on"
+                                class="form-control select2"
+                            >
+                            @for($i=date('Y') ; $i>1600 ; $i--)
+                            <option value="{{$i}}">{{$i}}</option>
+                            @endfor
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="">Industry *</label>
+                        <div class="form-group">
+                            <select
+                            name="company_industry_id"
+                            class="form-control select2"
+                            >
+                                @foreach($company_industries as $item)
+                                <option value="{{$item->id}}"> {{$item->name}} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                   
+                    
+                    <div class="col-md-12 mb-3">
+                        <label for="">About Company</label>
+                        <textarea
+                            name="description"
+                            class="form-control editor"
+                            cols="30"
+                            rows="10"
+                            >
+                            {{Auth::guard('company')->user()->description}}
+                        </textarea>
+                        </div>
+                        
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="">Opening Hour (Monday)</label>
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                name="oh_monday"
+                                class="form-control"
+                                value="{{Auth::guard('company')->user()->oh_monday}}"
+
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="">Opening Hour (Tuesday)</label>
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                name="oh_tuesday"
+                                class="form-control"
+                                value="{{Auth::guard('company')->user()->oh_tuesday}}"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for=""
+                            >Opening Hour (Wednesday)</label
+                        >
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                name="oh_wednesday"
+                                class="form-control"
+                                value="{{Auth::guard('company')->user()->oh_wednesday}}"
+
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for=""
+                            >Opening Hour (Thursday)</label
+                        >
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                name="oh_thursday"
+                                class="form-control"
+                                value="{{Auth::guard('company')->user()->oh_thursday}}"
+
+                            />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="">Opening Hour (Friday)</label>
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                name="oh_friday"
+                                class="form-control"
+                                value="{{Auth::guard('company')->user()->oh_friday}}"
+
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for=""
+                            >Opening Hour (Saturday)</label
+                        >
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                name="oh_saturday"
+                                class="form-control"
+                                value="{{Auth::guard('company')->user()->oh_saturday}}"
+
+                            />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="">Opening Hour (Sunday)</label>
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                name="oh_sunday"
+                                class="form-control"
+                                value="{{Auth::guard('company')->user()->oh_sunday}}"
+
+                            />
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -142,174 +295,6 @@ style="background-image: url('uploads/banner.jpg')"
                             />
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="">Company Size</label>
-                        <div class="form-group">
-                            <select
-                                name=""
-                                class="form-control select2"
-                            >
-                                <option value="">
-                                    2-5 Persons
-                                </option>
-                                <option value="" selected>
-                                    5-10 Persons
-                                </option>
-                                <option value="">
-                                    10-20 Persons
-                                </option>
-                                <option value="">
-                                    20-50 Persons
-                                </option>
-                                <option value="">
-                                    50-100 Persons
-                                </option>
-                                <option value="">
-                                    100+ Persons
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                        <label for="">Founded On</label>
-                        <div class="form-group">
-                            <select
-                                name=""
-                                class="form-control select2"
-                            >
-                                <option value="">2018</option>
-                                <option value="">2019</option>
-                                <option value="" selected>
-                                    2020
-                                </option>
-                                <option value="">2021</option>
-                                <option value="">2022</option>
-                            </select>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="">Industry</label>
-                        <div class="form-group">
-                            <select
-                                name=""
-                                class="form-control select2"
-                            >
-                                <option value="">
-                                    Accounting Firm
-                                </option>
-                                <option value="">IT Firm</option>
-                                <option value="">Law Firm</option>
-                                <option value="">
-                                    Real Estate Company
-                                </option>
-                                <option value="" selected>
-                                    Software Company
-                                </option>
-                            </select>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-
-                    <div class="col-md-12 mb-3">
-                        <label for="">About Company</label>
-                        <textarea
-                            name=""
-                            class="form-control editor"
-                            cols="30"
-                            rows="10"
-                        >
-His cu nobis populo, eum laoreet evertitur te. In tollit audire adolescens vix. Ad veri admodum quo. Ea pri cetero timeam probatus, dicunt principes vel ut.</textarea
-                        >
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                        <label for="">Opening Hour (Monday)</label>
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                name=""
-                                class="form-control"
-                                value="9:00 AM to 5:00 PM"
-                            />
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="">Opening Hour (Tuesday)</label>
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                name=""
-                                class="form-control"
-                                value="9:00 AM to 5:00 PM"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                        <label for=""
-                            >Opening Hour (Wednesday)</label
-                        >
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                name=""
-                                class="form-control"
-                                value="9:00 AM to 5:00 PM"
-                            />
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for=""
-                            >Opening Hour (Thursday)</label
-                        >
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                name=""
-                                class="form-control"
-                                value="9:00 AM to 5:00 PM"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                        <label for="">Opening Hour (Friday)</label>
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                name=""
-                                class="form-control"
-                                value="9:00 AM to 5:00 PM"
-                            />
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for=""
-                            >Opening Hour (Saturday)</label
-                        >
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                name=""
-                                class="form-control"
-                                value="9:00 AM to 5:00 PM"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                        <label for="">Opening Hour (Sunday)</label>
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                name=""
-                                class="form-control"
-                                value="9:00 AM to 5:00 PM"
-                            />
-                        </div>
-                    </div>
 
                     <div class="col-md-12 mb-3">
                         <label for=""
@@ -317,14 +302,13 @@ His cu nobis populo, eum laoreet evertitur te. In tollit audire adolescens vix. 
                         >
                         <div class="form-group">
                             <textarea
-                                name=""
+                                name="map_code"
                                 class="form-control h-150"
                                 cols="30"
                                 rows="10"
                             >
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387190.2799198932!2d-74.25987701513004!3d40.69767006272707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sbd!4v1645362221879!5m2!1sen!2sbd" width="600" height="450" style="border: 0" allowfullscreen="" loading="lazy"></iframe>
-</textarea
-                            >
+                        {{Auth::guard('company')->user()->map_code}}
+                        </textarea>
                         </div>
                     </div>
 
@@ -333,9 +317,9 @@ His cu nobis populo, eum laoreet evertitur te. In tollit audire adolescens vix. 
                         <div class="form-group">
                             <input
                                 type="text"
-                                name=""
+                                name="facebook"
                                 class="form-control"
-                                value="https://www.facebook.com/"
+                                value="{{Auth::guard('company')->user()->facebook}}"
                             />
                         </div>
                     </div>
@@ -344,21 +328,21 @@ His cu nobis populo, eum laoreet evertitur te. In tollit audire adolescens vix. 
                         <div class="form-group">
                             <input
                                 type="text"
-                                name=""
+                                name="twitter"
                                 class="form-control"
-                                value="https://www.twitter.com/"
+                                value="{{Auth::guard('company')->user()->twitter}}"
                             />
                         </div>
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="">Linkedin</label>
+                        <label for="">LinkedIn</label>
                         <div class="form-group">
                             <input
                                 type="text"
-                                name=""
+                                name="linkedin"
                                 class="form-control"
-                                value="https://www.linkedin.com/"
+                                value="{{Auth::guard('company')->user()->linkedin}}"
                             />
                         </div>
                     </div>
@@ -367,9 +351,20 @@ His cu nobis populo, eum laoreet evertitur te. In tollit audire adolescens vix. 
                         <div class="form-group">
                             <input
                                 type="text"
-                                name=""
+                                name="instagram"
                                 class="form-control"
-                                value="https://www.instagram.com/"
+                                value="{{Auth::guard('company')->user()->instagram}}"
+                            />
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="">Youtube</label>
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                name="youtube"
+                                class="form-control"
+                                value="{{Auth::guard('company')->user()->youtube}}"
                             />
                         </div>
                     </div>

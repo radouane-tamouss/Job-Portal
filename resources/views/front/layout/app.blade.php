@@ -11,6 +11,9 @@
         <title>@yield('seo_title')</title>
         <link rel="icon" type="image/png" href="{{asset('uploads/favicon.png')}}" />
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
+        
         @include('front.layout.styles')
 
         @include('front.layout.scripts')
@@ -241,6 +244,11 @@
                 });
             </script>
         @endif
+
+        
+        
+        
+        
         
         
    
