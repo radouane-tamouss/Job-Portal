@@ -127,8 +127,9 @@ style="background-image: url('uploads/banner.jpg')"
                                 class="form-control select2"
                                 
                             >
+                                <option value="">Please select a location</option>
                                 @foreach($company_locations as $item)
-                                <option value="{{$item->id}}"> {{$item->name}} </option>
+                                <option value="{{$item->id}}" @if($item->id == Auth::guard('company')->user()->company_location_id) selected @endif> {{$item->name}} </option>
                                 @endforeach
                             </select>
                         </div>
@@ -142,8 +143,9 @@ style="background-image: url('uploads/banner.jpg')"
                             name="company_size_id"
                             class="form-control select2"
                             >
+                            <option value="">Please select a company size</option>
                             @foreach($company_sizes as $item)
-                                <option value="{{$item->id}}"> {{$item->name}} </option>
+                                <option value="{{$item->id}}"  @if($item->id == Auth::guard('company')->user()->company_size_id) selected @endif> {{$item->name}} </option>
                             @endforeach
                             </select>
                         </div>
@@ -156,8 +158,9 @@ style="background-image: url('uploads/banner.jpg')"
                                 name="founded_on"
                                 class="form-control select2"
                             >
+                            <option value="">Please select a year</option>
                             @for($i=date('Y') ; $i>1600 ; $i--)
-                            <option value="{{$i}}">{{$i}}</option>
+                            <option value="{{$i}}"  @if($i == Auth::guard('company')->user()->founded_on) selected @endif>{{$i}}</option>
                             @endfor
                             </select>
                         </div>
@@ -170,8 +173,9 @@ style="background-image: url('uploads/banner.jpg')"
                             name="company_industry_id"
                             class="form-control select2"
                             >
+                                <option value="">Please select an industry</option>
                                 @foreach($company_industries as $item)
-                                <option value="{{$item->id}}"> {{$item->name}} </option>
+                                <option value="{{$item->id}} @if($i == Auth::guard('company')->user()->company_industry_id) selected @endif"> {{$item->name}} </option>
                                 @endforeach
                             </select>
                         </div>
@@ -313,7 +317,7 @@ style="background-image: url('uploads/banner.jpg')"
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="">Facebook</label>
+                        <label for="">Facebook link</label>
                         <div class="form-group">
                             <input
                                 type="text"
@@ -324,7 +328,7 @@ style="background-image: url('uploads/banner.jpg')"
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">Twitter</label>
+                        <label for="">Twitter link</label>
                         <div class="form-group">
                             <input
                                 type="text"
@@ -336,7 +340,7 @@ style="background-image: url('uploads/banner.jpg')"
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="">LinkedIn</label>
+                        <label for="">LinkedIn link</label>
                         <div class="form-group">
                             <input
                                 type="text"
@@ -347,7 +351,7 @@ style="background-image: url('uploads/banner.jpg')"
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">Instagram</label>
+                        <label for="">Instagram link</label>
                         <div class="form-group">
                             <input
                                 type="text"
@@ -358,7 +362,7 @@ style="background-image: url('uploads/banner.jpg')"
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">Youtube</label>
+                        <label for="">Youtube link</label>
                         <div class="form-group">
                             <input
                                 type="text"

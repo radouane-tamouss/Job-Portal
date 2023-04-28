@@ -43,6 +43,10 @@ class CompanyController extends Controller
             'person_name' => 'required',
             'username' => ['required','alpha_dash',Rule::unique('companies')->ignore($id)], 
             'email' => ['required','email',Rule::unique('companies')->ignore($id)],
+            'company_location_id' => 'required',
+            'company_size_id' => 'required',
+            'founded_on' => 'required',
+           
         ]);
         
         if($request->hasFile('logo')){
@@ -65,6 +69,7 @@ class CompanyController extends Controller
         $obj->company_name = $request->company_name;
         $obj->person_name  = $request->person_name;
         $obj->username  = $request->username;
+        $obj->description  = $request->description;
         $obj->email  = $request->email;
         $obj->phone  = $request->phone;
         $obj->address  = $request->address;
