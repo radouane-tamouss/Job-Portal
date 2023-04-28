@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Package;
 use App\Models\CompanyLocation;
 use App\Models\CompanySize;
+use App\Models\CompanyPhoto;
 use App\Models\CompanyIndustry;
 use Auth;
 use Illuminate\Validation\Rule;
@@ -20,12 +21,7 @@ class CompanyController extends Controller
         return view('company.dashboard');
     }
 
-    public function make_payment(){
-
-        $current_plan = Order::with('rPackage')->where('company_id',Auth::guard('company')->user()->id)->where('currently_active',1)->first();//check if any active order exists
-        $packages = Package::get();//get all packages
-        return view('company.make_payment', compact('current_plan','packages'));
-    }
+ 
 
     public function edit_profile(){
         $company_locations = CompanyLocation::OrderBy('name','asc')->get();
@@ -97,8 +93,44 @@ class CompanyController extends Controller
     }
 
 
+    public function photos()
+    {
+        $photos= CompanyPhoto::where('company_id',Auth::guard('company')->user()->id)->get();
+        return view('company.photos' , compact('photos'));
+    }
 
+    public function photos_submit(Request $request)
+    {
+        $request->validate([
+            'photo' => 'required|image|mimes:jpg,jpeg,png,gif'
+        ]);
 
+        $obj = new CompanyPhoto();
+
+        $ext = $request->file('photo')->extension();
+        $final_name = 'company_photo_'.time().'.'.$ext;
+        $request->file('photo')->move(public_path('uploads/companies_photos/'),$final_name);
+
+        $obj->photo = $final_name;
+        $obj->company_id = Auth::guard('company')->user()->id;
+        $obj->save();
+
+        return redirect()->back()->with('success','photo added succesffully');
+    }
+
+    public function photo_delete($id){
+        $pic = CompanyPhoto::where('id',$id)->first();
+        unlink(public_path('uploads/companies_photos/'.$pic->photo));
+        CompanyPhoto::where('id',$id)->delete();
+        return redirect()->route('company_photos')->with('success','Photo Deleted Succesfully!');
+    }
+
+    public function make_payment(){
+
+        $current_plan = Order::with('rPackage')->where('company_id',Auth::guard('company')->user()->id)->where('currently_active',1)->first();//check if any active order exists
+        $packages = Package::get();//get all packages
+        return view('company.make_payment', compact('current_plan','packages'));
+    }
 
     public function paypal(Request $request)
     {

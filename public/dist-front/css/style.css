@@ -52,6 +52,9 @@ input {
 .h-200 {
     height: 200px !important;
 }
+.mb-0{
+    margin-bottom : 0px !important;
+}
 .btn:first-child:hover,
 :not(.btn-check) + .btn:hover {
     color: #fff;

@@ -76,6 +76,12 @@ Route::middleware(['company:company'])->group(function(){
      Route::post('/company/stripe/payment', [CompanyController::class, 'stripe'])->name('company_stripe');
      Route::get('/company/stripe/success', [CompanyController::class, 'stripe_success'])->name('company_stripe_success');
      Route::get('/company/stripe/cancel', [CompanyController::class, 'stripe_cancel'])->name('company_stripe_cancel');
+     //company photos
+     Route::get('/company/photos', [CompanyController::class, 'photos'])->name('company_photos');
+     Route::post('/company/photos/submit', [CompanyController::class, 'photos_submit'])->name('company_photos_submit');
+    Route::get('/company/photos/delete/{id}',[CompanyController::class,'photo_delete'])->name('company_photo_delete');
+
+
 
 
  
