@@ -13,6 +13,7 @@ use App\Models\CompanyPhoto;
 use App\Models\CompanyVideo;
 use App\Models\CompanyIndustry;
 use Auth;
+use Hash;
 use Illuminate\Validation\Rule;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
@@ -22,6 +23,26 @@ class CompanyController extends Controller
         return view('company.dashboard');
     }
 
+    public function edit_password(){
+        return view('company.edit_password');
+    }
+    public function company_edit_password_update(Request $request){
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required',
+            'password_confirmation' => 'required|same:new_password',
+        ]);
+
+        $obj = Company::where('id', Auth::guard('company')->user()->id)->first();
+        if(!Hash::check($request->old_password, $obj->password)){
+            return redirect()->back()->with('error', 'old password not match');
+        }else{
+            $obj->password = hash::make($request->new_password);
+            $obj->update();
+            return redirect()->back()->with('success','Password is updated successfully');
+        }
+        
+    }
  
 
     public function edit_profile(){
@@ -43,6 +64,12 @@ class CompanyController extends Controller
             'company_location_id' => 'required',
             'company_size_id' => 'required',
             'founded_on' => 'required',
+            'youtube' => 'nullable|url',
+            'facebook' => 'nullable|url',
+            'twitter' => 'nullable|url',
+            'linkedin' => 'nullable|url',
+            'instagram' => 'nullable|url',
+
            
         ]);
         

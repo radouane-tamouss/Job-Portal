@@ -66,6 +66,10 @@ Route::middleware(['company:company'])->group(function(){
 
     Route::get('/company/edit-profile', [CompanyController::class, 'edit_profile'])->name('company_edit_profile');
     Route::post('/company/edit-profile/update', [CompanyController::class, 'edit_profile_update'])->name('company_edit_profile_update');
+
+    Route::get('/company/edit-password', [CompanyController::class, 'edit_password'])->name('company_edit_password');
+    Route::post('/company/edit-password/update', [CompanyController::class, 'company_edit_password_update'])->name('company_edit_password_update');
+
     
      /* PayPal */
      Route::post('/company/paypal/payment', [CompanyController::class, 'paypal'])->name('company_paypal');
