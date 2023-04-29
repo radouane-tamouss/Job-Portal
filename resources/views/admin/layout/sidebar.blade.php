@@ -25,6 +25,7 @@
                     <li class=""><a class="nav-link" href="{{route('admin_job_location')}}"><i class="fas fa-map-marker-alt m-1"></i>Job Location</a></li>
                     <li class=""><a class="nav-link" href="{{route('admin_job_type')}}"><i class="fas fa-tools m-1"></i>Job Type</a></li>
                     <li class=""><a class="nav-link" href="{{route('admin_job_experience')}}"><i class="fas fa-user-clock m-1"></i>Job Experience</a></li>
+                    <li class=""><a class="nav-link" href="{{route('admin_job_salary_range')}}"><i class="fas fa-user-clock m-1"></i>Job Salary Range</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown {{ Request::is('admin/company-category/*') ? 'active' : ''}}">
