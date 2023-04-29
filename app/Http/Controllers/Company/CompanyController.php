@@ -95,8 +95,20 @@ class CompanyController extends Controller
 
     public function photos()
     {
+        $order_data = Order::where('company_id',Auth::guard('company')->user()->id)->where('currently_active',1)->first();
+        if($order_data != null) //check if any active order exists for this company
+        {
+            $package = $order_data->package_id;
+            $package_data = Package::where('id',$order_data->package_id)->first();  
+            $allowed_photos = $package_data->total_allowed_photos;
+        }
+        else{
+            $allowed_photos = 0 ; //if no active order exists then allowed photos will be 0
+        }
+        $company_photos_number = CompanyPhoto::where('company_id',Auth::guard('company')->user()->id)->count();
+        
         $photos= CompanyPhoto::where('company_id',Auth::guard('company')->user()->id)->get();
-        return view('company.photos' , compact('photos'));
+        return view('company.photos' , compact('photos','allowed_photos','company_photos_number'));
     }
 
     public function photos_submit(Request $request)
@@ -105,7 +117,10 @@ class CompanyController extends Controller
             'photo' => 'required|image|mimes:jpg,jpeg,png,gif'
         ]);
 
+        
+
         $obj = new CompanyPhoto();
+
 
         $ext = $request->file('photo')->extension();
         $final_name = 'company_photo_'.time().'.'.$ext;
