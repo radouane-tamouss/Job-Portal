@@ -10,6 +10,7 @@ use App\Models\Package;
 use App\Models\CompanyLocation;
 use App\Models\CompanySize;
 use App\Models\CompanyPhoto;
+use App\Models\CompanyVideo;
 use App\Models\CompanyIndustry;
 use Auth;
 use Illuminate\Validation\Rule;
@@ -90,6 +91,59 @@ class CompanyController extends Controller
         
         $obj->update();
         return redirect()->back()->with('success', 'Company Profile Updated Successfully');
+    }
+
+
+    public function videos()
+    {
+        $order_data = Order::where('company_id',Auth::guard('company')->user()->id)->where('currently_active',1)->first();
+        if($order_data != null) //check if any active order exists for this company
+        {
+            $package = $order_data->package_id;
+            $package_data = Package::where('id',$order_data->package_id)->first();  
+            $allowed_videos = $package_data->total_allowed_videos;
+        }
+        else{
+            $allowed_videos = 0 ; //if no active order exists then allowed videos will be 0
+        }
+        
+        
+
+        $company_videos_number = CompanyVideo::where('company_id',Auth::guard('company')->user()->id)->count();
+        
+        $videos= CompanyVideo::where('company_id',Auth::guard('company')->user()->id)->get();
+        return view('company.videos' , compact('videos','allowed_videos','company_videos_number'));
+    }
+
+    public function videos_submit(Request $request)
+    {
+       
+        $request->validate([
+            'video' => [
+                'required',
+                'url',
+                'regex:/^(.*\.(mp4|mov|avi|wmv))|(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/i'
+            ]
+        ]);
+
+        
+
+        $obj = new CompanyVideo();
+
+
+        $obj->video = $request->video;
+       
+        $obj->company_id = Auth::guard('company')->user()->id;
+        $obj->save();
+
+        return redirect()->back()->with('success','video link added succesffully');
+    }
+
+    public function video_delete($id){
+        $vid = CompanyVideo::where('id',$id)->first();
+        
+        CompanyVideo::where('id',$id)->delete();
+        return redirect()->route('company_videos')->with('success','video Deleted Succesfully!');
     }
 
 

@@ -42,7 +42,7 @@ style="background-image: url('uploads/banner.jpg')"
                       <a href="{{route('pricing')}}" class="btn btn-primary">Upgrade Plan</a>
                     </div>
                 </div>
-            </div>
+                </div>
                   
            
                   
@@ -80,28 +80,18 @@ style="background-image: url('uploads/banner.jpg')"
                 @endif
 
                 <h4 class="mt-4">Existing Phodos</h4>
+                @if($photos->count() == 0)
+                    <div class="text-center">
+                        <div class="text-center">
+                            <i class="far fa-image fa-5x mb-3"></i>
+                            <h5 class="mb-4">No photos added yet</h5>
+                            <p class="text-muted">You have not added any photos yet</p>
+                        </div>
+                    </div>                        
+                @endif
                 <div class="photo-all">
                     <div class="row">
                         @foreach($photos as $item)
-                        {{-- <div class="col-md-6 col-lg-3">
-                            <div class="item mb-1">
-                                <a
-                                    href="{{asset('uploads/companies_photos/'.$item->photo)}}"
-                                    class="magnific"
-                                >
-                                    <img
-                                        src="{{asset('uploads/companies_photos/'.$item->photo)}}"
-                                        alt=""
-                                    />
-                                    <div class="icon">
-                                        <i class="fas fa-plus"></i>
-                                    </div>
-                                    
-                                    <div class="bg"></div>      
-                                </a>
-                            </div>
-                            <a href="{{}}" class="btn btn-danger btn-sm mb-1"><i class="fas fa-trash"></i></a>
-                        </div> --}}
                         <div class="col-md-6 col-lg-3">
                             <div class="item">
                                 <a href="{{asset('uploads/companies_photos/'.$item->photo)}}" class="magnific">
