@@ -12,6 +12,13 @@ use App\Models\CompanySize;
 use App\Models\CompanyPhoto;
 use App\Models\CompanyVideo;
 use App\Models\CompanyIndustry;
+use App\Models\JobCategory;
+use App\Models\JobExperience;
+use App\Models\JobType;
+use App\Models\JobLocation;
+use App\Models\JobSalaryRange;
+
+use App\Models\Job;
 use Auth;
 use Hash;
 use Illuminate\Validation\Rule;
@@ -184,7 +191,7 @@ class CompanyController extends Controller
             $allowed_photos = $package_data->total_allowed_photos;
         }
         else{
-            $allowed_photos = 0 ; //if no active order exists then allowed photos will be 0
+            $allowed_photos = null ; //if no active order exists then allowed photos will be 0
         }
         $company_photos_number = CompanyPhoto::where('company_id',Auth::guard('company')->user()->id)->count();
         
@@ -386,6 +393,80 @@ class CompanyController extends Controller
     public function stripe_cancel()
     {
         return redirect()->route('company_make_payment')->with('error','Payment is cancelled!');
+
+    }
+
+    public function jobs_create(){
+        $job_categories = JobCategory::OrderBy('name','asc')->get();
+        $job_locations = JobLocation::OrderBy('name','asc')->get();
+        $job_types = JobType::OrderBy('name','asc')->get();
+        $job_experiences = JobExperience::OrderBy('id','asc')->get();
+        $job_salary_ranges = JobSalaryRange::OrderBy('id','asc')->get();
+
+        $order_data = Order::where('company_id',Auth::guard('company')->user()->id)->where('currently_active',1)->first();
+        if($order_data != null) //check if any active order exists for this company
+        {
+            $package = $order_data->package_id;
+            $package_data = Package::where('id',$order_data->package_id)->first();  
+            $allowed_jobs = $package_data->total_allowed_jobs;
+            $company_allowed_featured_jobs = $package_data->total_allowed_featured_jobs;
+        }
+        else{
+            $allowed_jobs = 0 ; //if no active order exists then allowed jobs will be 0
+            $company_allowed_featured_jobs = null;
+        }
+        $company_jobs_number = Job::where('company_id',Auth::guard('company')->user()->id)->count();
+        $company_featured_jobs_number = Job::where('company_id',Auth::guard('company')->user()->id)->where('is_featured',1)->count();
+        
+
+
+        return view('company.jobs_create',compact('job_categories','job_locations','job_types','job_experiences','job_salary_ranges','allowed_jobs','company_jobs_number','company_featured_jobs_number','company_allowed_featured_jobs'));
+    }
+    public function jobs_create_submit(Request $request){
+        
+       
+
+      
+        
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'deadline' => 'required|date',
+            'vacancy' => 'required',
+            'job_category_id' => 'required',
+            'job_location_id' => 'required',
+            'job_type_id' => 'required',
+            'job_experience_id' => 'required',
+           
+        ]);
+
+
+        $obj = new Job();
+        $obj->company_id = Auth::guard('company')->user()->id;
+        $obj->title = $request->title;
+        $obj->description = $request->description;
+        $obj->responsibilities = $request->responsibilities;
+        $obj->benifit = $request->benifit;
+        $obj->skill = $request->skill;
+        $obj->education = $request->education;
+        $obj->deadline = $request->deadline;
+        $obj->vacancy = $request->vacancy;
+        $obj->job_category_id = $request->job_category_id;
+        $obj->job_location_id = $request->job_location_id;
+        $obj->job_type_id = $request->job_type_id;
+        $obj->job_experience_id = $request->job_experience_id;
+        $obj->job_gender = $request->job_gender;
+        $obj->job_salary_range_id = $request->job_salary_range_id;
+        $obj->map_code = $request->map_code;
+        $obj->is_featured = $request->is_featured;
+        $obj->is_urgent = $request->is_urgent;
+
+        $obj->save();
+
+        
+        return redirect()->back()->with([
+            'success' => 'Job is posted successfully',
+        ]);
 
     }
 

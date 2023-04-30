@@ -33,13 +33,23 @@
                     </div>
                     <div class="col-lg-9 col-md-12">
                         @if($allowed_videos == 0)
-                        <div class="row justify-content-center">
-                            <div class="col-md-8 text-center">
-                            <h3 class="mb-3">Upgrade Your Plan to Add Company videos</h3>
-                            <p class="mb-4">Your current plan does not allow for any company videos. Upgrade your plan to unlock this feature and start showcasing your company's culture.</p>
-                            <a href="{{route('pricing')}}" class="btn btn-primary">Upgrade Plan</a>
+                        <div class="alert alert-danger" role="alert">
+                            @if($allowed_videos == null)
+                            <div class="row justify-content-center">
+                                <div class="col-md-8 text-center">
+                                  <h3 class="mb-3">Upgrade Your Plan to Add Company Videos</h3>
+                                  <p class="mb-4">Your current plan does not allow for any company photos. Upgrade your plan to unlock this feature and start showcasing your company's culture.</p>
+                                  <a href="{{route('pricing')}}" class="btn btn-primary">Upgrade Plan</a>
+                                </div>
                             </div>
-                        </div> 
+                            @else
+                            <h4 class="alert-heading">Limit Reached</h4>
+                            <p class="mb-0">Sorry, you have reached the maximum number of jobs allowed for your plan ({{$allowed_photos}} jobs). To add more jobs, please delete unused jobs or upgrade your plan using the link below.</p>
+                            <hr>
+                            <a class="btn btn-primary btn-sm" href="{{route('pricing')}}" role="button">Upgrade Plan</a>
+                            @endif
+                        </div>
+                    </div>
                         @else 
                             @if($allowed_videos > $company_videos_number)
                             <h4>Add Video</h4>

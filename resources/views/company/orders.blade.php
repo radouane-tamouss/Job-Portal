@@ -33,6 +33,7 @@
                     </div>
                     <div class="col-lg-9 col-md-12">
                         <div class="table-responsive">
+                            @if(count($orders) > 0)
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
@@ -64,6 +65,14 @@
                                     
                                 </tbody>
                             </table>
+                            @else
+                            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                <h3 class="card-title text-center mb-4">No orders available</h3>
+                                <i class="fas fa-exclamation-triangle text-warning fa-4x mb-3"></i>
+                                <p class="card-text text-center">There are no orders available for your account.</p>
+                            </div>
+                            
+                            @endif
                         </div>
                     </div>
                 </div>
