@@ -16,8 +16,8 @@
         <a href="{{route('jobs_create')}}">Create Job</a>
     </li>
     
-    <li class="list-group-item">
-        <a href="company-jobs.html">All Jobs</a>
+    <li class="list-group-item {{Request::is('company/jobs') ? 'active' : ''}}">
+        <a href="{{route('company_jobs')}}">All Jobs</a>
     </li>
     <li class="list-group-item {{Request::is('company/photos') ? 'active' : ''}}">
         <a href="{{route('company_photos')}}">Photos</a>

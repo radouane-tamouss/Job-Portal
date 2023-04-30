@@ -17,7 +17,6 @@ use App\Models\JobExperience;
 use App\Models\JobType;
 use App\Models\JobLocation;
 use App\Models\JobSalaryRange;
-
 use App\Models\Job;
 use Auth;
 use Hash;
@@ -468,6 +467,13 @@ class CompanyController extends Controller
             'success' => 'Job is posted successfully',
         ]);
 
+    }
+
+    public function jobs(){
+        $jobs = Job::with('rJobSalaryRange','rJobCategory', 'rJobLocation', 'rJobType', 'rJobExperience')->where('company_id',Auth::guard('company')->user()->id)->get();
+        // $orders = Order::with('rPackage')->OrderBy('id','DESC')->where('company_id',Auth::guard('company')->user()->id)->get();
+
+        return view('company.jobs',compact('jobs'));
     }
 
     

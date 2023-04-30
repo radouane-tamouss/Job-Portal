@@ -91,6 +91,8 @@ Route::middleware(['company:company'])->group(function(){
      Route::post('/company/videos/submit', [CompanyController::class, 'videos_submit'])->name('company_videos_submit');
      Route::get('/company/videos/delete/{id}',[CompanyController::class,'video_delete'])->name('company_video_delete');
 
+
+     Route::get('/company/jobs', [CompanyController::class, 'jobs'])->name('company_jobs');
      Route::get('/company/create-job', [CompanyController::class, 'jobs_create'])->name('jobs_create');
      Route::post('/company/create-job-submit', [CompanyController::class, 'jobs_create_submit'])->name('company_jobs_create_submit');
 
