@@ -39,7 +39,8 @@ style="background-image: url('uploads/banner.jpg')"
                             <th>SL</th>
                             <th>Job Title</th>
                             <th>Category</th>
-                            <th>Status</th>
+                            <th>Location</th>
+                            <th>Is Featured?</th>
                             <th>Action</th>
                         </tr>
                         @foreach($jobs as $job)
@@ -47,19 +48,26 @@ style="background-image: url('uploads/banner.jpg')"
                             <td>{{$loop->iteration}}</td>
                             <td>{{$job->title}}</td>
                             <td>{{$job->rJobCategory->name}}</td>
+                            <td>{{$job->rJobLocation->name}}</td>
                             <td>
+                                @if($job->is_featured == 1)
                                 <span class="badge bg-success"
-                                    >Active</span
+                                    >Featured</span
                                 >
+                                @else
+                                <span class="badge bg-danger"
+                                    >Not Featured</span
+                                >
+                                @endif
                             </td>
                             <td>
                                 <a
-                                    href=""
+                                    href="{{route('company_edit_job',$job->id)}}"
                                     class="btn btn-warning btn-sm text-white"
                                     ><i class="fas fa-edit"></i
                                 ></a>
                                 <a
-                                    href=""
+                                    href="{{route('company_delete_job',$job->id)}}"
                                     class="btn btn-danger btn-sm"
                                     onClick="return confirm('Are you sure?');"
                                     ><i class="fas fa-trash-alt"></i

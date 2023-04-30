@@ -95,6 +95,12 @@ Route::middleware(['company:company'])->group(function(){
      Route::get('/company/jobs', [CompanyController::class, 'jobs'])->name('company_jobs');
      Route::get('/company/create-job', [CompanyController::class, 'jobs_create'])->name('jobs_create');
      Route::post('/company/create-job-submit', [CompanyController::class, 'jobs_create_submit'])->name('company_jobs_create_submit');
+    
+     Route::get('/company/jobs/edit/{id}',[companyController::class,'edit_job'])->name('company_edit_job');
+     Route::post('/company/jobs/update/{id}', [companyController::class, 'update_job'])->name('company_update_job');
+     Route::get('/company/jobs/delete/{id}', [companyController::class, 'delete_job'])->name('company_delete_job');
+     
+
 
 
 
