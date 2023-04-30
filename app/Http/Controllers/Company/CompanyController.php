@@ -25,8 +25,14 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class CompanyController extends Controller
 {
+   
     public function index(){
-        return view('company.dashboard');
+    
+        $opened_jobs = Job::where('company_id',Auth::guard('company')->user()->id)->count();
+        $featured_jobs = Job::where('company_id',Auth::guard('company')->user()->id)->where('is_featured',1)->count();
+        $urgent_jobs = Job::where('company_id',Auth::guard('company')->user()->id)->where('is_urgent',1)->count();
+        $jobs = Job::where('company_id',Auth::guard('company')->user()->id)->orderBy('id','desc')->take(5)->get();
+        return view('company.dashboard',compact('jobs','opened_jobs','featured_jobs','urgent_jobs'));
     }
 
     public function edit_password(){

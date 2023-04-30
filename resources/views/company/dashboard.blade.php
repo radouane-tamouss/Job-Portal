@@ -39,20 +39,20 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
             <div class="row box-items">
                 <div class="col-md-4">
                     <div class="box1">
-                        <h4>12</h4>
+                        <h4>{{$opened_jobs}}</h4>
                         <p>Open Jobs</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="box2">
-                        <h4>3</h4>
-                        <p>Pending Jobs</p>
+                        <h4>{{$featured_jobs}}</h4>
+                        <p>Featured Jobs</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="box3">
-                        <h4>5</h4>
-                        <p>Featured Jobs</p>
+                        <h4>{{$urgent_jobs}}</h4>
+                        <p>Urgent Jobs</p>
                     </div>
                 </div>
             </div>
@@ -65,55 +65,45 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                             <th>SL</th>
                             <th>Job Title</th>
                             <th>Category</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Location</th>
+                            <th>Is Featured?</th>
+                            <th>Is Urgent?</th>
+
+                       
                         </tr>
+                        @foreach($jobs as $job)
                         <tr>
-                            <td>1</td>
-                            <td>Senior Laravel Developer</td>
-                            <td>Web Development</td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$job->title}}</td>
+                            <td>{{$job->rJobCategory->name}}</td>
+                            <td>{{$job->rJobLocation->name}}</td>
                             <td>
+                                @if($job->is_featured == 1)
                                 <span class="badge bg-success"
-                                    >Active</span
+                                    >Featured</span
                                 >
-                            </td>
-                            <td>
-                                <a
-                                    href=""
-                                    class="btn btn-warning btn-sm text-white"
-                                    ><i class="fas fa-edit"></i
-                                ></a>
-                                <a
-                                    href=""
-                                    class="btn btn-danger btn-sm"
-                                    onClick="return confirm('Are you sure?');"
-                                    ><i class="fas fa-trash-alt"></i
-                                ></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>UI/UX Designer</td>
-                            <td>Web Design</td>
-                            <td>
+                                @else
                                 <span class="badge bg-danger"
-                                    >Pending</span
+                                    >Not Featured</span
                                 >
+                                @endif
                             </td>
                             <td>
-                                <a
-                                    href=""
-                                    class="btn btn-warning btn-sm text-white"
-                                    ><i class="fas fa-edit"></i
-                                ></a>
-                                <a
-                                    href=""
-                                    class="btn btn-danger btn-sm"
-                                    onClick="return confirm('Are you sure?');"
-                                    ><i class="fas fa-trash-alt"></i
-                                ></a>
+                                @if($job->is_urgent == 1)
+                                <span class="badge bg-danger"
+                                    >Urgent</span
+                                >
+                                @else
+                                <span class="badge bg-primary"
+                                    >Not Urgent</span
+                                >
+                                @endif
                             </td>
+                           
                         </tr>
+                        @endforeach
+                       
+                     
                     </tbody>
                 </table>
             </div>
