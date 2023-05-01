@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Candidate;
 use App\Models\CandidateEducation;
+use App\Models\CandidateSkill;
 use Auth;
 use Hash;
 use Illuminate\Validation\Rule;
@@ -137,5 +138,53 @@ class CandidateController extends Controller
     public function education_delete($id){
         $education = CandidateEducation::where('id',$id)->first()->delete();
         return redirect()->back()->with('success','Education deleted successfully');
+    }
+
+    public function skills(){
+        $skills = CandidateSkill::where('candidate_id',Auth::guard('candidate')->user()->id)->get();
+        return view('candidate.skills',compact('skills'));
+        
+    }
+    public function skill_create(){
+        return view('candidate.skill_create');
+    }
+
+    public function skill_store(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'percentage' => 'required|numeric|between:0,100',
+        ]);
+        $skill = new CandidateSkill();
+        $skill->candidate_id = Auth::guard('candidate')->user()->id;
+        $skill->name = $request->name;
+        $skill->percentage = $request->percentage;
+       
+
+        $skill->save();
+
+        return redirect()->route('candidate_skills')->with('success','skill added succefully');
+    }
+
+    public function skill_edit($id){
+        $skill = CandidateSkill::where('id',$id)->first();
+        return view('candidate.skill_edit',compact('skill'));
+    }
+    public function skill_update(Request $request, $id){
+        $request->validate([
+            'name' => 'required',
+            'percentage' => 'required|numeric|between:0,100',
+        ]);
+
+        $skill = CandidateSkill::where('id',$id)->first();
+        $skill->name = $request->name;
+        $skill->percentage = $request->percentage;
+        $skill->update();
+
+        return redirect()->route('candidate_skills')->with('success','skill updated succefully');
+    }
+
+    public function skill_delete($id){
+        $skill = CandidateSkill::where('id',$id)->first()->delete();
+        return redirect()->back()->with('success','skill deleted successfully');
     }
 }

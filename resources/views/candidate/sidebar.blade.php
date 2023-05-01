@@ -19,8 +19,10 @@
             >Education</a
         >
     </li>
-    <li class="list-group-item">
-        <a href="candidate-skill.html">Skills</a>
+    <li class="list-group-item {{Request::is('candidate/skills/view') ? 'active' : ''}}">
+        <a href="{{route('candidate_skills')}}"
+            >Skills</a
+        >
     </li>
     <li class="list-group-item">
         <a href="candidate-experience.html"
