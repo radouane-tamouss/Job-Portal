@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Candidate;
 use Auth;
+use Hash;
 use Illuminate\Validation\Rule;
 
 
@@ -18,6 +19,27 @@ class CandidateController extends Controller
     public function edit_profile(){
         $candidate = Candidate::where('id',Auth::guard('candidate')->user()->id)->first();
         return view('candidate.edit_profile',compact('candidate'));
+    }
+
+    public function edit_password(){
+        return view('candidate.edit_password');
+    }
+    public function candidate_edit_password_update(Request $request){
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required',
+            'password_confirmation' => 'required|same:new_password',
+        ]);
+
+        $obj = Candidate::where('id', Auth::guard('candidate')->user()->id)->first();
+        if(!Hash::check($request->old_password, $obj->password)){
+            return redirect()->back()->with('error', 'old password not match');
+        }else{
+            $obj->password = hash::make($request->new_password);
+            $obj->update();
+            return redirect()->back()->with('success','Password is updated successfully');
+        }
+        
     }
 
     public function edit_profile_update(Request $request){

@@ -45,7 +45,7 @@ class CompanyController extends Controller
             'password_confirmation' => 'required|same:new_password',
         ]);
 
-        $obj = Company::where('id', Auth::guard('company')->user()->id)->first();
+        $obj = Candidate::where('id', Auth::guard('company')->user()->id)->first();
         if(!Hash::check($request->old_password, $obj->password)){
             return redirect()->back()->with('error', 'old password not match');
         }else{

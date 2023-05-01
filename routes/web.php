@@ -100,17 +100,8 @@ Route::middleware(['company:company'])->group(function(){
      Route::post('/company/jobs/update/{id}', [companyController::class, 'update_job'])->name('company_update_job');
      Route::get('/company/jobs/delete/{id}', [companyController::class, 'delete_job'])->name('company_delete_job');
      
-
-
-
-
-
-
- 
- 
  
 });
-
 
 //candidate
 Route::post('candidate-signup-submit',[SignupController::class,'candidate_signup_submit'])->name('candidate_signup_submit');
@@ -129,6 +120,9 @@ Route::post('reset-password/candidate/submit', [ForgetPasswordController::class,
 
         Route::get('/candidate/edit-profile', [CandidateController::class, 'edit_profile'])->name('candidate_edit_profile');
         Route::post('/candidate/edit-profile/update', [CandidateController::class, 'edit_profile_update'])->name('candidate_edit_profile_update');
+
+        Route::get('/candidate/edit-password', [CandidateController::class, 'edit_password'])->name('candidate_edit_password');
+        Route::post('/candidate/edit-password/update', [CandidateController::class, 'candidate_edit_password_update'])->name('candidate_edit_password_update');
         
         
     });
