@@ -1,11 +1,11 @@
 @extends('front.layout.app')
 
 @section('seo_title') 
-    Create Candidate Education
+    Edit Candidate Education
 @endsection
 
 @section('seo_meta_description') 
-    create Candidate Education
+    Edit Candidate Education
 @endsection
 
 @section('main_content')
@@ -37,7 +37,7 @@ style="background-image: url('uploads/banner.jpg')"
                 class="btn btn-primary btn-sm mb-2"
                 ><i class="fas fa-list"></i> See All</a
             >
-            <form action="{{route('candidate_education_store')}}" method="post">
+            <form action="{{route('candidate_education_update',$education->id)}}" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-md-12 mb-3">
@@ -47,6 +47,7 @@ style="background-image: url('uploads/banner.jpg')"
                                 type="text"
                                 name="level"
                                 class="form-control"
+                                value="{{$education->level}}"
                             />
                         </div>
                     </div>
@@ -57,6 +58,7 @@ style="background-image: url('uploads/banner.jpg')"
                                 type="text"
                                 name="institute"
                                 class="form-control"
+                                value="{{$education->institute}}"
                             />
                         </div>
                     </div>
@@ -67,6 +69,8 @@ style="background-image: url('uploads/banner.jpg')"
                                 type="text"
                                 name="degree"
                                 class="form-control"
+                                value="{{$education->degree}}"
+
                             />
                         </div>
                     </div>
@@ -77,6 +81,8 @@ style="background-image: url('uploads/banner.jpg')"
                                 type="number"
                                 name="passing_year"
                                 class="form-control"
+                                value="{{$education->passing_year}}"
+
                             />
                         </div>
                     </div>
@@ -85,7 +91,7 @@ style="background-image: url('uploads/banner.jpg')"
                             <input
                                 type="submit"
                                 class="btn btn-primary"
-                                value="Submit"
+                                value="Update"
                             />
                         </div>
                     </div>

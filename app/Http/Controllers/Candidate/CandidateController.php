@@ -89,4 +89,53 @@ class CandidateController extends Controller
         $educations = CandidateEducation::where('candidate_id',Auth::guard('candidate')->user()->id)->get();
         return view('candidate.education',compact('educations'));
     }
+    public function education_create(){
+        return view('candidate.education_create');
+    }
+
+    public function education_store(Request $request){
+        $request->validate([
+            'level' => 'required',
+            'institute' => 'required',
+            'degree' => 'required',
+            'passing_year' => 'required',
+        ]);
+        $education = new CandidateEducation();
+        $education->candidate_id = Auth::guard('candidate')->user()->id;
+        $education->level = $request->level;
+        $education->institute = $request->institute;
+        $education->degree = $request->degree;
+        $education->passing_year = $request->passing_year;
+
+        $education->save();
+
+        return redirect()->route('candidate_education')->with('success','Education added succefully');
+    }
+
+    public function education_edit($id){
+        $education = CandidateEducation::where('id',$id)->first();
+        return view('candidate.education_edit',compact('education'));
+    }
+    public function education_update(Request $request, $id){
+        $request->validate([
+            'level' => 'required',
+            'institute' => 'required',
+            'degree' => 'required',
+            'passing_year' => 'required',
+        ]);
+
+        $education = CandidateEducation::where('id',$id)->first();
+        $education->level = $request->level;
+        $education->institute = $request->institute;
+        $education->degree = $request->degree;
+        $education->passing_year = $request->passing_year;
+        $education->update();
+
+        return redirect()->route('candidate_education')->with('success','Education updated succefully');
+    }
+
+    public function education_delete($id){
+        $education = CandidateEducation::where('id',$id)->first()->delete();
+        return redirect()->back()->with('success','Education deleted successfully');
+    }
 }
