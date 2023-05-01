@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Candidate;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Candidate;
+use App\Models\CandidateEducation;
 use Auth;
 use Hash;
 use Illuminate\Validation\Rule;
@@ -82,5 +83,10 @@ class CandidateController extends Controller
         
         $candidate->update();
         return redirect()->back()->with('success', 'Candidate Profile Updated Successfully');
+    }
+
+    public function education(){
+        $educations = CandidateEducation::where('candidate_id',Auth::guard('candidate')->user()->id)->get();
+        return view('candidate.education',compact('educations'));
     }
 }

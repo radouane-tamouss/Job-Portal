@@ -14,8 +14,8 @@
             >Bookmarked Jobs</a
         >
     </li>
-    <li class="list-group-item">
-        <a href="candidate-education.html"
+    <li class="list-group-item {{Request::is('candidate/education/view') ? 'active' : ''}}">
+        <a href="{{route('candidate_education')}}"
             >Education</a
         >
     </li>
