@@ -123,11 +123,15 @@ Route::post('forget-password/candidate/submit',[ForgetPasswordController::class,
 Route::get('reset-password/candidate/{token}/{email}', [ForgetPasswordController::class,'candidate_reset_password'])->name('candidate_reset_password');
 Route::post('reset-password/candidate/submit', [ForgetPasswordController::class,'candidate_reset_password_submit'])->name('candidate_reset_password_submit');
 
-//candidate middleware
-Route::middleware(['candidate:candidate'])->group(function(){
-    Route::get('/candidate/dashboard', [CandidateController::class,'index'])->name('candidate_dashboard');
-    
-});
+    //candidate middleware
+    Route::middleware(['candidate:candidate'])->group(function(){
+        Route::get('/candidate/dashboard', [CandidateController::class,'index'])->name('candidate_dashboard');
+
+        Route::get('/candidate/edit-profile', [CandidateController::class, 'edit_profile'])->name('candidate_edit_profile');
+        Route::post('/candidate/edit-profile/update', [CandidateController::class, 'edit_profile_update'])->name('candidate_edit_profile_update');
+        
+        
+    });
 
 // Admin
 Route::get('/admin/login', [AdminLoginController::class,'index'])->name('admin_login');
