@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Candidate;
 use App\Models\CandidateEducation;
 use App\Models\CandidateSkill;
+use App\Models\CandidateExperience;
 use Auth;
 use Hash;
 use Illuminate\Validation\Rule;
@@ -186,5 +187,62 @@ class CandidateController extends Controller
     public function skill_delete($id){
         $skill = CandidateSkill::where('id',$id)->first()->delete();
         return redirect()->back()->with('success','skill deleted successfully');
+    }
+
+    // Experiences
+
+    public function experience(){
+        $experiences = CandidateExperience::where('candidate_id',Auth::guard('candidate')->user()->id)->get();
+        return view('candidate.experiences',compact('experiences'));
+    }
+    public function experience_create(){
+        return view('candidate.experience_create');
+    }
+
+    public function experience_store(Request $request){
+        $request->validate([
+            'company' => 'required',
+            'designation' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+        ]);
+
+        $experience = new CandidateExperience();
+        $experience->candidate_id = Auth::guard('candidate')->user()->id;
+        $experience->company = $request->company;
+        $experience->designation = $request->designation;
+        $experience->start_date = $request->start_date;
+        $experience->end_date = $request->end_date;
+
+        $experience->save();
+
+        return redirect()->route('candidate_experience')->with('success','experience added succefully');
+    }
+
+    public function experience_edit($id){
+        $experience = CandidateExperience::where('id',$id)->first();
+        return view('candidate.experience_edit',compact('experience'));
+    }
+    public function experience_update(Request $request, $id){
+        $request->validate([
+            'company' => 'required',
+            'designation' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+        ]);
+
+        $experience = CandidateExperience::where('id',$id)->first();
+        $experience->company = $request->company;
+        $experience->designation = $request->designation;
+        $experience->start_date = $request->start_date;
+        $experience->end_date = $request->end_date;
+        $experience->update();
+
+        return redirect()->route('candidate_experience')->with('success','experience updated succefully');
+    }
+
+    public function experience_delete($id){
+        $experience = CandidateExperience::where('id',$id)->first()->delete();
+        return redirect()->back()->with('success','experience deleted successfully');
     }
 }

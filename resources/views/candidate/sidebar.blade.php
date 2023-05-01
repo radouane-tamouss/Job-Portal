@@ -24,9 +24,9 @@
             >Skills</a
         >
     </li>
-    <li class="list-group-item">
-        <a href="candidate-experience.html"
-            >Work Experience</a
+    <li class="list-group-item {{Request::is('candidate/experience/view') ? 'active' : ''}}">
+        <a href="{{route('candidate_experience')}}"
+            >experiences</a
         >
     </li>
     <li class="list-group-item">
