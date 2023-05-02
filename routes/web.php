@@ -144,6 +144,13 @@ Route::post('reset-password/candidate/submit', [ForgetPasswordController::class,
         Route::get('/candidate/experience/edit/{id}',[CandidateController::class,'experience_edit'])->name('candidate_experience_edit');
         Route::post('/candidate/experience/update/{id}', [CandidateController::class, 'experience_update'])->name('candidate_experience_update');
         Route::get('/candidate/experience/delete/{id}',[CandidateController::class,'experience_delete'])->name('candidate_experience_delete');
+
+        Route::get('/candidate/resume/view', [CandidateController::class, 'resume'])->name('candidate_resume');
+        Route::get('/candidate/resume/create',[CandidateController::class,'resume_create'])->name('candidate_resume_create');
+        Route::post('/candidate/resume/store', [CandidateController::class, 'resume_store'])->name('candidate_resume_store');
+        Route::get('/candidate/resume/edit/{id}',[CandidateController::class,'resume_edit'])->name('candidate_resume_edit');
+        Route::post('/candidate/resume/update/{id}', [CandidateController::class, 'resume_update'])->name('candidate_resume_update');
+        Route::get('/candidate/resume/delete/{id}',[CandidateController::class,'resume_delete'])->name('candidate_resume_delete');
         
         
     });

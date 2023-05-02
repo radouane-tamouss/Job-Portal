@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Candidate;
 use App\Models\CandidateEducation;
 use App\Models\CandidateSkill;
+use App\Models\CandidateResume;
 use App\Models\CandidateExperience;
 use Auth;
 use Hash;
@@ -244,5 +245,70 @@ class CandidateController extends Controller
     public function experience_delete($id){
         $experience = CandidateExperience::where('id',$id)->first()->delete();
         return redirect()->back()->with('success','experience deleted successfully');
+    }
+
+     // resumes
+
+     public function resume(){
+        $resumes = CandidateResume::where('candidate_id',Auth::guard('candidate')->user()->id)->get();
+        return view('candidate.resumes',compact('resumes'));
+    }
+    public function resume_create(){
+        return view('candidate.resume_create');
+    }
+
+    public function resume_store(Request $request){
+        $request->validate([
+           'name' => 'required',
+           'file' => 'required|mimes:pdf,doc,docx'
+        ]);
+
+        $ext = $request->file('file')->extension();
+        $final_name = 'file_'.time().'.'.$ext;
+        $request->file('file')->move(public_path('uploads/resumes/'),$final_name);
+
+        $resume = new CandidateResume();
+        $resume->candidate_id =Auth::guard('candidate')->user()->id;
+        $resume->name = $request->name;
+        $resume->file = $final_name;
+
+        $resume->save();
+
+        return redirect()->route('candidate_resume')->with('success','resume added succefully');
+    }
+
+    public function resume_edit($id){
+        $resume = CandidateResume::where('id',$id)->first();
+        return view('candidate.resume_edit',compact('resume'));
+    }
+    public function resume_update(Request $request, $id){
+        $resume = CandidateResume::where('id',$id)->first();
+        $request->validate([
+            'name' => 'required',
+         ]);
+
+        if($request->hasFile('file')){
+            $request->validate([
+                'file' => 'mimes:pdf,doc,docx'
+             ]);
+
+             unlink(public_path('uploads/resumes/'.$resume->file));
+             $ext= $request->file('file')->extension();
+             $final_name = 'file_'.time().'.'.$ext;
+             $request->file('file')->move(public_path('uploads/resumes/'),$final_name);
+             $resume->file = $final_name;
+        }
+
+        $resume->name = $request->name;
+        $resume->update();
+
+        return redirect()->route('candidate_resume')->with('success','resume updated succefully');
+    }
+
+    public function resume_delete($id){
+        $resume = CandidateResume::where('id',$id)->first();
+        unlink(public_path('uploads/resumes/'.$resume->file));
+        CandidateResume::where('id',$id)->first()->delete();
+        return redirect()->back()->with('success','resume deleted successfully');
     }
 }

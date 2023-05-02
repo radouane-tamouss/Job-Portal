@@ -41,9 +41,9 @@
         <a href="{{route('candidate_edit_password')}}">Edit Password</a
         >
     </li>
-    <li class="list-group-item">
-        <a href="candidate-resume.html"
-            >Resume Upload</a
+    <li class="list-group-item {{Request::is('candidate/resume/view') ? 'active' : ''}}">
+        <a href="{{route('candidate_resume')}}"
+            >Resumes</a
         >
     </li>
     <li class="list-group-item">
