@@ -14,14 +14,14 @@
                         </p>
                     </div>
                     <div class="search-section">
-                        <form action="jobs.html" method="post">
+                        <form action="{{url('job-listing')}}" method="get"> <!-- we used here the get method!!!-->
                             <div class="inner">
                                 <div class="row">
                                     <div class="col-lg-3">
                                         <div class="form-group">
                                             <input
                                                 type="text"
-                                                name=""
+                                                name="title"
                                                 class="form-control"
                                                 placeholder="{{$page_home_data->job_title}}"
                                             />
@@ -29,10 +29,7 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
-                                            <select
-                                                name=""
-                                                class="form-select select2"
-                                            >
+                                            <select name="location" class="form-select select2">
                                             <option value="">
                                                 {{$page_home_data->job_location}}
                                             </option>
@@ -46,10 +43,7 @@
                                     </div>
                                     <div class="col-lg-3">
                                         <div class="form-group">
-                                            <select
-                                                name=""
-                                                class="form-select select2"
-                                            >
+                                            <select name="category" class="form-select select2">
                                                 <option value="">
                                                     {{$page_home_data->job_category}}
                                                 </option>
@@ -58,18 +52,12 @@
                                                     {{$item->name}}
                                                 </option>
                                                 @endforeach
-                                                
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
-                                        <button
-                                            type="submit"
-                                            class="btn btn-primary"
-                                        >
-                                            <i
-                                                class="fas fa-search"
-                                            ></i>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-search"></i>
                                             {{$page_home_data->search}}
                                         </button>
                                     </div>

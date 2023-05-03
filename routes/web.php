@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Front\TermsController;
+use App\Http\Controllers\Front\JobListingController;
 use App\Http\Controllers\Front\JobCategoryController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PricingController;
@@ -44,6 +45,9 @@ Route::get('pricing', [PricingController::class,'index'])->name('pricing');
 
 Route::get('login',[LoginController::class,'index'])->name('login');
 Route::get('create-account',[SignupController::class,'index'])->name('signup');
+
+Route::get('job-listing',[JobListingController::class,'index'])->name('job_listing');
+
 
 // Company
 Route::post('company-signup-submit',[SignupController::class,'company_signup_submit'])->name('company_signup_submit');

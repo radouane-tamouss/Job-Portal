@@ -218,7 +218,7 @@
                                     <label for="" class="form-label">Is Urgent?</label>
                                     <select name="is_urgent" class="form-control select2">
                                         <option value="0" @if(0 == $job->is_urgent) selected @endif>No</option>
-                                        <option value="1" @if(0 == $job->is_urgent) selected @endif>Yes</option>
+                                        <option value="1" @if(1 == $job->is_urgent) selected @endif>Yes</option>
                                     </select>
                                 </div>
                             </div>
