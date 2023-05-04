@@ -11,7 +11,7 @@
 @section('main_content')
 <div
             class="page-top"
-            style="background-image: url('uploads/banner.jpg')"
+            style="background-image: url('{{asset('uploads/banner.jpg')}}')"
         >
             <div class="bg"></div>
             <div class="container">

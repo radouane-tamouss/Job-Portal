@@ -4,7 +4,7 @@
 
 <div
             class="page-top"
-            style="background-image: url('uploads/banner.jpg')"
+            style="background-image: url('{{asset('uploads/banner.jpg')}}')"
         >
             <div class="bg"></div>
             <div class="container">
@@ -134,7 +134,7 @@
                                             </div>
                                             <div class="text">
                                                 <h3>
-                                                    <a href="job.html">{{$job->title}} - {{$job->rCompany->company_name}}</a>
+                                                    <a href="{{route('job',$job->id)}}">{{$job->title}} - {{$job->rCompany->company_name}}</a>
                                                 </h3>
                                                 <div
                                                     class="detail-1 d-flex justify-content-start"

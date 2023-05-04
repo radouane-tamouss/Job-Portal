@@ -47,6 +47,9 @@ Route::get('login',[LoginController::class,'index'])->name('login');
 Route::get('create-account',[SignupController::class,'index'])->name('signup');
 
 Route::get('job-listing',[JobListingController::class,'index'])->name('job_listing');
+Route::get('job/{id}',[JobListingController::class,'job_detail'])->name('job');
+
+Route::post('job/enquery/email',[JobListingController::class,'send_email'])->name('job_enquery_send_email');
 
 
 // Company

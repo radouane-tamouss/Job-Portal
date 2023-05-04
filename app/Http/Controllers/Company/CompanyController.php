@@ -481,17 +481,9 @@ class CompanyController extends Controller
         //     \Mail::to($candidate->email)->send(new Websitemail($subject, $message));
         // }
 
-
-
-
         return redirect()->back()->with([
             'success' => 'Job is posted successfully',
         ]);
-
-       
-       
-
-
     }
 
     public function jobs(){

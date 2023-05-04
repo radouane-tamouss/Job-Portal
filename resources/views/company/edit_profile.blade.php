@@ -11,7 +11,7 @@
 @section('main_content')
 <div
 class="page-top"
-style="background-image: url('uploads/banner.jpg')"
+style="background-image: url({{asset('uploads/banner.jpg')}})"
 >
 <div class="bg"></div>
 <div class="container">
@@ -50,7 +50,7 @@ style="background-image: url('uploads/banner.jpg')"
                     <div class="col-md-12 mb-3">
                         <label for="">Change Logo</label>
                         <div class="form-group">
-                            <input type="file" name="logo" />
+                            <input type="file" class="form-control" name="logo" />
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
