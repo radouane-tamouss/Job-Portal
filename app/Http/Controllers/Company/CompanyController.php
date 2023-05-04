@@ -17,8 +17,10 @@ use App\Models\JobExperience;
 use App\Models\JobType;
 use App\Models\JobLocation;
 use App\Models\JobSalaryRange;
+use App\Models\Candidate;
 use App\Models\Job;
 use Auth;
+use App\Mail\Websitemail;
 use Hash;
 use Illuminate\Validation\Rule;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
@@ -468,10 +470,27 @@ class CompanyController extends Controller
 
         $obj->save();
 
-        
+        // $subject = 'New Job Alert '.$obj->title;
+        // $message = 'New Job Posted By '.$obj->rCompany->company_name;
+        // $candidate = Candidate::where('username','radouane')->get();
+
+        // \Mail::to($candidate)->send(new Websitemail($subject,$message));
+
+
+        // foreach ($candidates_emails as $candidate) {
+        //     \Mail::to($candidate->email)->send(new Websitemail($subject, $message));
+        // }
+
+
+
+
         return redirect()->back()->with([
             'success' => 'Job is posted successfully',
         ]);
+
+       
+       
+
 
     }
 

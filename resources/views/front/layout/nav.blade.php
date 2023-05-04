@@ -24,7 +24,7 @@
                             >
                         </li>
                         <li class="nav-item">
-                            <a href="jobs.html" class="nav-link">
+                            <a href="{{url('job-listing')}}" class="nav-link">
                                 Find Jobs</a
                             >
                         </li>

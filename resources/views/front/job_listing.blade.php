@@ -21,11 +21,13 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="job-filter">
+
+                        <form action="{{url('job-listing')}}" method="get">
                             <div class="widget">
                                 <h2>Job Title</h2>
                                 <input
                                     type="text"
-                                    name=""
+                                    name="title"
                                     class="form-control"
                                     placeholder="Search Titles ..."
                                 />
@@ -33,71 +35,66 @@
 
                             <div class="widget">
                                 <h2>Job Location</h2>
-                                <select name="" class="form-control select2">
-                                    <option value="">Australia</option>
-                                    <option value="">Bangladesh</option>
-                                    <option value="">Canada</option>
-                                    <option value="">China</option>
-                                    <option value="">India</option>
-                                    <option value="">United Kingdom</option>
-                                    <option value="">United States</option>
+                                <select name="location" class="form-control select2">
+                                    <option value="">Select Job Location</option>
+                                    @foreach($job_locations as $item)
+                                    <option value="{{$item->id}}" @if ($form_location == $item->id) selected @endif>{{$item->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="widget">
                                 <h2>Job Category</h2>
-                                <select name="" class="form-control select2">
-                                    <option value="">Accounting</option>
-                                    <option value="">Customer Support</option>
-                                    <option value="">Web Design</option>
-                                    <option value="">Web Development</option>
+                                <select name="category" class="form-control select2">
+                                    <option value="">Select Job Category</option>
+                                    @foreach($job_categories as $item)
+                                    <option value="{{$item->id}}" @if ($form_category == $item->id) selected @endif>{{$item->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="widget">
                                 <h2>Job Type</h2>
-                                <select name="" class="form-control select2">
-                                    <option value="">Full Time</option>
-                                    <option value="">Part Time</option>
-                                    <option value="">Contractual</option>
-                                    <option value="">Internship</option>
-                                    <option value="">Freelance</option>
+                                <select name="job_type" class="form-control select2">
+                                    <option value="">Select Job Type</option>
+                                    @foreach($job_types as $item)
+                                    <option value="{{$item->id}}" @if ($form_job_type == $item->id) selected @endif>{{$item->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="widget">
                                 <h2>Experience</h2>
-                                <select name="" class="form-control select2">
-                                    <option value="">Fresher</option>
-                                    <option value="">1 Year</option>
-                                    <option value="">2 Years</option>
-                                    <option value="">3 Years</option>
-                                    <option value="">4 Years</option>
-                                    <option value="">5 Years</option>
+                                <select name="experience" class="form-control select2">
+                                    <option value="">Select Experience</option>
+                                    @foreach($job_experiences as $item)
+                                    <option value="{{$item->id}}" @if ($form_job_experience == $item->id) selected @endif>{{$item->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="widget">
                                 <h2>Gender</h2>
-                                <select name="" class="form-control select2">
-                                    <option value="">Male</option>
-                                    <option value="">Female</option>
+                                <select name="gender" class="form-control select2">
+                                    <option value="">Select Job Gender</option>
+                                    <option value="male" @if ($form_job_gender == 'male') selected @endif>Male</option>
+                                    <option value="female" @if ($form_job_gender == 'female') selected @endif>Female</option>
+                                    <option value="any" @if ($form_job_gender == 'any') selected @endif>Any</option>
                                 </select>
                             </div>
 
                             <div class="widget">
                                 <h2>Salary Range</h2>
-                                <select name="" class="form-control select2">
+                                <select name="salary_range" class="form-control select2">
+                                    <option value="">Select Salary Range</option>
                                     @foreach($job_salary_ranges as $item)
-                                    <option value="{{$item->job_salary_id}}">{{$item->name}}</option>
+                                    <option value="{{$item->id}}" @if ($form_salary_range == $item->id) selected @endif>{{$item->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
 
                             <div class="filter-button">
-                                <a href="" class="btn btn-sm"
-                                    ><i class="fas fa-search"></i> Filter</a
-                                >
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Filter </button>
                             </div>
 
                             <div class="advertisement">
@@ -105,6 +102,8 @@
                                     ><img src="uploads/ad-2.png" alt=""
                                 /></a>
                             </div>
+                        </form>
+
                         </div>
                     </div>
                     <div class="col-md-9">
@@ -114,9 +113,10 @@
                                     <div class="col-md-12">
                                         <div class="search-result-header">
                                             <i class="fas fa-search"></i> Search
-                                            Result for Job Listing
+                                            Result for "{{$form_title}}"
                                         </div>
                                     </div>
+                                    @if($jobs->count() > 0)
                                     @foreach($jobs as $job)
                                         <div class="col-md-12">
                                         <div
@@ -124,13 +124,17 @@
                                         >
                                             <div class="logo">
                                                 <img
-                                                    src="uploads/logo1.png"
+                                                    @if($job->rCompany->logo != '')
+                                                    src="{{asset('uploads/'.$job->rCompany->logo)}}"
+                                                    @else
+                                                    src="{{asset('uploads/default-company-logo.png')}}"
+                                                    @endif
                                                     alt=""
                                                 />
                                             </div>
                                             <div class="text">
                                                 <h3>
-                                                    <a href="job.html">{{$job->title}}</a>
+                                                    <a href="job.html">{{$job->title}} - {{$job->rCompany->company_name}}</a>
                                                 </h3>
                                                 <div
                                                     class="detail-1 d-flex justify-content-start"
@@ -154,6 +158,11 @@
                                                     <div class="{{ \Carbon\Carbon::parse($job->deadline) < now() ? 'expired' : '' }}">
                                                         {{ \Carbon\Carbon::parse($job->deadline) < now() ? 'Expired' : '' }}
                                                     </div>
+                                                    {{-- @if(date('Y-m-d') > $job->deadline)
+                                                    <div class="expired">
+                                                        Expired
+                                                    </div>
+                                                    @endif --}}
                                                 </div>
                                                 <div
                                                     class="special d-flex justify-content-start"
@@ -183,6 +192,15 @@
                                         </div>
                                     </div> 
                                     @endforeach
+                                    <div class="col-md-12">
+                                        {{ $jobs->appends($_GET)->links()}}
+                                    </div>
+                                    @else
+                                    <div class="col-md-12 text-center">
+                                        <h3>Sorry, no jobs were found that match your search criteria.</h3>
+                                        <p>Try expanding your search or checking back later for new job postings.</p>
+                                    </div>
+                                    @endif
                                    
                                 </div>
                             </div>

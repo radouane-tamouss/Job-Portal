@@ -1864,4 +1864,8 @@ h4.resume {
   }
 
   
-  
+ul.pagination .active>.page-link, ul.paginaton .page-link:active, ul.pagination .page-link:active {
+    background-color: #46bc29;
+    border-color: #46bc29;
+    color: #fff;
+}
