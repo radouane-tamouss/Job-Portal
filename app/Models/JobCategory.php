@@ -9,4 +9,8 @@ class JobCategory extends Model
 {
     
     use HasFactory;
+
+    public function rJob(){
+        return $this->hasMany(Job::class); // one to many relationship
+    }
 }

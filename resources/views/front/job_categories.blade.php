@@ -11,6 +11,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2>Job Categories</h2>
+                        <p></p>
                     </div>
                 </div>
             </div>
@@ -27,7 +28,8 @@
                                 <i class="{{$item->icon}}"></i>
                             </div>
                             <h3>{{$item->name}}</h3>
-                            <a href=""></a>
+                            <p>({{$item->r_job_count}} Open Positions)</p>
+                            <a href="{{url('job-listing?category='.$item->id)}}"></a>
                         </div>
                     </div>
                     @endforeach
