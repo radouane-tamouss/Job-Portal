@@ -62,4 +62,77 @@ class CompanyListingController extends Controller
 
         return view('front.company',compact('company','open_positions','company_videos','company_photos'));
     }
+
+    public function send_email(Request $request){
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email',
+            'phone'=>'required',
+            'message'=>'required',
+        ]);
+
+
+        $subject = 'Enquiry from'. $request->name;
+            $message = '<!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="utf-8">
+                <title>Enquiry From: '.$request->name.'</title>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        font-size: 14px;
+                        line-height: 1.4;
+                        margin: 0;
+                        padding: 0;
+                    }
+                    .container {
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                    }
+                    .header {
+                        text-align: center;
+                        margin-bottom: 20px;
+                    }
+                    .header h1 {
+                        color: #000000;
+                        font-size: 24px;
+                        font-weight: bold;
+                        line-height: 1.3;
+                        margin-top: 20px;
+                        margin-bottom: 20px;
+                    }
+                    .content p {
+                        color: #000000;
+                        font-size: 16px;
+                        line-height: 1.5;
+                    }
+                </style>
+            </head>
+            <body style="background-color: #f6f6f6;">
+                <div class="container" style="background-color: #f6f6f6;">
+                   
+                    <div class="content">
+                        <p>Name: '.$request->name.'</p>
+                        <p>Email: '.$request->email.'</p>
+                        <p>Phone: '.$request->phone.'</p>
+                        <p>Message:</p>
+                        <p>'.$request->message.'</p>
+                    </div>
+                </div>
+            </body>
+            </html>';
+
+        
+
+        // dd($request->all());
+
+        \Mail::to($request->company_email)->send(new Websitemail($subject,$message));
+
+        return redirect()->back()->with('success','Email is sent successfully!');
+
+        
+         
+    }
 }

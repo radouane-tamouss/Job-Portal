@@ -38,47 +38,39 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                             <ul>
                                 @if($company->facebook != '')
                                 <li>
-                                    <a href="{{$company->facebook}}"
-                                        ><i
-                                            class="fab fa-facebook-f"
-                                        ></i
-                                    ></a>
+                                    <a href="{{$company->facebook}}" class="social-link" data-toggle="tooltip" data-placement="top" title="Facebook">
+                                        <i class="fab fa-facebook"></i>
+                                      </a>
+                                      
                                 </li>
+                                
                                 @endif
                                 @if($company->twitter != '')
                                 <li>
-                                    <a href="{{$company->twitter}}"
-                                        ><i
-                                            class="fab fa-twitter"
-                                        ></i
-                                    ></a>
+                                    <a href="{{$company->twitter}}" class="social-link" data-toggle="tooltip" data-placement="top" title="twitter">
+                                        <i class="fab fa-twitter"></i>
+                                      </a>
                                 </li>
                                 @endif
                                 @if($company->linkedin != '')
                                 <li>
-                                    <a href="{{$company->linkedin}}"
-                                        ><i
-                                            class="fab fa-linkedin-in"
-                                        ></i
-                                    ></a>
+                                    <a href="{{$company->linkedin}}" class="social-link" data-toggle="tooltip" data-placement="top" title="linkedin">
+                                        <i class="fab fa-linkedin"></i>
+                                      </a>
                                 </li>
                                 @endif
                                 @if($company->instagram != '')
                                 <li>
-                                    <a href="{{$company->instagram}}"
-                                        ><i
-                                            class="fab fa-instagram"
-                                        ></i
-                                    ></a>
+                                    <a href="{{$company->instagram}}" class="social-link" data-toggle="tooltip" data-placement="top" title="instagram">
+                                        <i class="fab fa-instagram"></i>
+                                      </a>
                                 </li>
                                 @endif
                                 @if($company->youtube != '')
                                 <li>
-                                    <a href="{{$company->youtube}}"
-                                        ><i
-                                            class="fab fa-youtube"
-                                        ></i
-                                    ></a>
+                                    <a href="{{$company->youtube}}" class="social-link" data-toggle="tooltip" data-placement="top" title="youtube">
+                                        <i class="fab fa-youtube"></i>
+                                      </a>
                                 </li>
                                 @endif
                             </ul>
@@ -367,42 +359,24 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                     Contact Company
                 </h2>
                 <div class="enquery-form">
-                    <form action="" method="post">
+                    <form action="{{route('company_enquery_send_email')}}" method="post">
+                        @csrf
+                        
+                        <input type="hidden" name="company_email" value="{{$company->email}}">
                         <div class="mb-3">
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Full Name"
-                            />
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
                         </div>
                         <div class="mb-3">
-                            <input
-                                type="email"
-                                class="form-control"
-                                placeholder="Email Address"
-                            />
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email Address" required>
                         </div>
                         <div class="mb-3">
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Phone Number"
-                            />
+                            <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone Number" required>
                         </div>
                         <div class="mb-3">
-                            <textarea
-                                class="form-control h-150"
-                                rows="3"
-                                placeholder="Message"
-                            ></textarea>
+                            <textarea id="message" name="message" class="form-control h-150" rows="3" placeholder="Message" required></textarea>
                         </div>
                         <div class="mb-3">
-                            <button
-                                type="submit"
-                                class="btn btn-primary"
-                            >
-                                Submit
-                            </button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
                 </div>
