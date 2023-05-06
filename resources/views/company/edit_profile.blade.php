@@ -187,7 +187,7 @@ style="background-image: url({{asset('uploads/banner.jpg')}})"
                         <label for="">About Company</label>
                         <textarea
                             name="description"
-                            class="form-control editor"
+                            class="form-control"
                             cols="30"
                             rows="10"
                             >

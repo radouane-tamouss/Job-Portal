@@ -94,7 +94,10 @@ class CompanyController extends Controller
 
             if(Auth::guard('company')->user()->logo != ''){
 
-                unlink(public_path('uploads/'.$obj->logo));
+                if($obj->logo != 'default-company-logo.png'){
+
+                    unlink(public_path('uploads/'.$obj->logo));
+                }
             }
 
             $ext = $request->file('logo')->extension();

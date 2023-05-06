@@ -23,13 +23,13 @@
                                 >Home</a
                             >
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {{ Request::is('job-listing') ? 'active' : ''}}">
                             <a href="{{url('job-listing')}}" class="nav-link">
                                 Find Jobs</a
                             >
                         </li>
-                        <li class="nav-item">
-                            <a href="companies.html" class="nav-link"
+                        <li class="nav-item {{ Request::is('company-listings') ? 'active' : ''}}">
+                            <a href="{{url('company-listing')}} " class="nav-link"
                                 >Companies</a
                             >
                         </li>

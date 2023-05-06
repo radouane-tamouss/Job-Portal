@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Front\TermsController;
 use App\Http\Controllers\Front\JobListingController;
+use App\Http\Controllers\Front\CompanyListingController;
 use App\Http\Controllers\Front\JobCategoryController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PricingController;
@@ -50,6 +51,11 @@ Route::get('job-listing',[JobListingController::class,'index'])->name('job_listi
 Route::get('job/{id}',[JobListingController::class,'job_detail'])->name('job');
 
 Route::post('job/enquery/email',[JobListingController::class,'send_email'])->name('job_enquery_send_email');
+
+Route::get('company-listing',[CompanyListingControllecompany/videosr::class,'index'])->name('company_listing');
+Route::get('company-detail/{id}',[CompanyListingController::class,'company_detail'])->name('company');
+
+Route::post('company/enquery/email',[CompanyListingController::class,'send_email'])->name('company_enquery_send_email');
 
 
 // Company

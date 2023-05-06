@@ -104,21 +104,7 @@
                                     <div class="col-md-6 col-lg-3">
                                         <div class="item my-1">
                                             <a class="video-button" href="{{$item->video}}">
-                                                <?php
-                                                // Match the video ID from the link
-                                                preg_match('/(?<=v=|youtu\.be\/)[^\/]+/', $item->video, $videoId);
-
-                                                if ($videoId) {
-                                                    // Construct the URL of the thumbnail image
-                                                    $thumbnailUrl = "http://img.youtube.com/vi/{$videoId[0]}/0.jpg";
-                                                    
-                                                    // Display the thumbnail image
-                                                    echo '<img src="' . $thumbnailUrl . '" alt="">';
-                                                } else {
-                                                    // Handle the case where the video ID cannot be extracted from the link
-                                                    echo 'Invalid video link';
-                                                }
-                                                ?>
+                                                <img src="http://img.youtube.com/vi/{{ substr($video->video, -11) }}/0.jpg" alt=""/>
                                                 <div class="icon"><i class="far fa-play-circle"></i></div>
                                                 <div class="bg"></div>
                                             </a>
