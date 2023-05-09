@@ -327,4 +327,15 @@ class CandidateController extends Controller
 
         return redirect()->back()->with('success','job bookmarked successfully');
     }
+
+    public function bookmark(){
+        $bookmarked_jobs = CandidateBookmark::where('candidate_id',Auth::guard('candidate')->user()->id)->get();
+        return view('candidate.bookmarked_jobs',compact('bookmarked_jobs'));
+    }
+
+    public function bookmark_delete($id){
+        CandidateBookmark::where('id',$id)->first()->delete();
+        return redirect()->back()->with('success','bookmark deleted succesfully!');
+       
+    }
 }

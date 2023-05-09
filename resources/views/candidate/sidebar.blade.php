@@ -9,8 +9,8 @@
             >Applied Jobs</a
         >
     </li>
-    <li class="list-group-item">
-        <a href="candidate-bookmarked-jobs.html"
+    <li class="list-group-item {{Request::is('candidate/bookmarks') ? 'active' : ''}}">
+        <a href="{{route('bookmarks')}}"
             >Bookmarked Jobs</a
         >
     </li>
