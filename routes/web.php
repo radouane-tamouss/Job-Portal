@@ -52,7 +52,7 @@ Route::get('job/{id}',[JobListingController::class,'job_detail'])->name('job');
 
 Route::post('job/enquery/email',[JobListingController::class,'send_email'])->name('job_enquery_send_email');
 
-Route::get('company-listing',[CompanyListingControllecompany/videosr::class,'index'])->name('company_listing');
+Route::get('company-listing',[CompanyListingController::class,'index'])->name('company_listing');
 Route::get('company-detail/{id}',[CompanyListingController::class,'company_detail'])->name('company');
 
 Route::post('company/enquery/email',[CompanyListingController::class,'send_email'])->name('company_enquery_send_email');
@@ -164,6 +164,8 @@ Route::post('reset-password/candidate/submit', [ForgetPasswordController::class,
         Route::get('/candidate/resume/edit/{id}',[CandidateController::class,'resume_edit'])->name('candidate_resume_edit');
         Route::post('/candidate/resume/update/{id}', [CandidateController::class, 'resume_update'])->name('candidate_resume_update');
         Route::get('/candidate/resume/delete/{id}',[CandidateController::class,'resume_delete'])->name('candidate_resume_delete');
+
+        Route::get('/candidate/bookmark-add/{id}', [CandidateController::class, 'bookmark_add'])->name('candidate_bookmark_add');
         
         
     });

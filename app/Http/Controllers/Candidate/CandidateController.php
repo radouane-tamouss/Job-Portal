@@ -9,6 +9,7 @@ use App\Models\CandidateEducation;
 use App\Models\CandidateSkill;
 use App\Models\CandidateResume;
 use App\Models\CandidateExperience;
+use App\Models\CandidateBookmark;
 use Auth;
 use Hash;
 use Illuminate\Validation\Rule;
@@ -310,5 +311,20 @@ class CandidateController extends Controller
         unlink(public_path('uploads/resumes/'.$resume->file));
         CandidateResume::where('id',$id)->first()->delete();
         return redirect()->back()->with('success','resume deleted successfully');
+    }
+
+    public function bookmark_add($id){
+        
+        $execting_check = CandidateBookmark::where('candidate_id',Auth::guard('candidate')->user()->id)->where('job_id',$id)->count();
+        if($execting_check > 0){
+            return redirect()->back()->with('error','job already bookmarked');
+        }
+
+        $obj = new CandidateBookmark();
+        $obj->job_id = $id;
+        $obj->candidate_id = Auth::guard('candidate')->user()->id;
+        $obj->save();
+
+        return redirect()->back()->with('success','job bookmarked successfully');
     }
 }
