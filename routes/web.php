@@ -169,6 +169,9 @@ Route::post('reset-password/candidate/submit', [ForgetPasswordController::class,
 
         Route::get('/candidate/bookmarks', [CandidateController::class, 'bookmark'])->name('bookmarks');
         Route::get('/candidate/bookmark/delete/{id}', [CandidateController::class,'bookmark_delete'])->name('bookmark_delete');
+
+        Route::get('/candidate/apply/{id}', [CandidateController::class, 'apply'])->name('candidate_apply');
+        Route::post('/candidate/apply/submit/{id}', [CandidateController::class, 'apply_submit'])->name('candidate_apply_submit');
       
 
         

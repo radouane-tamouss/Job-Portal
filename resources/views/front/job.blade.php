@@ -49,7 +49,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                     </div>
                     <div class="apply">
                         @if(!Auth::guard('company')->check())
-                        <a href="apply.html" class="btn btn-primary"
+                        <a href="{{route('candidate_apply',$job->id)}}" class="btn btn-primary"
                             >Apply Now</a
                         >
                         <a
@@ -129,7 +129,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
 
             <div class="left-item">
                 <div class="apply">
-                    <a href="apply.html" class="btn btn-primary"
+                    <a href="{{route('candidate_apply',$job->id)}}" class="btn btn-primary"
                         >Apply Now</a
                     >
                 </div>
@@ -157,7 +157,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                                     </div>
                                     <div class="text">
                                         <h3>
-                                            <a href="job.html"
+                                            <a href="{{route('job',$job->id)}}"
                                                 >{{$job->title}} - {{$job->rCompany->company_name}}</a
                                             >
                                         </h3>

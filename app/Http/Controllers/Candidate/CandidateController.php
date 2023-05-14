@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Candidate;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Candidate;
+use App\Models\Job;
 use App\Models\CandidateEducation;
 use App\Models\CandidateSkill;
 use App\Models\CandidateResume;
 use App\Models\CandidateExperience;
+use App\Models\CandidateAppliedJob;
 use App\Models\CandidateBookmark;
 use Auth;
 use Hash;
@@ -338,4 +340,29 @@ class CandidateController extends Controller
         return redirect()->back()->with('success','bookmark deleted succesfully!');
        
     }
+    public function apply($id){
+        $execting_check = CandidateAppliedJob::where('candidate_id',Auth::guard('candidate')->user()->id)->where('job_id',$id)->count();
+        if($execting_check > 0){
+            return redirect()->back()->with('error','you are already applied to this job!');
+        }
+        $job = Job::where('id',$id)->first();
+        return view('candidate.apply',compact('job'));
+    }
+
+    public function apply_submit(Request $request ,$id){
+
+        $request->validate([
+            'cover_letter' => 'required'
+        ]);
+      
+        $obj = new CandidateAppliedJob();
+        $obj->job_id = $id;
+        $obj->candidate_id = Auth::guard('candidate')->user()->id;
+        $obj->cover_letter = $request->cover_letter;
+        $obj->save();
+
+        return redirect()->route('job',$id)->with('success','you applied to this job successfully');
+    }
+
+   
 }

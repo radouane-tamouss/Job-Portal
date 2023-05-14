@@ -104,7 +104,7 @@
                                     <div class="col-md-6 col-lg-3">
                                         <div class="item my-1">
                                             <a class="video-button" href="{{$item->video}}">
-                                                <img src="http://img.youtube.com/vi/{{ substr($video->video, -11) }}/0.jpg" alt=""/>
+                                                <img src="http://img.youtube.com/vi/{{ substr($item->video, -11) }}/0.jpg" alt=""/>
                                                 <div class="icon"><i class="far fa-play-circle"></i></div>
                                                 <div class="bg"></div>
                                             </a>
