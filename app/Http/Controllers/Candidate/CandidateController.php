@@ -364,5 +364,10 @@ class CandidateController extends Controller
         return redirect()->route('job',$id)->with('success','you applied to this job successfully');
     }
 
+    public function applied_jobs(){
+        $applied_jobs = CandidateAppliedJob::where('candidate_id',Auth::guard('candidate')->user()->id)->get();
+        return view('candidate.applied_jobs', compact('applied_jobs'));
+    }
+
    
 }

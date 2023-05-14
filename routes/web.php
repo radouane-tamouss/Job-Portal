@@ -172,6 +172,8 @@ Route::post('reset-password/candidate/submit', [ForgetPasswordController::class,
 
         Route::get('/candidate/apply/{id}', [CandidateController::class, 'apply'])->name('candidate_apply');
         Route::post('/candidate/apply/submit/{id}', [CandidateController::class, 'apply_submit'])->name('candidate_apply_submit');
+
+        Route::get('/candidate/applied_jobs/view', [CandidateController::class, 'applied_jobs'])->name('applied_jobs');
       
 
         

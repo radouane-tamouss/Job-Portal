@@ -5,7 +5,7 @@
         >
     </li>
     <li class="list-group-item">
-        <a href="candidate-applied-jobs.html"
+        <a href="{{route('applied_jobs')}}"
             >Applied Jobs</a
         >
     </li>
