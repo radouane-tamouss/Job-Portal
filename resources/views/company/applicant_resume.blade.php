@@ -39,11 +39,11 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                     <tr>
                         <th class="w-200">Photo:</th>
                         <td>
-                            <img
-                                src="{{asset('uploads/'.$candidate->photo)}}"
-                                alt="{{$candidate->name}}"
-                                class="w-100"
-                            />
+                            @if(!empty($candidate->photo))
+                            <img src="{{asset('uploads/'.$candidate->photo)}}" alt="{{$candidate->name}}" class="w-100" />
+                            @else
+                                No photo available
+                            @endif
                         </td>
                     </tr>
                     <tr>
@@ -109,6 +109,11 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
             <h4 class="resume mt-5">Education</h4>
 
             <div class="table-responsive">
+                @if($candidate->rCandidateEducation->isEmpty())
+                <div class="alert alert-success text-center">
+                    <div>No Expreiences available</div>
+                </div>
+                @else
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
@@ -129,10 +134,15 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                         @endforeach
                     </tbody>
                 </table>
+                @endif
             </div>
 
             <h4 class="resume mt-5">Skills</h4>
-
+            @if($candidate->rCandidateSkill->isEmpty())
+                <div class="alert alert-success text-center">
+                    <div>No skills available</div>
+                </div>
+            @else
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <tbody>
@@ -151,10 +161,16 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                     </tbody>
                 </table>
             </div>
+            @endif
 
             <h4 class="resume mt-5">Experience</h4>
 
             <div class="table-responsive">
+                @if($candidate->rCandidateExperience->isEmpty())
+                <div class="alert alert-success text-center">
+                    <div>No Expreiences available</div>
+                </div>
+                @else
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
@@ -175,11 +191,17 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                         @endforeach
                     </tbody>
                 </table>
+                @endif
             </div>
 
             <h4 class="resume mt-5">Resume</h4>
 
             <div class="table-responsive">
+                @if($candidate->rCandidateResume->isEmpty())
+                <div class="alert alert-success text-center">
+                    <div>No resumes available</div>
+                </div>
+                @else
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
@@ -199,6 +221,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                         </tr>
                         @endforeach
                     </tbody>
+                    @endif
                 </table>
             </div>
         </div>
