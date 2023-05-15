@@ -25,8 +25,8 @@
     <li class="list-group-item {{Request::is('company/videos') ? 'active' : ''}}">
         <a href="{{route('company_videos')}}">Videos</a>
     </li>
-    <li class="list-group-item">
-        <a href="company-applications.html"
+    <li class="list-group-item {{Request::is('company/candidate-applications') ? 'active' : ''}}">
+        <a href="{{route('candidate_applications')}}"
             >Candidate Applications</a
         >
     </li>

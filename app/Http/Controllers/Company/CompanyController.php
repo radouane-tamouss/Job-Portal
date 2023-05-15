@@ -17,6 +17,7 @@ use App\Models\JobExperience;
 use App\Models\JobType;
 use App\Models\JobLocation;
 use App\Models\JobSalaryRange;
+use App\Models\CandidateAppliedJob;
 use App\Models\Candidate;
 use App\Models\Job;
 use Auth;
@@ -563,6 +564,26 @@ class CompanyController extends Controller
     public function delete_job($id){
         Job::where('id',$id)->delete();
         return redirect()->route('company_jobs')->with('success', 'Job type deleted successfully');
+    }
+
+    public function candidate_applications(){
+        $jobs = Job::where('company_id',Auth::guard('company')->user()->id)->get();
+        return view('company.applications', compact('jobs'));
+    }
+
+    public function job_applicants($id){
+        $applicants = CandidateAppliedJob::where('job_id',$id)->get();
+        return view('company.job_applicants',compact('applicants'));
+    }
+
+    public function delete_candidate_applicant($id){
+        CandidateAppliedJob::where('id',$id)->delete();
+        return redirect()->back()->with('succcess','applicant deleted succesfully');
+    }
+
+    public function applicant_resume($id){
+        $candidate = Candidate::where('id',$id)->first();
+        return view('company.applicant_resume',compact('candidate'));
     }
 
     

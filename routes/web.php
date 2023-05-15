@@ -112,7 +112,12 @@ Route::middleware(['company:company'])->group(function(){
      Route::get('/company/jobs/edit/{id}',[companyController::class,'edit_job'])->name('company_edit_job');
      Route::post('/company/jobs/update/{id}', [companyController::class, 'update_job'])->name('company_update_job');
      Route::get('/company/jobs/delete/{id}', [companyController::class, 'delete_job'])->name('company_delete_job');
-     
+
+     Route::get('/company/candidate-applications', [CompanyController::class,'candidate_applications'])->name('candidate_applications');
+     Route::get('/company/job-applicants/{id}', [CompanyController::class,'job_applicants'])->name('job_applicants');
+     Route::get('/company/applicant-resume/{id}', [CompanyController::class,'applicant_resume'])->name('applicant_resume');
+     Route::get('/company/candidate-applicant/delete/{id}', [companyController::class, 'delete_candidate_applicant'])->name('admin_candidate_applicant_delete');
+
  
 });
 
@@ -258,10 +263,6 @@ Route::middleware(['admin:admin'])->group(function(){
     Route::get('/admin/company-size/edit/{id}',[AdminCompanySizeController::class,'edit'])->name('admin_company_size_edit');
     Route::post('/admin/company-size/update/{id}', [AdminCompanySizeController::class, 'update'])->name('admin_company_size_update');
     Route::get('/admin/company-size/delete/{id}',[AdminCompanySizeController::class,'delete'])->name('admin_company_size_delete');
-
-    
-   
-
 
 }); 
 
