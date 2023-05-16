@@ -116,7 +116,7 @@ Route::middleware(['company:company'])->group(function(){
      Route::get('/company/candidate-applications', [CompanyController::class,'candidate_applications'])->name('candidate_applications');
      Route::get('/company/job-applicants/{id}', [CompanyController::class,'job_applicants'])->name('job_applicants');
      Route::get('/company/applicant-resume/{id}', [CompanyController::class,'applicant_resume'])->name('applicant_resume');
-     Route::get('/company/candidate-applicant/delete/{id}', [companyController::class, 'delete_candidate_applicant'])->name('admin_candidate_applicant_delete');
+     Route::post('/company/application-change-status', [companyController::class, 'application_change_status'])->name('application_change_status');
 
  
 });

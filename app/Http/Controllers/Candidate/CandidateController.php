@@ -75,9 +75,9 @@ class CandidateController extends Controller
         }
 
         $candidate->name  = $request->name;
+        $candidate->username = $request->username;
         $candidate->designation = $request->designation;
         $candidate->email = $request->email;
-        $candidate->username = $request->username;
         $candidate->phone = $request->phone;
         $candidate->biography = $request->biography;
         $candidate->country = $request->country;

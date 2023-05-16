@@ -576,9 +576,12 @@ class CompanyController extends Controller
         return view('company.job_applicants',compact('applicants'));
     }
 
-    public function delete_candidate_applicant($id){
-        CandidateAppliedJob::where('id',$id)->delete();
-        return redirect()->back()->with('succcess','applicant deleted succesfully');
+    public function application_change_status(Request $request){
+        $obj = CandidateAppliedJob::where('id',$request->applicant_id)->first();
+        $obj->status = $request->status;
+        $obj->update();
+        
+       return redirect()->back()->with('success','Application status changed successfully');
     }
 
     public function applicant_resume($id){

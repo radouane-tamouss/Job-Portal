@@ -64,7 +64,6 @@
                                             type="text"
                                             name="name"
                                             class="form-control"
-                                            value="Peter Johnson"
                                             value="{{$candidate->name}}"
                                         />
                                     </div>
@@ -76,8 +75,7 @@
                                             type="text"
                                             name="username"
                                             class="form-control"
-                                            value="Peter Johnson"
-                                            value="{{$candidate->name}}"
+                                            value="{{$candidate->username}}"
                                         />
                                     </div>
                                 </div>

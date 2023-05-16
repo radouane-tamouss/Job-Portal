@@ -71,10 +71,10 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                         <th>Address:</th>
                         <td>{{$candidate->address ?? 'N/A'}}</td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <th>State:</th>
                         <td>{{$candidate->state ?? 'N/A'}}</td>
-                    </tr>
+                    </tr> --}}
                     <tr>
                         <th>City:</th>
                         <td>{{$candidate->city ?? 'N/A'}}</td>

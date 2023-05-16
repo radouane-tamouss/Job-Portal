@@ -43,7 +43,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                             <th>Email</th>
                             <th>Mobile</th>
                             <th>See Resume</th>
-                            <th>Reject</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                         @foreach($applicants as $item)
@@ -61,20 +61,33 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                                 >
                             </td>
                             <td>
-                                <a
-                                    href=""
-                                    class="btn btn-danger btn-sm"
-                                    onClick="return confirm('Are you sure?');"
-                                    >Reject</a
-                                >
+                                @if($item->status == 'applied')
+                                <div class="badge bg-primary">
+                                    Applied
+                                </div>
+                                @elseif($item->status == 'approved')
+                                <div class="badge bg-success">
+                                    Approved
+                                </div>
+                                @else
+                                <div class="badge bg-danger">
+                                    Rejected
+                                </div>
+                                @endif
+                                
                             </td>
                             <td>
-                                <a
-                                    href="{{route('admin_candidate_applicant_delete',$item->id)}}"
-                                    class="btn btn-danger btn-sm"
-                                    onClick="return confirm('Are you sure?');"
-                                    >Delete</a
-                                >
+                                <form action="{{route('application_change_status')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="applicant_id" value="{{$item->id}}">
+                                    {{-- <input type="hidden" name="candidate_id"> --}}
+                                    <select name="status" id="" class="form-control select2 w_100" onchange="this.form.submit()">
+                                        <option value="">Select</option>
+                                        <option value="applied">Applied</option>
+                                        <option value="approved"  class="">Approve</option>
+                                        <option value="rejected"  class="">Reject</option>
+                                    </select>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
