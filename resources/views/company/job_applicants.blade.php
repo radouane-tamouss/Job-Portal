@@ -43,6 +43,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                             <th>Email</th>
                             <th>Mobile</th>
                             <th>See Resume</th>
+                            <th>Cover Letter</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -59,6 +60,23 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                                     class="btn btn-primary btn-sm"
                                     >See Resume</a
                                 >
+                            </td>
+                            <td>
+                                <a href="" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{$item->id}}"><i class="fas fa-comment"></i
+                                    ></a>
+                                <div class="modal fade" id="exampleModal{{$item->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Cover Letter</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {!! nl2br($item->cover_letter) !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                             <td>
                                 @if($item->status == 'applied')
