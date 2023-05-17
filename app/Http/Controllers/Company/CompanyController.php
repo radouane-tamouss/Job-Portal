@@ -568,6 +568,7 @@ class CompanyController extends Controller
 
     public function candidate_applications(){
         $jobs = Job::where('company_id',Auth::guard('company')->user()->id)->get();
+        
         return view('company.applications', compact('jobs'));
     }
 

@@ -69,7 +69,16 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                                <a  class="badge bg-primary text-white" href="{{route('job',$job->id)}}">Details</a>
                             </td>
                             <td>
-                                <a  class="badge bg-primary text-white" href="{{route('job_applicants',$job->id)}}">Details</a>
+                                @php
+                                     $count = \App\Models\CandidateAppliedJob::where('job_id',$job->id)->count();
+                                @endphp
+                                <a href="{{route('job_applicants',$job->id)}}" class="badge bg-primary position-relative">
+                                    Applications
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                      {{$count}}
+                                      
+                                    </span>
+                                  </a>
                             </td>
                            
                         </tr>
