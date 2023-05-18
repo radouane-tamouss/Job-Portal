@@ -39,20 +39,20 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
             <div class="row box-items">
                 <div class="col-md-4">
                     <div class="box1">
-                        <h4>12</h4>
+                        <h4>{{$nb_applied_jobs}}</h4>
                         <p>Applied Jobs</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="box2">
-                        <h4>3</h4>
+                        <h4>{{$nb_bookmarked_jobs}}</h4>
                         <p>Bookmarked Jobs</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="box3">
-                        <h4>5</h4>
-                        <p>Rejected Jobs</p>
+                        <h4>{{$nb_approved_jobs}}</h4>
+                        <p>Approved Jobs</p>
                     </div>
                 </div>
             </div>
@@ -69,57 +69,36 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                             <th>Status</th>
                             <th class="w-100">Detail</th>
                         </tr>
+                        @foreach($recently_applied_jobs as $item)
                         <tr>
-                            <td>1</td>
-                            <td>Senior Laravel Developer</td>
-                            <td>ABC Multimedia</td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$item->rJob->title}}</td>
+                            <td>{{$item->rJob->rCompany->company_name}}</td>
                             <td>
+                                @if($item->status == 'applied')
                                 <div class="badge bg-primary">
                                     Applied
                                 </div>
-                            </td>
-                            <td>
-                                <a
-                                    href="job.html"
-                                    class="btn btn-primary btn-sm text-white"
-                                    ><i class="fas fa-eye"></i
-                                ></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Expert Laravel Developer</td>
-                            <td>Big Axis Limited</td>
-                            <td>
-                                <div class="badge bg-danger">
-                                    Rejected
-                                </div>
-                            </td>
-                            <td>
-                                <a
-                                    href="job.html"
-                                    class="btn btn-primary btn-sm text-white"
-                                    ><i class="fas fa-eye"></i
-                                ></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>MySQL Database Expert</td>
-                            <td>Kite IT Solution</td>
-                            <td>
+                                @elseif($item->status == 'approved')
                                 <div class="badge bg-success">
                                     Approved
                                 </div>
+                                @else
+                                <div class="badge bg-danger">
+                                    Rejected
+                                </div>
+                                @endif
+                                
                             </td>
                             <td>
                                 <a
-                                    href="job.html"
+                                    href="{{route('job',$item->job_id)}}"
                                     class="btn btn-primary btn-sm text-white"
                                     ><i class="fas fa-eye"></i
                                 ></a>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

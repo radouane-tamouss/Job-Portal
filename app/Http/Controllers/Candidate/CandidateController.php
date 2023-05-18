@@ -20,7 +20,11 @@ use Illuminate\Validation\Rule;
 class CandidateController extends Controller
 {
     public function index(){
-        return view('candidate.dashboard');
+        $recently_applied_jobs = CandidateAppliedJob::where('candidate_id',Auth::guard('candidate')->user()->id)->take(4)->get();
+        $nb_applied_jobs = CandidateAppliedJob::where('candidate_id',Auth::guard('candidate')->user()->id)->where('status','applied')->count();
+        $nb_approved_jobs = CandidateAppliedJob::where('candidate_id',Auth::guard('candidate')->user()->id)->where('status','approved')->count();
+        $nb_bookmarked_jobs = CandidateBookmark::where('candidate_id',Auth::guard('candidate')->user()->id)->count();
+        return view('candidate.dashboard',compact('recently_applied_jobs','nb_applied_jobs','nb_bookmarked_jobs','nb_approved_jobs'));
     }
 
     public function edit_profile(){
