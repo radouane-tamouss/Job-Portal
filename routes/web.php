@@ -28,6 +28,7 @@ use App\Http\Controllers\Front\SignupController;
 use App\Http\Controllers\Front\ForgetPasswordController;
 use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\Candidate\CandidateController;
+use App\Http\Controllers\Front\PostController;
 
 
 
@@ -63,6 +64,10 @@ Route::post('company/enquery/email',[CompanyListingController::class,'send_email
 
 Route::post('subscriber/send-email',[SubscriberController::class,'send_email'])->name('subscriber_send_email');
 Route::get('subscriber/verify/{email}/{token}', [SubscriberController::class,'verify'])->name('subscriber_email_verify');
+
+//blog
+Route::get('blog',[PostController::class,'index'])->name('blog');
+Route::get('post/{slug}',[PostController::class,'detail'])->name('post');
 
 
 // Company
