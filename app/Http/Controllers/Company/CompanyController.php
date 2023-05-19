@@ -581,6 +581,11 @@ class CompanyController extends Controller
         $obj = CandidateAppliedJob::where('id',$request->applicant_id)->first();
         $obj->status = $request->status;
         $obj->update();
+        if($obj->status == 'approved'){
+            $subject = 'congratulation you have been accepted in the '.$obj->rJob->title .'Job';
+            $message = 'hi , the company : ' .Auth::guard('company')->user()->company_name .' accepted you ...';
+            \Mail::to($obj->rCandidate->email)->send(new Websitemail($subject,$message));
+        }
         
        return redirect()->back()->with('success','Application status changed successfully');
     }

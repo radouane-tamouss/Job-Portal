@@ -98,6 +98,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                                 <form action="{{route('application_change_status')}}" method="post">
                                     @csrf
                                     <input type="hidden" name="applicant_id" value="{{$item->id}}">
+                               
                                     {{-- <input type="hidden" name="candidate_id"> --}}
                                     <select name="status" id="" class="form-control select2 w_100" onchange="this.form.submit()">
                                         <option value="">Select</option>

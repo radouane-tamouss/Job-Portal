@@ -12,6 +12,7 @@ use App\Models\CandidateResume;
 use App\Models\CandidateExperience;
 use App\Models\CandidateAppliedJob;
 use App\Models\CandidateBookmark;
+use App\Mail\Websitemail;
 use Auth;
 use Hash;
 use Illuminate\Validation\Rule;
@@ -364,6 +365,12 @@ class CandidateController extends Controller
         $obj->candidate_id = Auth::guard('candidate')->user()->id;
         $obj->cover_letter = $request->cover_letter;
         $obj->save();
+
+       
+            $subject = 'New Job Application in the '.$obj->rJob->title .' Job';
+            $message = 'hi , the candidate : ' .$obj->rCandidate->name .' applied to the job...';
+            \Mail::to($obj->rJob->rCompany->email)->send(new Websitemail($subject,$message));
+    
 
         return redirect()->route('job',$id)->with('success','you applied to this job successfully');
     }
