@@ -582,8 +582,35 @@ class CompanyController extends Controller
         $obj->status = $request->status;
         $obj->update();
         if($obj->status == 'approved'){
-            $subject = 'congratulation you have been accepted in the '.$obj->rJob->title .'Job';
-            $message = 'hi , the company : ' .Auth::guard('company')->user()->company_name .' accepted you ...';
+        $subject = 'Job Application Approved';
+        $message = '
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+                <title>Job Application Approved</title>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="jumbotron" style="background-color: #f2f3f8;">
+                        <h1 class="display-4" style="color: #1e1e2d;">Job Application Approved for '. $obj->rJob->title .'</h1>
+                        <p class="lead" style="color: #455056;">Dear ' . $obj->rCandidate->name . ',</p>
+                        <p style="color: #455056;">We are pleased to inform you that your job application for the position of '.$obj->rJob->title.' has been approved by the company.</p>
+                        <hr class="my-4" style="border-color: #cecece;">
+                        <h5 style="color: #1e1e2d;">Application Details:</h5>
+                        <ul>
+                            <li><strong>Company:</strong> '.$obj->rJob->rCompany->company_name.'</li>
+                            <li><strong>Email:</strong> '. $obj->rJob->rCompany->email.'</li>
+                            <li><strong>View Apllications: </strong> <a href="'.route('applied_jobs').'"> all jobs applications </a>
+                        </ul>
+                        <p style="color: #455056;">Thank you for your interest and congratulations on your successful application. We will be in touch with you soon regarding the next steps of the hiring process.</p>
+                        <hr class="my-4" style="border-color: #cecece;">
+                        <p style="color: #455056;">Best regards,</p>
+                        <p style="color: #455056;">AZ-NETWORKING</p>
+                    </div>
+                </div>
+            </body>';
+
             \Mail::to($obj->rCandidate->email)->send(new Websitemail($subject,$message));
         }
         

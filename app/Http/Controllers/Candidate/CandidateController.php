@@ -368,9 +368,38 @@ class CandidateController extends Controller
 
        
             $subject = 'New Job Application in the '.$obj->rJob->title .' Job';
-            $message = 'hi , the candidate : ' .$obj->rCandidate->name .' applied to the job...';
+            $message = '
+            
+                <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+                <title>New Job Application</title>
+                </head>
+
+            <body>
+            <div class="container">
+                <div class="jumbotron" style="background-color: #f2f3f8;">
+                    <h1 class="display-4" style="color: #1e1e2d;">New Job Application</h1>
+                    <p class="lead" style="color: #455056;">Dear'. $obj->rJob->rCompany->company_name.',</p>
+                    <p style="color: #455056;">We wanted to inform you that a new job application has been submitted for the position of '. $obj->rJob->title.'.</p>
+                    <hr class="my-4" style="border-color: #cecece;">
+                    <h5 style="color: #1e1e2d;">Details of the applicant:</h5>
+                    <ul>
+                        <li><strong>Name:</strong> '.$obj->rCandidate->name.'</li>
+                        <li><strong>Email:</strong> '.$obj->rCandidate->email.'</li>
+                        <li><strong>Resume/CV:</strong> <a href="'.route('applicant_resume',$obj->candidate_id).'" style="color: #20e277;">Click here to view</a></li>
+                    </ul>
+                    <p style="color: #455056;">Please review the application and take the necessary steps for further evaluation and consideration.</p>
+                    <a class="btn btn-primary" href="'.route('job_applicants',$obj->job_id).'" role="button" style="background-color: #20e277; color: #fff; text-transform: uppercase; font-weight: 500; margin-top: 15px; border-radius: 50px;">View All Job Applications</a>
+                    <hr class="my-4" style="border-color: #cecece;">
+                    <p style="color: #455056;">Thank you for your attention.</p>
+                    <p style="color: #455056;">Sincerely,</p>
+                </div>
+            </div>
+        </body>';
+            
             \Mail::to($obj->rJob->rCompany->email)->send(new Websitemail($subject,$message));
-    
 
         return redirect()->route('job',$id)->with('success','you applied to this job successfully');
     }
