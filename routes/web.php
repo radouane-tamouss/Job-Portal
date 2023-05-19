@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminCompanyIndustryController;
 use App\Http\Controllers\Admin\AdminCompanySizeController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminSubscriberController;
+use App\Http\Controllers\Admin\AdminPostController;
 
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminPackageController;
@@ -280,6 +281,12 @@ Route::middleware(['admin:admin'])->group(function(){
     Route::get('admin/subscriber-send-email',[AdminSubscriberController::class,'send_email'])->name('admin-subscriber-send-email');
     Route::post('admin/subscribers-send-email-submit',[AdminSubscriberController::class,'send_email_submit'])->name('admin-subscriber-send-email-submit');
     Route::get('admin/subscriber-delete/{id}',[AdminSubscriberController::class,'delete_email'])->name('admin-subscriber-delete');
+
+    Route::get('admin/post/view', [AdminPostController::class,'index'])->name('admin_post');
+    Route::get('admin/post/create' ,[AdminPostController::class,'create'])->name('admin_post_create');
+    Route::post('admin/post/store' ,[AdminPostController::class,'store'])->name('admin_post_store');
+    Route::post('admin/post/update/{id}',[AdminPostController::class,'update'])->name('admin_post_update');
+    Route::get('admin/post/delete/{id}',[AdminPostController::class,'delete'])->name('admin_post_delete');
 
 }); 
 

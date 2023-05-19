@@ -23,8 +23,16 @@
 
 <div class="page-content">
     <div class="container">
+        
         <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-12">
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="sticky-side-banner">
+                    <img src="{{ asset('uploads/ad-2.gif') }}" alt="" />
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                
                 <div class="featured-photo">
                     <img src="{{ asset('uploads/'.$post->photo) }}" alt="" />
                 </div>
@@ -41,6 +49,11 @@
                 </div>
                 <div class="main-text">
                     {!! $post->description !!}
+                </div>
+            </div>
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="sticky-side-banner">
+                    <img src="{{ asset('uploads/ad-2.gif') }}" alt="" width="300" />
                 </div>
             </div>
         </div>

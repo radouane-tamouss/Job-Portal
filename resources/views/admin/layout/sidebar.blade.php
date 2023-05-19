@@ -36,6 +36,12 @@
                     <li class=""><a class="nav-link" href="{{route('admin_company_size')}}"><i class="fas fa-size m-1"></i>Company Size</a></li>
                 </ul>
             </li>
+            <li class="nav-item dropdown {{ Request::is('admin/post/*') ? 'active' : ''}}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-briefcase"></i><span>Blog Section</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{Request::is('admin/post/view') ? 'active' : ''}}"><a class="nav-link" href="{{route('admin_post')}}"><i class="fas fa-map-marker-alt m-1"></i>All Posts</a></li>
+                </ul>
+            </li>
 
             <li class="nav-item dropdown {{ Request::is('admin/all-subscribers')||Request::is('admin/subscriber-send-email') ? 'active' : ''}}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-briefcase"></i><span>Subscribers Section</span></a>
