@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\AdminCompanyLocationController;
 use App\Http\Controllers\Admin\AdminCompanyIndustryController;
 use App\Http\Controllers\Admin\AdminCompanySizeController;
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\AdminSubscriberController;
+
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminPackageController;
 use App\Http\Controllers\Front\TermsController;
@@ -26,6 +28,7 @@ use App\Http\Controllers\Front\SignupController;
 use App\Http\Controllers\Front\ForgetPasswordController;
 use App\Http\Controllers\Company\CompanyController;
 use App\Http\Controllers\Candidate\CandidateController;
+
 
 
 /*
@@ -267,6 +270,11 @@ Route::middleware(['admin:admin'])->group(function(){
     Route::get('/admin/company-size/edit/{id}',[AdminCompanySizeController::class,'edit'])->name('admin_company_size_edit');
     Route::post('/admin/company-size/update/{id}', [AdminCompanySizeController::class, 'update'])->name('admin_company_size_update');
     Route::get('/admin/company-size/delete/{id}',[AdminCompanySizeController::class,'delete'])->name('admin_company_size_delete');
+
+    Route::get('admin/all-subscribers',[AdminSubscriberController::class,'all_subscribers'])->name('admin-all-subscribers');
+    Route::get('admin/subscriber-send-email',[AdminSubscriberController::class,'send_email'])->name('admin-subscriber-send-email');
+    Route::post('admin/subscribers-send-email-submit',[AdminSubscriberController::class,'send_email_submit'])->name('admin-subscriber-send-email-submit');
+    Route::get('admin/subscriber-delete/{id}',[AdminSubscriberController::class,'delete_email'])->name('admin-subscriber-delete');
 
 }); 
 

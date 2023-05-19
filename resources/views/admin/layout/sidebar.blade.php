@@ -36,6 +36,14 @@
                     <li class=""><a class="nav-link" href="{{route('admin_company_size')}}"><i class="fas fa-size m-1"></i>Company Size</a></li>
                 </ul>
             </li>
+
+            <li class="nav-item dropdown {{ Request::is('admin/all-subscribers')||Request::is('admin/subscriber-send-email') ? 'active' : ''}}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-briefcase"></i><span>Subscribers Section</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{Request::is('admin/all-subscribers') ? 'active' : ''}}"><a class="nav-link" href="{{route('admin-all-subscribers')}}"><i class="fas fa-map-marker-alt m-1"></i>All Subscribers </a></li>
+                    <li class="{{Request::is('admin/subscriber-send-email') ? 'active' : ''}}"><a class="na}}v-link" href="{{route('admin-subscriber-send-email')}}"><i class="fas fa-industry m-1"></i>Send Email To Subscribers</a></li>
+                </ul>
+            </li>
             <li class="nav-item dropdown {{ Request::is('admin/package/*') ? 'active' : ''}}">
                 <a href="{{route('admin_package')}}" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Packages"><i class="fas fa-briefcase"></i><span>Package</span></a>
             </li>
