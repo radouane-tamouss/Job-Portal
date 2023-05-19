@@ -304,14 +304,10 @@
                             <p>CEO, ABC Company</p>
                         </div>
                         <div class="description">
-                            <p>
-                                Lorem ipsum dolor sit amet, an labores
-                                explicari qui, eu nostrum copiosae
-                                argumentum has. Latine propriae quo no,
-                                unum ridens. Lorem ipsum dolor sit amet,
-                                an labores explicari qui, eu nostrum
-                                copiosae argumentum has. Latine propriae
-                                quo no, unum ridens.
+                            <p width="300px;">
+                               Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium voluptatem
+                                eveniet facere, recusandae odit repellat dignissimos hic pariatur porro, tenetur,
+                                 praesentium veniam laudantium quia dolore nobis incidunt impedit autem qui.
                             </p>
                         </div>
                     </div>
@@ -325,13 +321,12 @@
                         </div>
                         <div class="description">
                             <p>
-                                Lorem ipsum dolor sit amet, an labores
-                                explicari qui, eu nostrum copiosae
-                                argumentum has. Latine propriae quo no,
-                                unum ridens. Lorem ipsum dolor sit amet,
-                                an labores explicari qui, eu nostrum
-                                copiosae argumentum has. Latine propriae
-                                quo no, unum ridens.
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium voluptatem
+                                eveniet facere, recusandae odit repellat dignissimos hic pariatur porro, tenetur,
+                                 praesentium veniam laudantium quia dolore nobis incidunt impedit autem qui.
+                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium voluptatem
+                                eveniet facere, recusandae odit repellat dignissimos hic pariatur porro, tenetur,
+                                 praesentium veniam laudantium quia dolore nobis incidunt impedit autem qui.
                             </p>
                         </div>
                     </div>

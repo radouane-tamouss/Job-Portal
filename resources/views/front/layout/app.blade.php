@@ -156,24 +156,16 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="item">
                             <h2 class="heading">Newsletter</h2>
-                            <p>
-                                To get the latest news from our website, please
-                                subscribe us here:
-                            </p>
-                            <form action="" method="post">
+                            <p>To get the latest news from our website, please subscribe us here:</p>
+                            {{-- <form action="{{ route('subscriber_send_email') }}" method="post" class="form_subscribe_ajax"> --}}
+                            <form action="{{route('subscriber_send_email')}}"  method="post">
+                                @csrf
                                 <div class="form-group">
-                                    <input
-                                        type="text"
-                                        name=""
-                                        class="form-control"
-                                    />
+                                    <input type="text" name="email" class="form-control">
+                                    <span class="text-danger error-text email_error"></span>
                                 </div>
                                 <div class="form-group">
-                                    <input
-                                        type="submit"
-                                        class="btn btn-primary"
-                                        value="Subscribe Now"
-                                    />
+                                    <input type="submit" class="btn btn-primary" value="Subscribe Now">
                                 </div>
                             </form>
                         </div>
@@ -226,7 +218,7 @@
             <script>
                 iziToast.error({
                     title: '',
-                    position: 'topRight',
+                    position: 'bottomRight',
                     message: '{{ session()->get('error') }}',
                 });
             </script>
@@ -241,6 +233,51 @@
                 });
             </script>
         @endif
+
+        {{-- <script>
+            (function($){
+                $(".form_subscribe_ajax").on('submit', function(e){
+                    e.preventDefault();
+                    var form = this;
+                    $.ajax({
+                        url:$(form).attr('action'),
+                        method:$(form).attr('method'),
+                        data:new FormData(form),
+                        processData:false,
+                        dataType:'json',
+                        contentType:false,
+                        beforeSend:function(){
+                            $(form).find('span.error-text').text('');
+                        },
+                        success:function(data)
+                        {
+                            if(data.code == 0)
+                            {
+                                $.each(data.error_message, function(prefix, val) {
+                                    $(form).find('span.'+prefix+'_error').text(val[0]);
+                                });
+                            }
+                            else if(data.code == 2)
+                            {
+                                $.each(data.error_message_2, function(prefix, val) {
+                                    $('.email_error').text(data.error_message_2);
+                                });
+                            }
+                            else if(data.code == 1)
+                            {
+                                $(form)[0].reset();
+                                iziToast.success({
+                                    title: '',
+                                    position: 'topRight',
+                                    message: data.success_message,
+                                });
+                             }
+            
+                        }
+                    });
+                });
+            })(jQuery);
+            </script> --}}
 
     </body>
 </html>

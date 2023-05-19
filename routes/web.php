@@ -18,6 +18,7 @@ use App\Http\Controllers\Front\TermsController;
 use App\Http\Controllers\Front\JobListingController;
 use App\Http\Controllers\Front\CompanyListingController;
 use App\Http\Controllers\Front\JobCategoryController;
+use App\Http\Controllers\Front\SubscriberController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\PricingController;
 use App\Http\Controllers\Front\LoginController;
@@ -56,6 +57,9 @@ Route::get('company-listing',[CompanyListingController::class,'index'])->name('c
 Route::get('company-detail/{id}',[CompanyListingController::class,'company_detail'])->name('company');
 
 Route::post('company/enquery/email',[CompanyListingController::class,'send_email'])->name('company_enquery_send_email');
+
+Route::post('subscriber/send-email',[SubscriberController::class,'send_email'])->name('subscriber_send_email');
+Route::get('subscriber/verify/{email}/{token}', [SubscriberController::class,'verify'])->name('subscriber_email_verify');
 
 
 // Company

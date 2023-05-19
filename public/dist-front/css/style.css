@@ -1283,14 +1283,15 @@ select {
     background: #fff;
 }
 .testimonial .photo {
-    width: 95px;
-    height: 95px;
+    width: 110px;
+    height: 110px;
     margin: 0 auto;
 }
 
 .testimonial .photo img {
     width: 100%;
     height: auto;
+    border-radius: 50%;
 }
 .testimonial .text {
     margin-top: 15px;
@@ -1302,7 +1303,7 @@ select {
     margin-bottom: 8px;
 }
 .testimonial .text p {
-    font-size: 15px;
+    font-size: 17px;
     margin: 0;
 }
 .testimonial-carousel .owl-dots {
