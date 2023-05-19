@@ -9,6 +9,7 @@ use App\Models\JobCategory;
 use App\Models\JobLocation;
 use App\Models\CandidateBookmark;
 use App\Models\Job;
+use App\Models\Post;
 
 
 class HomeController extends Controller
@@ -20,7 +21,8 @@ class HomeController extends Controller
         $job_categories = JobCategory::withCount('rJob')->orderBy('r_job_count','desc')->take(9)->get();
         $job_categories_select = JobCategory::OrderBy('name','asc')->get();
         $job_locations_select = JobLocation::OrderBy('name','asc')->get();
+        $latest_posts = Post::OrderBy('created_at','DESC')->get();
         // $bookmarked_jobs = CandidateBookmark::where('candidate_id',Auth::guard('candidate')->user()->id);
-        return view('front.home', compact('page_home_data','job_categories','job_categories_select','job_locations_select','fetured_jobs'));
+        return view('front.home', compact('page_home_data','job_categories','job_categories_select','job_locations_select','fetured_jobs','latest_posts'));
     }
 }
