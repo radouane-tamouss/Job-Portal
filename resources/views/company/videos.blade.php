@@ -51,7 +51,7 @@
                         </div>
                     </div>
                         @else 
-                            @if($allowed_videos > $company_videos_number)
+                            @if($allowed_videos > $company_videos_number and date('Y-m-d') < $order_data->expire_date )
                             <h4>Add Video</h4>
                             <form action="{{route('company_videos_submit')}}" method="post">
                                 @csrf
@@ -79,6 +79,14 @@
                                     </div>
                                 </div>
                             </form>
+                            @elseif(date('Y-m-d') > $order_data->expire_date)
+                                <div class="alert alert-danger" role="alert">
+
+                                    <h4 class="alert-heading">Package Expired</h4>
+                                    <p class="mb-0">Sorry, your current package has expired on  {{ \Carbon\Carbon::parse($order_data->expire_date)->format('F j, Y') }}. To continue accessing all features, please renew your package using the link below.</p>
+                                    <hr>
+                                    <a class="btn btn-primary btn-sm" href="{{route('pricing')}}" role="button">Renew Package</a>
+                                </div>
                             @else
                             <div class="alert alert-danger" role="alert">
                                 <h4 class="alert-heading">Limit Reached</h4>

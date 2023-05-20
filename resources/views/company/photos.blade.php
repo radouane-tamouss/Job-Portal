@@ -39,11 +39,12 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                     @if($allowed_photos == null)
                     <div class="row justify-content-center">
                         <div class="col-md-8 text-center">
-                          <h3 class="mb-3">Upgrade Your Plan to Add Company Photos</h3>
-                          <p class="mb-4">Your current plan does not allow for any company photos. Upgrade your plan to unlock this feature and start showcasing your company's culture.</p>
-                          <a href="{{route('pricing')}}" class="btn btn-primary">Upgrade Plan</a>
+                            <h3 class="mb-3">Upgrade Your Plan to Add Company Photos</h3>
+                            <p class="mb-4">Your current plan does not allow for any company photos. Upgrade your plan to unlock this feature and start showcasing your company's culture.</p>
+                            <a href="{{route('pricing')}}" class="btn btn-primary">Upgrade Plan</a>
                         </div>
                     </div>
+                   
                     @else
                     <h4 class="alert-heading">Limit Reached</h4>
                     <p class="mb-0">Sorry, you have reached the maximum number of jobs allowed for your plan ({{$allowed_photos}} jobs). To add more jobs, please delete unused jobs or upgrade your plan using the link below.</p>
@@ -51,18 +52,19 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                     <a class="btn btn-primary btn-sm" href="{{route('pricing')}}" role="button">Upgrade Plan</a>
                     @endif
                 </div>
-           
-                  
+                
+                
                 @else 
-                @if($allowed_photos > $company_photos_number)
+                @if($allowed_photos > $company_photos_number and date('Y-m-d') < $order_data->expire_date)
                 <h4>Add Photo</h4>
                 <form action="{{route('company_photos_submit')}}" method="post"  enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <div class="form-group">
+                                {{-- <label for="">{{$order_data->expire_date}}</label> --}}
                                 <p>total allowed photos for your plan is {{$allowed_photos}}</p>
-                                <input type="file" name="photo" />
+                                <input class="form-control" type="file" name="photo" />
                             </div>
                         </div>
                     </div>
@@ -77,6 +79,15 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                         </div>
                     </div>
                 </form>
+                @elseif(date('Y-m-d') > $order_data->expire_date)
+                <div class="alert alert-danger" role="alert">
+
+                    <h4 class="alert-heading">Package Expired</h4>
+                    <p class="mb-0">Sorry, your current package has expired on  {{ \Carbon\Carbon::parse($order_data->expire_date)->format('F j, Y') }}. To continue accessing all features, please renew your package using the link below.</p>
+                    <hr>
+                    <a class="btn btn-primary btn-sm" href="{{route('pricing')}}" role="button">Renew Package</a>
+                </div>
+               
                 @else
                     <div class="alert alert-danger" role="alert">
                         <h4 class="alert-heading">Limit Reached</h4>

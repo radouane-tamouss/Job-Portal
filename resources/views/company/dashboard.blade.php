@@ -35,7 +35,16 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
         <div class="col-lg-9 col-md-12">
             <h3>Hello, {{Auth::guard('company')->user()->person_name}} ({{Auth::guard('company')->user()->company_name}})</h3>
             <p>See all the statistics at a glance:</p>
-
+            @if(date('Y-m-d') > $order_data->expire_date)
+            <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">Package Expired</h4>
+                <p class="mb-0">Your current package has expired on {{ \Carbon\Carbon::parse($order_data->expire_date)->format('F j, Y') }}. To continue accessing all features, please renew your package using the link below.</p>
+                <hr>
+                <a class="btn btn-primary btn-sm" href="{{ route('pricing') }}" role="button">Renew Package</a>
+            </div>
+            
+               
+            @endif
             <div class="row box-items">
                 <div class="col-md-4">
                     <div class="box1">

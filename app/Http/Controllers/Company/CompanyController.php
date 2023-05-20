@@ -31,11 +31,12 @@ class CompanyController extends Controller
    
     public function index(){
     
+        $order_data = Order::where('company_id',Auth::guard('company')->user()->id)->where('currently_active',1)->first();
         $opened_jobs = Job::where('company_id',Auth::guard('company')->user()->id)->count();
         $featured_jobs = Job::where('company_id',Auth::guard('company')->user()->id)->where('is_featured',1)->count();
         $urgent_jobs = Job::where('company_id',Auth::guard('company')->user()->id)->where('is_urgent',1)->count();
         $jobs = Job::where('company_id',Auth::guard('company')->user()->id)->orderBy('id','desc')->take(5)->get();
-        return view('company.dashboard',compact('jobs','opened_jobs','featured_jobs','urgent_jobs'));
+        return view('company.dashboard',compact('jobs','opened_jobs','order_data','featured_jobs','urgent_jobs'));
     }
 
     public function edit_password(){
@@ -157,7 +158,7 @@ class CompanyController extends Controller
         $company_videos_number = CompanyVideo::where('company_id',Auth::guard('company')->user()->id)->count();
         
         $videos= CompanyVideo::where('company_id',Auth::guard('company')->user()->id)->get();
-        return view('company.videos' , compact('videos','allowed_videos','company_videos_number'));
+        return view('company.videos' , compact('videos','allowed_videos','order_data','company_videos_number'));
     }
 
     public function videos_submit(Request $request)
@@ -207,7 +208,7 @@ class CompanyController extends Controller
         $company_photos_number = CompanyPhoto::where('company_id',Auth::guard('company')->user()->id)->count();
         
         $photos= CompanyPhoto::where('company_id',Auth::guard('company')->user()->id)->get();
-        return view('company.photos' , compact('photos','allowed_photos','company_photos_number'));
+        return view('company.photos' , compact('photos','allowed_photos','order_data','company_photos_number'));
     }
 
     public function photos_submit(Request $request)
@@ -413,8 +414,10 @@ class CompanyController extends Controller
         $job_types = JobType::OrderBy('name','asc')->get();
         $job_experiences = JobExperience::OrderBy('id','asc')->get();
         $job_salary_ranges = JobSalaryRange::OrderBy('id','asc')->get();
+        
 
         $order_data = Order::where('company_id',Auth::guard('company')->user()->id)->where('currently_active',1)->first();
+        
         if($order_data != null) //check if any active order exists for this company
         {
             $package = $order_data->package_id;
@@ -431,7 +434,7 @@ class CompanyController extends Controller
         
 
 
-        return view('company.jobs_create',compact('job_categories','job_locations','job_types','job_experiences','job_salary_ranges','allowed_jobs','company_jobs_number','company_featured_jobs_number','company_allowed_featured_jobs'));
+        return view('company.jobs_create',compact('job_categories','job_locations','job_types','job_experiences','job_salary_ranges','allowed_jobs','company_jobs_number','company_featured_jobs_number','company_allowed_featured_jobs','order_data'));
     }
     public function jobs_create_submit(Request $request){
         
