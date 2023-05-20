@@ -6,15 +6,15 @@ This is a job portal web application built with Laravel. It provides a platform 
 
 1. Clone the repository:
 
-   git clone https://github.com/your-username/job-portal.git
+   ```git clone https://github.com/your-username/job-portal.git```
 
 2. Navigate to the project directory:
 
-   cd job-portal
+  ``` cd job-portal```
 
 3. Install the dependencies:
 
-   composer install
+   ```composer install```
 
 4. Configure the environment:
 
@@ -23,15 +23,15 @@ This is a job portal web application built with Laravel. It provides a platform 
 
 5. Generate an application key:
 
-   php artisan key:generate
+  ``` php artisan key:generate```
 
 6. Run the database migrations:
 
-   php artisan migrate
+  ``` php artisan migrate```
 
 7. Start the development server:
 
-   php artisan serve
+  ``` php artisan serve```
 
 8. Access the application:
 
