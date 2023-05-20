@@ -25,13 +25,8 @@
     <div class="container">
         
         <div class="row justify-content-center">
-            <div class="col-lg-3 d-none d-lg-block">
-                <div class="sticky-side-banner">
-                    <img src="{{ asset('uploads/ad-2.gif') }}" alt="" />
-                </div>
-            </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-9">
                 
                 <div class="featured-photo">
                     <img src="{{ asset('uploads/'.$post->photo) }}" alt="" />
