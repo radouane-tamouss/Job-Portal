@@ -193,8 +193,8 @@
             @php
                 $i = 0;
             @endphp
-            @foreach($fetured_jobs as $job)
-            @php
+            @foreach($featured_jobs as $job)
+            {{-- @php
             $this_company_id = $job->rCompany->id;
             $order_data = \App\Models\Order::where('company_id',$this_company_id)->where('currently_active',1)->first();
             if(date('Y-m-d') > $order_data->expire_date){
@@ -204,7 +204,7 @@
             if($i>6){
                 break;
             }
-            @endphp
+            @endphp --}}
             <div class="col-lg-6 col-md-12">
                 <div class="item d-flex justify-content-start">
                     <div class="logo">
