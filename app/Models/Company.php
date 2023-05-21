@@ -30,4 +30,7 @@ class Company extends Authenticable
     public function rCompanySize(){
         return $this->belongsTo(CompanySize::class,'company_size_id');
     }
+    public function rOrder(){
+        return $this->hasMany(Order::class,'company_id');
+    }
 }
