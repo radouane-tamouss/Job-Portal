@@ -30,8 +30,8 @@ class CompanyController extends Controller
 {
    
     public function index(){
-    
         $order_data = Order::where('company_id',Auth::guard('company')->user()->id)->where('currently_active',1)->first();
+    
         $opened_jobs = Job::where('company_id',Auth::guard('company')->user()->id)->count();
         $featured_jobs = Job::where('company_id',Auth::guard('company')->user()->id)->where('is_featured',1)->count();
         $urgent_jobs = Job::where('company_id',Auth::guard('company')->user()->id)->where('is_urgent',1)->count();
@@ -494,10 +494,12 @@ class CompanyController extends Controller
     }
 
     public function jobs(){
+        $order_data = Order::where('company_id',Auth::guard('company')->user()->id)->where('currently_active',1)->first();
+
         $jobs = Job::with('rJobSalaryRange','rJobCategory', 'rJobLocation', 'rJobType', 'rJobExperience')->where('company_id',Auth::guard('company')->user()->id)->get();
         // $orders = Order::with('rPackage')->OrderBy('id','DESC')->where('company_id',Auth::guard('company')->user()->id)->get();
 
-        return view('company.jobs',compact('jobs'));
+        return view('company.jobs',compact('jobs','order_data'));
     }
 
     public function edit_job($id){
@@ -522,7 +524,7 @@ class CompanyController extends Controller
         $company_jobs_number = Job::where('company_id',Auth::guard('company')->user()->id)->count();
         $company_featured_jobs_number = Job::where('company_id',Auth::guard('company')->user()->id)->where('is_featured',1)->count();
 
-        return view('company.jobs_edit', compact('job','job_categories','job_locations','job_types','job_experiences','job_salary_ranges','company_allowed_featured_jobs','company_jobs_number','company_featured_jobs_number'));
+        return view('company.jobs_edit', compact('job','job_categories','job_locations','job_types','job_experiences','job_salary_ranges','company_allowed_featured_jobs','company_jobs_number','order_data','company_featured_jobs_number'));
     }
     public function update_job(Request $request, $id)
     {

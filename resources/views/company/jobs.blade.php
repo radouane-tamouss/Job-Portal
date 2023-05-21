@@ -33,6 +33,16 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
         </div>
         <div class="col-lg-9 col-md-12">
             <div class="table-responsive">
+                @if(date('Y-m-d') > $order_data->expire_date)
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">Package Expired</h4>
+                    <p class="mb-0">Sorry, your current package has expired on {{ \Carbon\Carbon::parse($order_data->expire_date)->format('F j, Y') }}. As a result, these jobs are not currently visible. To continue accessing all job listings and features, please renew your package using the link below.</p>
+                    <hr>
+                    <a class="btn btn-primary btn-sm" href="{{route('pricing')}}" role="button">Renew Package</a>
+                </div>
+                                
+                                
+                @endif
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
