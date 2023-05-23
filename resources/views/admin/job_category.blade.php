@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 
-@section('heading','Job Categories')
+@section('heading','Catégories d\'emplois')
 
 @section('button')
     <div class="">
@@ -20,10 +20,10 @@
                             <table class="table table-bordered" id="example1">
                                 <thead>
                                 <tr>
-                                    <th>SL</th>
-                                    <th>Category Name</th>
-                                    <th>Category Icon</th>
-                                    <th>Icon Preview</th>
+                                    <th>N°</th>
+                                    <th>Nom de la catégorie</th>
+                                    <th>Icône de la catégorie</th>
+                                    <th>Aperçu de l'icône</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -37,8 +37,8 @@
                                             <i class="{{ $item->icon }}"></i>
                                         </td>
                                         <td class="pt_10 pb_10">
-                                            <a href="{{route('admin_job_category_edit',$item->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                                            <a href="{{route('admin_job_category_delete',$item->id)}}" class="btn btn-danger btn-sm" onClick="return confirm('Are you sure?');">Delete</a>
+                                            <a href="{{route('admin_job_category_edit',$item->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                            <a href="{{route('admin_job_category_delete',$item->id)}}" class="btn btn-danger btn-sm" onClick="return confirm('T'es sûr ?');">Supprimer</a>
                                         </td>
                                     
                                     </tr>

@@ -1,11 +1,11 @@
 @extends('front.layout.app')
 
 @section('seo_title') 
-    Bookmarked Jobs
+Emploi enregistrées
 @endsection
 
 @section('seo_meta_description') 
-    Candidate bookmarked jobs
+Emplois enregistrés par le candidat
 @endsection
 
 @section('main_content')
@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Bookmarked Jobs</h2>
+                        <h2>Emploi enregistrées</h2>
                     </div>
                 </div>
             </div>
@@ -37,11 +37,11 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <th>SL</th>
-                                        <th>Job Title</th>
-                                        <th>Deadline</th>
-                                        <th>Company</th>
-                                        <th class="w-100">Detail</th>
+                                        <th>Num.</th>
+                                        <th>Intitulé du poste</th>
+                                        <th>Date limite</th>
+                                        <th>Entreprise</th>
+                                        <th class="w-100">Détails</th>
                                     </tr>
                                     @foreach($bookmarked_jobs as $item)
                                     <tr>
@@ -69,8 +69,8 @@
                             </table>
                             @else
                             <div class="text-center">
-                                <h3>No bookmarked jobs available</h3>
-                                <p>You haven't bookmarked any jobs yet. Click the "Bookmark Job" button to save jobs for later.</p>
+                                <h3>Aucun emploi enregistré disponible</h3>
+                                <p>Vous n'avez pas encore enregistré d'emplois. Cliquez sur le bouton "Enregistrer l'emploi" pour sauvegarder des emplois pour plus tard.</p>
                             </div>
                             @endif
                         </div>

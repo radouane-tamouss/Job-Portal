@@ -76,11 +76,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="heading">
-                    <h2>Job Categories</h2>
-                    <p>
-                        Get the list of all the popular job categories
-                        here
-                    </p>
+                    <h2>Catégories d'emplois</h2>
+                    <p>Obtenez la liste de toutes les catégories d'emplois populaires ici</p>
                 </div>
             </div>
         </div>
@@ -93,7 +90,7 @@
                         <i class="{{$item->icon}}"></i>
                     </div>
                     <h3>{{$item->name}}</h3>
-                    <p>( {{$item->r_job_count}} Open Positions)</p>
+                    <p>({{$item->r_job_count}} postes ouverts)</p>
                     <a href="{{url('job-listing?category='.$item->id)}}"></a>
                 </div>
             </div>
@@ -105,7 +102,7 @@
             <div class="col-md-12">
                 <div class="all">
                     <a href="{{route('job_categories')}}" class="btn btn-primary"
-                        >See All Categories</a
+                        >Voir toutes les catégories</a
                     >
                 </div>
             </div>
@@ -121,10 +118,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="heading">
-                    <h2>Why Choose Us</h2>
+                    <h2>Pourquoi nous choisir</h2>
                     <p>
-                        Our Methods to help you build your career in
-                        future
+                        Nos méthodes pour vous aider à construire votre carrière à l'avenir
                     </p>
                 </div>
             </div>
@@ -136,11 +132,9 @@
                         <i class="fas fa-briefcase"></i>
                     </div>
                     <div class="text">
-                        <h2>Quick Apply</h2>
+                        <h2>Candidature rapide</h2>
                         <p>
-                            You can just create your account in our
-                            website and apply for desired job very
-                            quickly.
+                            Vous pouvez simplement créer un compte sur notre site web et postuler rapidement à l'emploi de votre choix.
                         </p>
                     </div>
                 </div>
@@ -151,11 +145,9 @@
                         <i class="fas fa-search"></i>
                     </div>
                     <div class="text">
-                        <h2>Search Tool</h2>
+                        <h2>Outil de recherche</h2>
                         <p>
-                            We provide a perfect and advanced search
-                            tool for job seekers, employers or
-                            companies.
+                            Nous fournissons un outil de recherche parfait et avancé pour les chercheurs d'emploi, les employeurs ou les entreprises.
                         </p>
                     </div>
                 </div>
@@ -166,11 +158,9 @@
                         <i class="fas fa-share-alt"></i>
                     </div>
                     <div class="text">
-                        <h2>Best Companies</h2>
+                        <h2>Meilleures entreprises</h2>
                         <p>
-                            The best and reputed worldwide companies
-                            registered here and so you will get the
-                            quality jobs.
+                            Les meilleures entreprises réputées à travers le monde sont enregistrées ici, vous permettant ainsi d'accéder à des emplois de qualité.
                         </p>
                     </div>
                 </div>
@@ -184,8 +174,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="heading">
-                    <h2>Featured Jobs</h2>
-                    <p>Find the awesome jobs that matches your skill</p>
+                    <h2>Emplois en avant</h2>
+                    <p>Trouvez des emplois exceptionnels qui correspondent à vos compétences</p>
                 </div>
             </div>
         </div>
@@ -242,7 +232,7 @@
                         >
                         @if ($job->is_featured)
                         <div class="featured">
-                            Featured
+                            En avant
                         </div>
                         @endif
                         <div class="type">
@@ -287,8 +277,7 @@
             <div class="col-md-12">
                 <div class="all">
                     <a href="{{route('job_listing')}}" class="btn btn-primary"
-                        >See All Jobs</a
-                    >
+                    >Voir tous les emplois</a>
                 </div>
             </div>
         </div>
@@ -303,7 +292,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="main-header">Our Happy Clients</h2>
+                <h2 class="main-header">Nos clients satisfaits</h2>
             </div>
         </div>
         <div class="row">
@@ -355,10 +344,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="heading">
-                    <h2>Latest News</h2>
-                    <p>
-                        Check our latest news from the following section
-                    </p>
+                    <h2>Dernières actualités</h2>
+<p>Consultez nos dernières actualités dans la section suivante</p>
                 </div>
             </div>
         </div>
@@ -380,7 +367,7 @@
                         </div>
                         <div class="button">
                             <a href="{{ route('post',$item->slug) }}" class="btn btn-primary"
-                                >Read More</a
+                                >En savoir plus</a
                             >
                         </div>
                     </div>

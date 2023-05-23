@@ -17,7 +17,7 @@ style="background-image: url('uploads/banner.jpg')"
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2>Applied Jobs</h2>
+            <h2>Offres d'emploi postulées</h2>
         </div>
     </div>
 </div>
@@ -37,12 +37,12 @@ style="background-image: url('uploads/banner.jpg')"
                     @if(count($applied_jobs) > 0)
                     <tbody>
                         <tr>
-                            <th>SL</th>
-                            <th>Job Title</th>
-                            <th>Company</th>
-                            <th>Status</th>
-                            <th>Cover Letter</th>
-                            <th class="w-100">Detail</th>
+                            <th>N°</th>
+                            <th>Intitulé du poste</th>
+                            <th>Entreprise</th>
+                            <th>Statut</th>
+                            <th>Lettre de motivation</th>
+                            <th class="w-100">Détails</th>
                         </tr>
                         @foreach($applied_jobs as $item)
                         <tr>
@@ -52,15 +52,15 @@ style="background-image: url('uploads/banner.jpg')"
                             <td>
                                 @if($item->status == 'applied')
                                 <div class="badge bg-primary">
-                                    Applied
+                                Postulé
                                 </div>
                                 @elseif($item->status == 'approved')
                                 <div class="badge bg-success">
-                                    Approved
+                                Approuvé
                                 </div>
                                 @else
                                 <div class="badge bg-danger">
-                                    Rejected
+                                Rejeté
                                 </div>
                                 @endif
                                 
@@ -72,7 +72,7 @@ style="background-image: url('uploads/banner.jpg')"
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Cover Letter</h1>
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Lettre de motivation</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
@@ -94,8 +94,8 @@ style="background-image: url('uploads/banner.jpg')"
                     </tbody>
                     @else
                     <div class="text-center">
-                        <h3>No Applied jobs available</h3>
-                        <p>You haven't Applied any jobs yet. Click the "Apply Job" button to apply for a new job!.</p>
+                        <h3>Aucune offre d'emploi postulée disponible</h3>
+                        <p>Vous n'avez pas encore postulé à des offres d'emploi. Cliquez sur le bouton "Postuler à un emploi" pour postuler à une nouvelle offre d'emploi !.</p>
                     </div>
                     @endif
                 </table>

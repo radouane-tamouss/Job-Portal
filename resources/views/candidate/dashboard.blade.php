@@ -1,11 +1,11 @@
 @extends('front.layout.app')
 
 @section('seo_title') 
-    Dashboard
+    Tableau de bord
 @endsection
 
 @section('seo_meta_description') 
-    Candidate dashbaord
+    Tableau de bord de candidat
 @endsection
 
 @section('main_content')
@@ -18,7 +18,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2>Dashboard</h2>
+            <h2>Tableau de bord</h2>
         </div>
     </div>
 </div>
@@ -33,41 +33,41 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
             </div>
         </div>
         <div class="col-lg-9 col-md-12">
-            <h3>Hello, {{Auth::guard('candidate')->user()->name}}</h3>
-            <p>See all the statistics at a glance:</p>
+            <h3>Bonjour, {{Auth::guard('candidate')->user()->name}}</h3>
+            <p>Consultez toutes les statistiques rapidement :</p>
 
             <div class="row box-items">
                 <div class="col-md-4">
                     <div class="box1">
                         <h4>{{$nb_applied_jobs}}</h4>
-                        <p>Applied Jobs</p>
+                        <p>Emplois postulés</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="box2">
                         <h4>{{$nb_bookmarked_jobs}}</h4>
-                        <p>Bookmarked Jobs</p>
+                        <p>Emplois sauvegardés</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="box3">
                         <h4>{{$nb_approved_jobs}}</h4>
-                        <p>Approved Jobs</p>
+                        <p>Emplois approuvés</p>
                     </div>
                 </div>
             </div>
 
-            <h3 class="mt-5">Recently Applied</h3>
+            <h3 class="mt-5">Récemment postulé</h3>
 
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
                             <th>SL</th>
-                            <th>Job Title</th>
-                            <th>Company</th>
-                            <th>Status</th>
-                            <th class="w-100">Detail</th>
+                            <th>Titre du poste</th>
+                            <th>Entreprise</th>
+                            <th>Statut</th>
+                            <th class="w-100">Détails</th>
                         </tr>
                         @foreach($recently_applied_jobs as $item)
                         <tr>
@@ -77,15 +77,15 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                             <td>
                                 @if($item->status == 'applied')
                                 <div class="badge bg-primary">
-                                    Applied
+                                Postulé
                                 </div>
                                 @elseif($item->status == 'approved')
                                 <div class="badge bg-success">
-                                    Approved
+                                Approuvé
                                 </div>
                                 @else
                                 <div class="badge bg-danger">
-                                    Rejected
+                                Rejeté
                                 </div>
                                 @endif
                                 

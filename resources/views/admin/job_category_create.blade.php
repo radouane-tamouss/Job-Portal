@@ -1,10 +1,10 @@
 @extends('admin.layout.app')
 
-@section('heading','Create Job Categories')
+@section('heading','Créer une catégorie d\'emploi.')
 
 @section('button')
     <div class="">
-        <a href="{{route('admin_job_category')}}" class="btn btn-primary"><i class="fas fa-plus"></i> View All</a>
+        <a href="{{route('admin_job_category')}}" class="btn btn-primary"><i class="fas fa-plus"></i>Afficher tout</a>
     </div>
 @endsection
 
@@ -18,16 +18,16 @@
                     <form action="{{route('admin_job_category_store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
-                            <label>Category Name</label>
+                            <label>Nom de la catégorie</label>
                             <input type="text" class="form-control" name="name" >
                         </div>
                         <div class="form-group mb-3">
-                            <label>Category Icon</label>
+                            <label>Icône de la catégorie</label>
                             <input type="text" class="form-control" name="icon">
                         </div>
                         
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
                         </div>
                     </form>
                 </div>

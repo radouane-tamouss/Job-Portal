@@ -33,33 +33,33 @@
                         <ul class="right">
                             @if(Auth::guard('company')->check())
                               <li class="menu">
-                                <a href="{{route('company_dashboard')}}"><i class="fas fa-user-circle"></i> Profile</a>
+                                <a href="{{route('company_dashboard')}}"><i class="fas fa-user-circle"></i> Profil</a>
                               </li>
                               <li class="menu active">
-                                <a href="{{route('company_dashboard')}}"><i class="fas fa-chart-line"></i> Dashboard</a>
+                                <a href="{{route('company_dashboard')}}"><i class="fas fa-chart-line"></i> Tableau de bord</a>
                               </li>
                               <li class="menu">
-                                <a href="{{route('company_logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                <a href="{{route('company_logout')}}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                               </li>
                             @elseif(Auth::guard('candidate')->check())
                               <li class="menu">
-                                <a href="{{route('candidate_dashboard')}}"><i class="fas fa-user-circle"></i> Profile</a>
+                                <a href="{{route('candidate_dashboard')}}"><i class="fas fa-user-circle"></i> Profil</a>
                               </li>
                               <li class="menu active">
-                                <a href="{{route('candidate_dashboard')}}"><i class="fas fa-chart-line"></i> Dashboard</a>
+                                <a href="{{route('candidate_dashboard')}}"><i class="fas fa-chart-line"></i> Tableau de bord</a>
                               </li>
                               <li class="menu">
-                                <a href="{{route('candidate_logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                <a href="{{route('candidate_logout')}}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                               </li>
                             @else 
                             <li class="menu">
                                 <a href="{{route('login')}}"
-                                    ><i class="fas fa-sign-in-alt"></i> Login</a
+                                    ><i class="fas fa-sign-in-alt"></i> Connexion</a
                                 >
                             </li>
                             <li class="menu">
                                 <a href="{{route('signup')}}"
-                                    ><i class="fas fa-user"></i> Sign Up</a
+                                    ><i class="fas fa-user"></i>S'inscrire</a
                                 >
                             </li>
                             @endif
@@ -79,23 +79,23 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="item">
-                            <h2 class="heading">For Candidates</h2>
+                            <h2 class="heading">Pour les candidats</h2>
                             <ul class="useful-links">
-                                <li><a href="">Browser Jobs</a></li>
-                                <li><a href="">Browse Candidates</a></li>
-                                <li><a href="">Candidate Dashboard</a></li>
-                                <li><a href="">Saved Jobs</a></li>
+                                <li><a href="">Parcourir les offres d'emploi</a></li>
+                                <li><a href="">Parcourir les candidats</a></li>
+                                <li><a href="">Tableau de bord du candidat</a></li>
+                                <li><a href="">Emplois enregistrés</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <div class="item">
-                            <h2 class="heading">For Companies</h2>
+                            <h2 class="heading">Pour les entreprises</h2>
                             <ul class="useful-links">
-                                <li><a href="">Post Job</a></li>
-                                <li><a href="">Browse Jobs</a></li>
-                                <li><a href="">Company Dashboard</a></li>
-                                <li><a href="">Applications</a></li>
+                                <li><a href="">Publier une offre d'emploi</a></li>
+                                <li><a href="">Parcourir les offres d'emploi</a></li>
+                                <li><a href="">Tableau de bord de l'entreprise</a></li>
+                                <li><a href="">Candidatures</a></li>
                             </ul>
                         </div>
                     </div>
@@ -156,7 +156,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="item">
                             <h2 class="heading">Newsletter</h2>
-                            <p>To get the latest news from our website, please subscribe us here:</p>
+                            <p>Pour recevoir les dernières nouvelles de notre site, veuillez vous abonner ici :</p>
                             {{-- <form action="{{ route('subscriber_send_email') }}" method="post" class="form_subscribe_ajax"> --}}
                             <form action="{{route('subscriber_send_email')}}"  method="post">
                                 @csrf
@@ -165,7 +165,7 @@
                                     <span class="text-danger error-text email_error"></span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-primary" value="Subscribe Now">
+                                    <input type="submit" class="btn btn-primary" value="S'abonner maintenant">
                                 </div>
                             </form>
                         </div>
@@ -179,15 +179,15 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="copyright">
-                            Copyright 2022, Az-Networking. All Rights Reserved.
+                            Droits d'auteur 2022, Az-Networking. Tous droits réservés.
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="right">
                             <ul>
-                                <li><a href="{{route('terms')}}">Terms of Use</a></li>
+                                <li><a href="{{route('terms')}}">Conditions d'utilisation</a></li>
                                 <li>
-                                    <a href="privacy.html">Privacy Policy</a>
+                                    <a href="privacy.html">Politique de confidentialité</a>
                                 </li>
                             </ul>
                         </div>
