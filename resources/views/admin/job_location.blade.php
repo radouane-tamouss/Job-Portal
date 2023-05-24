@@ -1,10 +1,10 @@
 @extends('admin.layout.app')
 
-@section('heading','Job Locations')
+@section('heading','Emplacements des postes')
 
 @section('button')
     <div class="">
-        <a href="{{route('admin_job_location_create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
+        <a href="{{route('admin_job_location_create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter Nouveau</a>
     </div>
 @endsection
 
@@ -21,7 +21,7 @@
                                 <thead>
                                 <tr>
                                     <th>SL</th>
-                                    <th>location Name</th> 
+                                    <th>Nom de l'emplacement</th> 
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -31,8 +31,8 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->name}}</td>
                                         <td class="pt_10 pb_10">
-                                            <a href="{{route('admin_job_location_edit',$item->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                                            <a href="{{route('admin_job_location_delete',$item->id)}}" class="btn btn-danger btn-sm" onClick="return confirm('Are you sure?');">Delete</a>
+                                            <a href="{{route('admin_job_location_edit',$item->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                            <a href="{{route('admin_job_location_delete',$item->id)}}" class="btn btn-danger btn-sm" onClick="return confirm('Êtes-vous sûr ?');">Supprimer</a>
                                         </td>
                                     
                                     </tr>
@@ -46,4 +46,4 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection

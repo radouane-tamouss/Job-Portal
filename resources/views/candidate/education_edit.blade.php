@@ -1,11 +1,11 @@
 @extends('front.layout.app')
 
 @section('seo_title') 
-    Edit Candidate Education
+    Modifier Formation
 @endsection
 
 @section('seo_meta_description') 
-    Edit Candidate Education
+    
 @endsection
 
 @section('main_content')
@@ -17,7 +17,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2>Add Education</h2>
+            <h2>Modifier Formation</h2>
         </div>
     </div>
 </div>
@@ -35,13 +35,13 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
             <a
                 href="{{route('candidate_education')}}"
                 class="btn btn-primary btn-sm mb-2"
-                ><i class="fas fa-list"></i> See All</a
+                ><i class="fas fa-list"></i> Voir toutes</a
             >
             <form action="{{route('candidate_education_update',$education->id)}}" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-md-12 mb-3">
-                        <label for="">Education Level *</label>
+                        <label for="">Niveau d'éducation *</label>
                         <div class="form-group">
                             <input
                                 type="text"
@@ -52,7 +52,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                         </div>
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for="">Institute *</label>
+                        <label for="">Institut *</label>
                         <div class="form-group">
                             <input
                                 type="text"
@@ -63,7 +63,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                         </div>
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for="">Degree *</label>
+                        <label for="">Diplôme *</label>
                         <div class="form-group">
                             <input
                                 type="text"
@@ -75,7 +75,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                         </div>
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for="">Passing Year *</label>
+                        <label for="">Année d'obtention *</label>
                         <div class="form-group">
                             <input
                                 type="number"
@@ -91,7 +91,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                             <input
                                 type="submit"
                                 class="btn btn-primary"
-                                value="Update"
+                                value="Mettre à jour"
                             />
                         </div>
                     </div>

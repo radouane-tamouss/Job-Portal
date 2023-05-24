@@ -1,11 +1,11 @@
 @extends('front.layout.app')
 
 @section('seo_title') 
-    Candidate Resume
+    Ajouter Document
 @endsection
 
 @section('seo_meta_description') 
-    Candidate Resume
+    Ajouter Document
 @endsection
 
 @section('main_content')
@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Add Resume</h2>
+                        <h2>Ajouter Document</h2>
                     </div>
                 </div>
             </div>
@@ -35,13 +35,13 @@
                         <a
                             href="{{route('candidate_resume')}}"
                             class="btn btn-primary btn-sm mb-2"
-                            ><i class="fas fa-plus"></i> See All</a
+                            ><i class="fas fa-plus"></i> Voir toutes</a
                         >
                         <form action="{{route('candidate_resume_store')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label for="">resume Name *</label>
+                                    <label for="">Nom de document *</label>
                                     <div class="form-group">
                                         <input
                                             type="text"
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="">file *</label>
+                                    <label for="">fichier *</label>
                                     <div class="form-group">
                                         <input
                                             type="file"
@@ -65,7 +65,7 @@
                                         <input
                                             type="submit"
                                             class="btn btn-primary"
-                                            value="Submit"
+                                            value="Ajouter"
                                         />
                                     </div>
                                 </div>

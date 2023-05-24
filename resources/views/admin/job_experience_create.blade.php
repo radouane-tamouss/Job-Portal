@@ -1,6 +1,6 @@
 @extends('admin.layout.app')
 
-@section('heading','Create Job Experience')
+@section('heading','Créer une expérience professionnelle')
 
 @section('button')
     <div class="">
@@ -18,12 +18,12 @@
                     <form action="{{route('admin_job_experience_store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
-                            <label>Experience Name</label>
+                            <label>Nom de l'expérience</label>
                             <input type="text" class="form-control" name="name" >
                         </div>
                         
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
                         </div>
                     </form>
                 </div>

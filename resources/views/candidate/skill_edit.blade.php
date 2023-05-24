@@ -1,11 +1,11 @@
 @extends('front.layout.app')
 
 @section('seo_title') 
-    Edit Skill
+Modifier Compétence
 @endsection
 
 @section('seo_meta_description') 
-    edit skill
+    modifier skill
 @endsection
 
 @section('main_content')
@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Edit Skill</h2>
+                        <h2>Modifier Compétence</h2>
                     </div>
                 </div>
             </div>
@@ -35,13 +35,13 @@
                         <a
                             href="candidate-skill.html"
                             class="btn btn-primary btn-sm mb-2"
-                            ><i class="fas fa-list"></i> See All</a
+                            ><i class="fas fa-list"></i>mes Compétences</a
                         >
                         <form action="{{route('candidate_skill_update',$skill->id)}}" method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label for="">Skill Name *</label>
+                                    <label for="">Compétence *</label>
                                     <div class="form-group">
                                         <input
                                             type="text"
@@ -52,7 +52,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="">Percentage *</label>
+                                    <label for="">Pourcentage *</label>
                                     <div class="form-group">
                                         <input
                                             type="text"
@@ -68,7 +68,7 @@
                                         <input
                                             type="submit"
                                             class="btn btn-primary"
-                                            value="Submit"
+                                            value="Mettre à jour"
                                         />
                                     </div>
                                 </div>

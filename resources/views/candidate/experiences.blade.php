@@ -1,11 +1,11 @@
 @extends('front.layout.app')
 
 @section('seo_title') 
-    Candidate Experiences
+Expériences
 @endsection
 
 @section('seo_meta_description') 
-    Candidate Experiences
+Expériences 
 @endsection
 
 @section('main_content')
@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Candidate Experiences</h2>
+                        <h2>Mes Expériences</h2>
                     </div>
                 </div>
             </div>
@@ -33,20 +33,18 @@
                     </div>
                     <div class="col-lg-9 col-md-12">
                         @if(count($experiences) > 0)
-                        <a
-                            href="{{route('candidate_experience_create')}}"
-                            class="btn btn-primary btn-sm mb-2"
-                            ><i class="fas fa-plus"></i> Add Item</a
-                        >
+                        <a href="{{route('candidate_experience_create')}}" class="btn btn-primary btn-sm mb-2">
+                            <i class="fas fa-plus"></i> Ajouter une expérience
+                        </a>
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
                                         <th>SL</th>
-                                        <th>Company</th>
-                                        <th>Designation</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
+                                        <th>Entreprise</th>
+                                        <th>Fonction</th>
+                                        <th>Date de début</th>
+                                        <th>Date de fin</th>
                                         <th class="w-100">Action</th>
                                     </tr>
                                     @foreach($experiences as $item)
@@ -77,9 +75,9 @@
                         </div>
                         @else
                         <div class="text-center">
-                            <h3>No experience items available</h3>
-                            <p>You haven't added any experience items yet. Click the "Add New Experience" button above to get started.</p>
-                            <a href="{{route('candidate_experience_create')}}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add New Experience</a>
+                            <h3>Aucune expérience disponible</h3>
+                            <p>Vous n'avez ajouté aucune expérience pour le moment. Cliquez sur le bouton "Ajouter une nouvelle expérience" ci-dessus pour commencer.</p>
+                            <a href="{{route('candidate_experience_create')}}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Ajouter une nouvelle expérience</a>
                         </div>
                         @endif
                     </div>

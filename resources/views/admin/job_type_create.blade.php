@@ -1,10 +1,10 @@
 @extends('admin.layout.app')
 
-@section('heading','Create Job Type')
+@section('heading','Créer un type d\'emploi')
 
 @section('button')
     <div class="">
-        <a href="{{route('admin_job_type')}}" class="btn btn-primary"><i class="fas fa-plus"></i> View All</a>
+        <a href="{{route('admin_job_type')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Voir tous</a>
     </div>
 @endsection
 
@@ -18,13 +18,13 @@
                     <form action="{{route('admin_job_type_store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
-                            <label>type Name</label>
+                            <label>Nom du type</label>
                             <input type="text" class="form-control" name="name" >
                         </div>
                         
                         
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Soumettre</button>
                         </div>
                     </form>
                 </div>
@@ -32,4 +32,4 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection

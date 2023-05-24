@@ -1,11 +1,11 @@
 @extends('front.layout.app')
 
 @section('seo_title') 
-    Edit Password
+Modifier le mot de passe
 @endsection
 
 @section('seo_meta_description') 
-    candidate edit Password
+Modifier le mot de passe
 @endsection
 
 @section('main_content')
@@ -17,7 +17,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2>Edit Password</h2>
+            <h2>Modifier le mot de passe</h2>
         </div>
     </div>
 </div>
@@ -41,11 +41,11 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                    
                     <div class="col-md-12 mb-3">
                         <label for=""
-                            >Old Password *</label
+                            >Ancien mot de passe *</label
                         >
                         <div class="form-group">
                             <input
-                                type="text"
+                                type="password"
                                 name="old_password"
                                 class="form-control"
                               
@@ -55,7 +55,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label for="">New Password *</label>
+                        <label for="new_password">Nouveau mot de passe *</label>
                         <div class="form-group">
                             <input
                                 type="password"
@@ -67,7 +67,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="">Confirm Password *</label>
+                        <label for="">Confirmer mot de passe *</label>
                         <div class="form-group">
                             <input
                                 type="password"
@@ -88,7 +88,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                         <input
                             type="submit"
                             class="btn btn-primary"
-                            value="Update"
+                            value="Mettre à jour"
                         />
                     </div>
                 </div>

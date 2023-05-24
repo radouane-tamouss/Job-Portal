@@ -1,10 +1,10 @@
 @extends('admin.layout.app')
 
-@section('heading','Edit Job Salary Range')
+@section('heading','Modifier la plage de salaire pour les emplois')
 
 @section('button')
     <div class="">
-        <a href="{{route('admin_job_salary_range')}}" class="btn btn-primary"><i class="fas fa-plus"></i> View All</a>
+        <a href="{{route('admin_job_salary_range')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Voir Tout</a>
     </div>
 @endsection
 
@@ -18,13 +18,13 @@
                     <form action="{{route('admin_job_salary_range_update', $job_salary_range_single->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
-                            <label>Salary RangeName</label>
+                            <label>Nom de la plage de salaire</label>
                             <input type="text" class="form-control" value="{{$job_salary_range_single->name}}" name="name" >
                         </div>
                         
                         
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Soumettre</button>
                         </div>
                     </form>
                 </div>
@@ -32,4 +32,4 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection

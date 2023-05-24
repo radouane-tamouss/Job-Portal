@@ -1,11 +1,11 @@
 @extends('front.layout.app')
 
 @section('seo_title') 
-    Edit Resume
+    Modifier Document
 @endsection
 
 @section('seo_meta_description') 
-    edit Resume
+    
 @endsection
 
 @section('main_content')
@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Edit Resume</h2>
+                        <h2>Modifier Document</h2>
                     </div>
                 </div>
             </div>
@@ -35,13 +35,13 @@
                         <a
                             href="{{route('candidate_resume')}}"
                             class="btn btn-primary btn-sm mb-2"
-                            ><i class="fas fa-list"></i> See All</a
+                            ><i class="fas fa-list"></i> Voir toutes</a
                         >
                         <form action="{{route('candidate_resume_update',$resume->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label for="">resume Name *</label>
+                                    <label for="">Nom de document *</label>
                                     <div class="form-group">
                                         <input
                                             type="text"
@@ -52,12 +52,12 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="">Existing File *</label>
+                                    <label for="">Fichier existant *</label>
                                     <div class="form-group">
                                     <a href="{{asset('uploads/resumes/'.$resume->file)}}">{{$resume->file}}</a>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="">file *</label>
+                                    <label for="">Fichier *</label>
                                     <div class="form-group">
                                         <input
                                             type="file"
@@ -71,7 +71,7 @@
                                         <input
                                             type="submit"
                                             class="btn btn-primary"
-                                            value="Submit"
+                                            value="Mettre à jour"
                                         />
                                     </div>
                                 </div>

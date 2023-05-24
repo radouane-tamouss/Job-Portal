@@ -1,10 +1,10 @@
 @extends('admin.layout.app')
 
-@section('heading','Job Salary Ranges')
+@section('heading','Plages de salaire des emplois')
 
 @section('button')
     <div class="">
-        <a href="{{route('admin_job_salary_range_create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
+        <a href="{{route('admin_job_salary_range_create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter</a>
     </div>
 @endsection
 
@@ -21,7 +21,7 @@
                                 <thead>
                                 <tr>
                                     <th>SL</th>
-                                    <th>salary_range Name</th> 
+                                    <th>Nom de la plage de salaire</th> 
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -31,8 +31,8 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->name}}</td>
                                         <td class="pt_10 pb_10">
-                                            <a href="{{route('admin_job_salary_range_edit',$item->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                                            <a href="{{route('admin_job_salary_range_delete',$item->id)}}" class="btn btn-danger btn-sm" onClick="return confirm('Are you sure?');">Delete</a>
+                                            <a href="{{route('admin_job_salary_range_edit',$item->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                            <a href="{{route('admin_job_salary_range_delete',$item->id)}}" class="btn btn-danger btn-sm" onClick="return confirm('Êtes-vous sûr ?');">Supprimer</a>
                                         </td>
                                     
                                     </tr>
@@ -46,4 +46,4 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection

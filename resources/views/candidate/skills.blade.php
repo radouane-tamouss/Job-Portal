@@ -1,11 +1,11 @@
 @extends('front.layout.app')
 
 @section('seo_title') 
-    Candidate Skills
+    Compétences
 @endsection
 
 @section('seo_meta_description') 
-    Candidate Skills
+compétences de candidat
 @endsection
 
 @section('main_content')
@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Skill List</h2>
+                        <h2>Mes compétences</h2>
                     </div>
                 </div>
             </div>
@@ -33,18 +33,14 @@
                     </div>
                     <div class="col-lg-9 col-md-12">
                         @if(count($skills) > 0)
-                        <a
-                            href="candidate-skill-add.html"
-                            class="btn btn-primary btn-sm mb-2"
-                            ><i class="fas fa-plus"></i> Add Item</a
-                        >
+                        <a href="{{route('candidate_skill_create')}}" class="btn btn-primary btn-sm mb-2"><i class="fas fa-plus"></i> Ajouter une compétence</a>
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
                                         <th>SL</th>
-                                        <th>Skill Name</th>
-                                        <th>Percentage</th>
+                                        <th>Nom de la compétence</th>
+                                        <th>Pourcentage</th>
                                         <th>Action</th>
                                     </tr>
                                     @foreach($skills as $skill)
@@ -73,9 +69,9 @@
                         </div>
                         @else
                         <div class="text-center">
-                            <h3>No skills available</h3>
-                            <p>You haven't added any skills yet. Click the "Add Skill" button above to get started.</p>
-                            <a href="{{route('candidate_skill_create')}}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add Skill</a>
+                            <h3>Aucune compétence disponible</h3>
+                            <p>Vous n'avez ajouté aucune compétence. Cliquez sur le bouton "Ajouter une compétence" ci-dessus pour commencer.</p>
+                            <a href="{{route('candidate_skill_create')}}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Ajouter une compétence</a>
                         </div>
                         @endif
                     </div>

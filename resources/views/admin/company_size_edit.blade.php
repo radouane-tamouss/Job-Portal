@@ -18,13 +18,13 @@
                     <form action="{{route('admin_company_size_update', $company_size_single->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
-                            <label>size Name</label>
+                            <label>Taille</label>
                             <input type="text" class="form-control" value="{{$company_size_single->name}}" name="name" >
                         </div>
                         
                         
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Mettre a jour</button>
                         </div>
                     </form>
                 </div>

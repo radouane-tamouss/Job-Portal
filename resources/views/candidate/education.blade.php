@@ -1,11 +1,11 @@
 @extends('front.layout.app')
 
-@section('seo_title') 
-    Candidate Education
+@section('seo_title')
+Formation
 @endsection
 
-@section('seo_meta_description') 
-    Candidate Education
+@section('seo_meta_description')
+Formation du candidat
 @endsection
 
 @section('main_content')
@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Edit Profile</h2>
+                        <h2>Mes Formations</h2>
                     </div>
                 </div>
             </div>
@@ -36,17 +36,17 @@
                         <a
                             href="{{route('candidate_education_create')}}"
                             class="btn btn-primary btn-sm mb-2"
-                            ><i class="fas fa-plus"></i> Add Item</a
+                            ><i class="fas fa-plus"></i> Ajouter Formation</a
                         >
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
                                         <th>SL</th>
-                                        <th>Education Level</th>
-                                        <th>Institute</th>
-                                        <th>Degree</th>
-                                        <th>Passing Year</th>
+                                        <th>Niveau d'éducation</th>
+                                        <th>Institut</th>
+                                        <th>Diplôme</th>
+                                        <th>Année d'obtention</th>
                                         <th class="w-100">Action</th>
                                     </tr>
                                     @foreach($educations as $item)
@@ -77,9 +77,9 @@
                         </div>
                         @else
                         <div class="text-center">
-                            <h3>No education items available</h3>
-                            <p>You haven't added any education items yet. Click the "Add Item" button above to get started.</p>
-                            <a href="{{route('candidate_education_create')}}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add Item</a>
+                            <h3>Aucune formation disponible</h3>
+                            <p>Vous n'avez ajouté aucune formation pour le moment. Cliquez sur le bouton "Ajouter une formation" ci-dessus pour commencer.</p>
+                            <a href="{{route('candidate_education_create')}}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Ajouter une formation</a>
                         </div>
                         @endif
                     </div>

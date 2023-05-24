@@ -1,11 +1,11 @@
 @extends('front.layout.app')
 
 @section('seo_title') 
-    Apply for {{$job->title}}
+    Postuler pour {{$job->title}}
 @endsection
 
 @section('seo_meta_description') 
-    Apply for {{$job->title}}
+Postuler pour {{$job->title}}
 @endsection
 
 @section('main_content')
@@ -17,10 +17,10 @@ style="background-image: url('uploads/banner.jpg')"
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2>Apply for: {{$job->title}} </h2>
+            <h2>Postuler pour : {{$job->title}} </h2>
             <div class="button">
                 <a href="{{route('job',$job->id)}}" class="btn btn-primary btn-sm"
-                    >See Job Detail</a
+                    >Voir les détails du poste</a
                 >
             </div>
         </div>
@@ -37,7 +37,7 @@ style="background-image: url('uploads/banner.jpg')"
                     @csrf
                     <div class="mb-3">
                         <label for="cover letter" class="mb-1"
-                            >Cover Letter *</label
+                            >Lettre de motiviation *</label
                         >
                         <textarea
                             class="form-control"
@@ -51,7 +51,7 @@ style="background-image: url('uploads/banner.jpg')"
                             type="submit"
                             class="btn btn-primary btn-sm"
                         >
-                            Confirm Apply
+                        Confirmer la candidature
                         </button>
                     </div>
                 </form>

@@ -1,10 +1,10 @@
 @extends('admin.layout.app')
 
-@section('heading','Edit Job Experience')
+@section('heading','Modifier l\'expérience professionnelle')
 
 @section('button')
     <div class="">
-        <a href="{{route('admin_job_experience')}}" class="btn btn-primary"><i class="fas fa-plus"></i> View All</a>
+        <a href="{{route('admin_job_experience')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Voir tout</a>
     </div>
 @endsection
 
@@ -18,13 +18,13 @@
                     <form action="{{route('admin_job_experience_update', $job_experience_single->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
-                            <label>Experience Name</label>
+                            <label>Nom de l'expérience</label>
                             <input type="text" class="form-control" value="{{$job_experience_single->name}}" name="name" >
                         </div>
                         
                         
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Mattre à jour</button>
                         </div>
                     </form>
                 </div>

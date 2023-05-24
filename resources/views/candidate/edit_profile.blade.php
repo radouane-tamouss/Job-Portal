@@ -1,11 +1,11 @@
 @extends('front.layout.app')
 
 @section('seo_title') 
-    Dashboard
+Modifier les informations du profil
 @endsection
 
 @section('seo_meta_description') 
-    Candidate dashbaord
+Modifier les informations du profil
 @endsection
 
 @section('main_content')
@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Edit Profile</h2>
+                        <h2>Modifier les informations du profil</h2>
                     </div>
                 </div>
             </div>
@@ -36,29 +36,21 @@
                             @csrf
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label for="">Existing Photo</label>
+                                    {{-- <label for="">Photo actuelle</label> --}}
                                     <div class="form-group">
                                         @if($candidate->photo == '')
-                                        <img
-                                            src="{{asset('uploads/default-candidate.png')}}"
-                                            alt=""
-                                            class="user-photo"
-                                        />
+                                        <div class="default-user-photo rounded-circle"></div>
                                         @else
-                                        <img
-                                            src="{{asset('uploads/'.$candidate->photo)}}"
-                                            alt=""
-                                            class="user-photo"
-                                        />
+                                        <img src="{{asset('uploads/'.$candidate->photo)}}" alt="User Photo" class="user-photo rounded-circle">
                                         @endif
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="photo-upload" class="form-label">Change Photo</label>
+                                    <label for="photo-upload" class="form-label">Modifier la photo de profil </label>
                                     <input type="file" name="photo" id="photo-upload" class="form-control">
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="">Name *</label>
+                                    <label for="">Nom *</label>
                                     <div class="form-group">
                                         <input
                                             type="text"
@@ -69,7 +61,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="">Username *</label>
+                                    <label for="">Nom d'utilisateur *</label>
                                     <div class="form-group">
                                         <input
                                             type="text"
@@ -91,7 +83,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="">Designation *</label>
+                                    <label for="">Poste *</label>
                                     <div class="form-group">
                                         <input
                                             type="text"
@@ -102,7 +94,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="">Biography *</label>
+                                    <label for="">Biographie *</label>
                                     <textarea
                                         name="biography"
                                         class="form-control editor"
@@ -114,7 +106,7 @@
                                 </div>
                                 
                                 <div class="col-md-6 mb-3">
-                                    <label for="">Phone *</label>
+                                    <label for="">Télé *</label>
                                     <div class="form-group">
                                         <input
                                             type="text"
@@ -125,7 +117,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="">Country *</label>
+                                    <label for="">Pays *</label>
                                     <div class="form-group">
                                         <input
                                             type="text"
@@ -147,7 +139,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="">City *</label>
+                                    <label for="">Ville *</label>
                                     <div class="form-group">
                                         <input
                                             type="text"
@@ -158,7 +150,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="">Gender *</label>
+                                    <label for="">Genre *</label>
                                     <div class="form-group">
                                         <select
                                             name="gender"
@@ -182,7 +174,7 @@
                                     </div>
                                 </div> --}}
                                 <div class="col-md-6 mb-3">
-                                    <label for="">Date of Birth *</label>
+                                    <label for="">Date de naissance *</label>
                                     <div class="form-group">
                                         <input
                                             type="text"
@@ -193,7 +185,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-3">
-                                    <label for="">Website</label>
+                                    <label for="">Site Web</label>
                                     <div class="form-group">
                                         <input
                                             type="text"
@@ -208,7 +200,7 @@
                                         <input
                                             type="submit"
                                             class="btn btn-primary"
-                                            value="Update"
+                                            value="Mettre à jour"
                                         />
                                     </div>
                                 </div>

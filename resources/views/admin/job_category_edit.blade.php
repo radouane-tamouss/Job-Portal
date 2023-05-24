@@ -1,10 +1,10 @@
 @extends('admin.layout.app')
 
-@section('heading','Edit Job Categories')
+@section('heading','Modifier les catégories d\'emploi')
 
 @section('button')
     <div class="">
-        <a href="{{route('admin_job_category')}}" class="btn btn-primary"><i class="fas fa-plus"></i> View All</a>
+        <a href="{{route('admin_job_category')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Voir tout</a>
     </div>
 @endsection
 
@@ -18,22 +18,22 @@
                     <form action="{{route('admin_job_category_update', $job_category_single->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
-                            <label>Category Name</label>
+                            <label>Nom de la catégorie</label>
                             <input type="text" class="form-control" value="{{$job_category_single->name}}" name="name" >
                         </div>
                         <div class="form-group mb-3">
-                            <label>Icon Preview</label>
+                            <label>Aperçu de l'icône</label>
                             <div>
                                 <i class="{{$job_category_single->icon}}"></i>
                             </div>
                         </div>
                         <div class="form-group mb-3">
-                            <label>Category Icon</label>
+                            <label>Icône de la catégorie</label>
                             <input type="text" class="form-control" value="{{$job_category_single->icon}}" name="icon">
                         </div>
                         
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Mettre a jour</button>
                         </div>
                     </form>
                 </div>

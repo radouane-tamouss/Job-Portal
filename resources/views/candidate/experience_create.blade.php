@@ -1,11 +1,11 @@
 @extends('front.layout.app')
 
 @section('seo_title') 
-    Create Candidate Experience
+    Ajouter Experience
 @endsection
 
 @section('seo_meta_description') 
-    create Candidate Experience
+    Ajouter Experience
 @endsection
 
 @section('main_content')
@@ -17,7 +17,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2>Add Experience</h2>
+            <h2>Ajouter Experience</h2>
         </div>
     </div>
 </div>
@@ -35,13 +35,13 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
             <a
                 href="{{route('candidate_experience')}}"
                 class="btn btn-primary btn-sm mb-2"
-                ><i class="fas fa-list"></i> See All</a
+                ><i class="fas fa-list"></i> Voir toutes</a
             >
             <form action="{{route('candidate_experience_store')}}" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-md-12 mb-3">
-                        <label for="">Company *</label>
+                        <label for="">Entreprise *</label>
                         <div class="form-group">
                             <input
                                 type="text"
@@ -51,7 +51,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                         </div>
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for="">Designation *</label>
+                        <label for="">Post *</label>
                         <div class="form-group">
                             <input
                                 type="text"
@@ -61,7 +61,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                         </div>
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for="">Start Date *</label>
+                        <label for="">Date de début *</label>
                         <div class="form-group">
                             <input
                                 type="text"
@@ -71,7 +71,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                         </div>
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for="">End Date *</label>
+                        <label for="">Date de fin *</label>
                         <div class="form-group">
                             <input
                                 type="text"
@@ -85,7 +85,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                             <input
                                 type="submit"
                                 class="btn btn-primary"
-                                value="Submit"
+                                value="Ajouter"
                             />
                         </div>
                     </div>

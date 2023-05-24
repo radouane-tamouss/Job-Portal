@@ -6,7 +6,7 @@
 
     <link rel="icon" type="image/png" href="uploads/favicon.png">
 
-    <title>Admin Panel</title>
+    <title>Panneau d'administration</title>
 
     
     @include('admin.layout.styles')
@@ -23,7 +23,7 @@
                     <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                         <div class="card card-primary border-box">
                             <div class="card-header card-header-auth">
-                                <h4 class="text-center">Reset Password</h4>
+                                <h4 class="text-center">Réinitialisation du mot de passe</h4>
                             </div>
                             <div class="card-body card-body-auth">
                                 <form method="POST" action="{{route('admin_forget_password_submit')}}">
@@ -39,16 +39,16 @@
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-lg btn-block">
-                                            Send Password Reset Link
+                                            Envoyer le lien de réinitialisation du mot de passe
                                         </button>
                                     </div>
                                     <div class="form-group">
                                         <div>
                                             <a href="{{route('admin_login')}}">
-                                                Back to login page
+                                                Retourner à la page de connexion
                                             </a>
                                         </div>
-                                    </div>
+                                    </div>                                    
                                 </form>
                             </div>
                         </div>

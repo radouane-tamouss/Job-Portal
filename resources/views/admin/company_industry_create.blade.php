@@ -18,13 +18,13 @@
                     <form action="{{route('admin_company_industry_store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
-                            <label>Industry Name</label>
+                            <label for="">Nom de l'industrie *</label>
                             <input type="text" class="form-control" name="name" >
                         </div>
                         
                         
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
                         </div>
                     </form>
                 </div>

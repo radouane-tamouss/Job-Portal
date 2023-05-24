@@ -17,43 +17,29 @@
                     class="collapse navbar-collapse mean-menu"
                     id="navbarSupportedContent"
                 >
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item {{ Request::is('/') ? 'active' : ''}}">
-                            <a href="{{route('home')}}" class="nav-link"
-                                >Home</a
-                            >
-                        </li>
-                        <li class="nav-item {{ Request::is('job-listing') ? 'active' : ''}}">
-                            <a href="{{url('job-listing')}}" class="nav-link">
-                                Find Jobs</a
-                            >
-                        </li>
-                        <li class="nav-item {{ Request::is('company-listings') ? 'active' : ''}}">
-                            <a href="{{url('company-listing')}} " class="nav-link"
-                                >Companies</a
-                            >
-                        </li>
-                        @if(Auth::guard('company')->check())
-                        <li class="nav-item {{ Request::is('pricing') ? 'active' : ''}}">
-                            <a href="{{route('pricing')}} " class="nav-link"
-                                >Pricing</a
-                            >
-                        </li>
-                        @endif
-                        <li class="nav-item">
-                            <a href="faq.html" class="nav-link">FAQ</a>
-                        </li>
-                        <li class="nav-item {{ Request::is('blog') ? 'active' : ''}}">
-                            <a href="{{route('blog')}}" class="nav-link"
-                                >Blog</a
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <a href="contact.html" class="nav-link"
-                                >Contact</a
-                            >
-                        </li>
-                    </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item {{ Request::is('/') ? 'active' : ''}}">
+                        <a href="{{route('home')}}" class="nav-link">Accueil</a>
+                    </li>
+                    <li class="nav-item {{ Request::is('job-listing') ? 'active' : ''}}">
+                        <a href="{{url('job-listing')}}" class="nav-link">Trouver des emplois</a>
+                    </li>
+                    <li class="nav-item {{ Request::is('company-listings') ? 'active' : ''}}">
+                        <a href="{{url('company-listing')}}" class="nav-link">Entreprises</a>
+                    </li>
+                    <li class="nav-item {{ Request::is('pricing') ? 'active' : ''}}">
+                        <a href="{{route('pricing')}}" class="nav-link">Offres et tarifs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="faq.html" class="nav-link">FAQ</a>
+                    </li>
+                    <li class="nav-item {{ Request::is('blog') ? 'active' : ''}}">
+                        <a href="{{route('blog')}}" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                </ul>
                 </div>
             </nav>
         </div>

@@ -1,11 +1,9 @@
-@extends('admin.layout.app')
-
-@section('heading','Create Job Location')
+@section('heading','Créer un lieu de travail')
 
 @section('button')
-    <div class="">
-        <a href="{{route('admin_job_location')}}" class="btn btn-primary"><i class="fas fa-plus"></i> View All</a>
-    </div>
+<div class="">
+<a href="{{route('admin_job_location')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Voir tous</a>
+</div>
 @endsection
 
 @section('main_content')
@@ -18,13 +16,11 @@
                     <form action="{{route('admin_job_location_store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-3">
-                            <label>Location Name</label>
+                            <label>Nom du lieu</label>
                             <input type="text" class="form-control" name="name" >
-                        </div>
-                        
-                        
+                        </div>  
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Soumettre</button>
                         </div>
                     </form>
                 </div>
@@ -32,4 +28,4 @@
         </div>
     </div>
 </div>
-@endsection 
+@endsection

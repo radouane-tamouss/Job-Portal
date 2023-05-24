@@ -1,10 +1,10 @@
 @extends('admin.layout.app')
 
-@section('heading','Job Experiences')
+@section('heading','Expériences professionnelles')
 
 @section('button')
     <div class="">
-        <a href="{{route('admin_job_experience_create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Add New</a>
+        <a href="{{route('admin_job_experience_create')}}" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter</a>
     </div>
 @endsection
 
@@ -20,8 +20,8 @@
                             <table class="table table-bordered" id="example1">
                                 <thead>
                                 <tr>
-                                    <th>SL</th>
-                                    <th>Experience</th> 
+                                    <th>N°</th>
+                                    <th>Expérience</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -31,8 +31,8 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->name}}</td>
                                         <td class="pt_10 pb_10">
-                                            <a href="{{route('admin_job_experience_edit',$item->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                                            <a href="{{route('admin_job_experience_delete',$item->id)}}" class="btn btn-danger btn-sm" onClick="return confirm('Are you sure?');">Delete</a>
+                                            <a href="{{route('admin_job_experience_edit',$item->id)}}" class="btn btn-primary btn-sm">Modifier</a>
+                                            <a href="{{route('admin_job_experience_delete',$item->id)}}" class="btn btn-danger btn-sm" onClick="return confirm('Are you sure?');">Supprimer</a>
                                         </td>
                                     
                                     </tr>
