@@ -33,18 +33,17 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                     <input type="hidden" name="token" value="{{$token}}">
                     <input type="hidden" name="email" value="{{$email}}">
                     <div class="mb-3">
-                        <label for="" class="form-label">New Password</label>
+                        <label for="" class="form-label">Nouveau mot de passe</label>
                         <input type="password" class="form-control" name="password"/>
                     </div>
                     <div class="mb-3">
-                        <label for="" class="form-label">Confirm New Password</label>
+                        <label for="" class="form-label">Confirmez le nouveau mot de passe</label>
                         <input type="password" class="form-control" name="retype_password"/>
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary bg-website">
-                            Submit
+                            Soumettre
                         </button>
-                       
                     </div>
                 </form>
             </div>

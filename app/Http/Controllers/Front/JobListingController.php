@@ -29,11 +29,12 @@ class JobListingController extends Controller
         $form_job_type = $request->job_type;
         $form_job_gender = $request->gender;
         $form_job_experience = $request->experience;
-        // $jobs = Job::orderBy('id','desc');
+       
         $jobs = Job::whereHas('rCompany.rOrder', function ($query) {
             $query->where('currently_active', 1)
                 ->where('expire_date', '>=', date('Y-m-d'));
-        });
+        })
+        ->orderBy('created_at', 'desc');
 
         if($form_title != null){
           $jobs = $jobs->where('title','like','%'.$form_title.'%'); // use like because it is a string

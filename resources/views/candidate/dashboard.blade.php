@@ -72,8 +72,8 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                         @foreach($recently_applied_jobs as $item)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$item->rJob->title}}</td>
-                            <td>{{$item->rJob->rCompany->company_name}}</td>
+                            <td>{{ $item->rJob->title ?? 'N/A' }}</td>
+                            <td>{{$item->rJob->rCompany->company_name ?? 'N/A'}}</td>
                             <td>
                                 @if($item->status == 'applied')
                                 <div class="badge bg-primary">

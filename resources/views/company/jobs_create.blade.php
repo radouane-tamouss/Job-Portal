@@ -1,7 +1,7 @@
 @extends('front.layout.app')
 
-@section('seo_title') 
-    Create Jobs
+@section('seo_title')
+Créer des emplois
 @endsection
 
 @section('seo_meta_description') 
@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Add New Job</h2>
+                        <h2>Ajouter un nouvel emploi</h2>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                             @csrf
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label for="title" class="form-label" >Title *</label>
+                                    <label for="title" class="form-label" >Titre *</label>
                                     <input type="text" class="form-control" name="title" value="{{old('title')}}"/>
                                 </div>
                                 
@@ -55,7 +55,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="" class="form-label">Job Responsibilities</label>
+                                    <label for="" class="form-label">Responsabilités du poste</label>
                                     <textarea
                                         name="responsibilities"
                                         class="form-control editor"
@@ -65,7 +65,8 @@
                                     ></textarea>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="" class="form-label" >Skills and Abilities</label>
+                                    
+                                    <label for="" class="form-label" >Compétences et capacités</label>
                                     <textarea
                                         name="skill"
                                         class="form-control editor"
@@ -78,7 +79,7 @@
 
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="" class="form-label">Educational Qualification</label >
+                                    <label for="" class="form-label">Formations</label >
                                     <textarea
                                         name="education"
                                         class="form-control editor"
@@ -88,7 +89,7 @@
                                     ></textarea>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="" class="form-label" >Benifits</label>
+                                    <label for="" class="form-label" >Avantages</label>
                                     <textarea
                                         name="benifit"
                                         class="form-control editor"
@@ -103,19 +104,20 @@
 
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="" class="form-label">Category *</label>
+                                    <label for="" class="form-label">Catégorie *</label>
                                     <select name="job_category_id" class="form-control select2" >
-                                        <option value="" selected>Select Job Category</option>
+                                        <option value="" selected>Sélectionnez la catégorie d'emploi
+                                        </option>
                                         @foreach($job_categories as $item)
                                             <option value="{{$item->id}}">{{$item->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="" class="form-label" >Location *</label >
+                                    <label for="" class="form-label" >Emplacement *</label >
 
                                     <select name="job_location_id" class="form-control select2">
-                                        <option value="" selected>Select Job Location</option>
+                                        <option value="" selected>Sélectionnez l'emplacement du poste.</option>
                                         @foreach($job_locations as $item)
                                             <option value="{{$item->id}}">{{$item->name}}</option>
                                         @endforeach
@@ -125,7 +127,7 @@
 
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="" class="form-label">Job Type *</label>
+                                    <label for="" class="form-label">Type d'emploi *</label>
                                     <select name="job_type_id" class="form-control select2">
                                         <option value="" selected>Select Job Type</option>
                                         @foreach($job_types as $item)
@@ -147,23 +149,23 @@
 
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="job_gender" class="form-label">Gender *</label>
+                                    <label for="job_gender" class="form-label">Genre *</label>
                                     <select name="job_gender" class="form-control select2">
                                         
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="any" selected>Any</option>
+                                        <option value="male">Homme</option>
+                                        <option value="female">Femme</option>
+                                        <option value="any" selected>Tout genre</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="" class="form-label">Salary Range *</label>
                                     <select name="job_salary_range_id" class="form-control select2">
-                                            <option value="" selected>Select Salary Range</option>
+                                        <option value="" selected>Select Salary Range</option>
                                         @foreach($job_salary_ranges as $item)
                                             <option value="{{$item->id}}">{{$item->name}}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div>                                
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
@@ -177,13 +179,13 @@
                                     />
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="" class="form-label" >Vacancy *</label >
+                                    <label for="" class="form-label" >Poste vacant *</label >
                                     <input type="number" class="form-control" name="vacancy" min="1" value="{{old('vacancy') ? old('vacancy'): '1'}}"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <label for="" class="form-label" value="{{old('map_code')}}">Location Map</label>
+                                    <label for="" class="form-label" value="{{old('map_code')}}">code carte de localisation  </label>
                                     <textarea
                                         name="map_code"
                                         class="form-control h-150"
@@ -223,8 +225,7 @@
 
                             <div class="row">
                                 <div class="col-md-12 mb-3">
-                                    <p>total allowed jobs for your plan is {{$allowed_jobs}} 😉</p>
-                                    <input
+                                    <p>Le nombre total d'emplois autorisés pour votre plan est de {{$allowed_jobs}}.</p>                                    <input
                                         type="submit"
                                         class="btn btn-primary"
                                         value="Submit"
@@ -237,23 +238,23 @@
                                 @if($company_allowed_featured_jobs == null)
                                 <div class="row justify-content-center">
                                     <div class="col-md-8 text-center">
-                                      <h3 class="mb-3">Upgrade Your Plan to Add Company Photos</h3>
-                                      <p class="mb-4">Your current plan does not allow for any company photos. Upgrade your plan to unlock this feature and start showcasing your company's culture.</p>
-                                      <a href="{{route('pricing')}}" class="btn btn-primary">Upgrade Plan</a>
-                                    </div>
+                                        <h3 class="mb-3">Mettez à niveau votre plan pour ajouter des offres d'emplois</h3>
+                                        <p class="mb-4">Votre plan actuel ne permet pas d'ajouter des offres .</p>
+                                        <a href="{{route('pricing')}}" class="btn btn-primary">Mettre à niveau le plan</a>
+                                    </div>                                    
                                 </div>
                                 @elseif(date('Y-m-d') > $order_data->expire_date)
                                 
-                                <h4 class="alert-heading">Package Expired</h4>
-                                <p class="mb-0">Sorry, your current package has expired on  {{ \Carbon\Carbon::parse($order_data->expire_date)->format('F j, Y') }}. To continue accessing all features, please renew your package using the link below.</p>
+                                <h4 class="alert-heading">Package expiré</h4>
+                                <p class="mb-0">Désolé, votre forfait actuel a expiré le {{ \Carbon\Carbon::parse($order_data->expire_date)->format('j F Y') }}. Pour continuer à accéder à toutes les fonctionnalités, veuillez renouveler votre forfait en utilisant le lien ci-dessous.</p>
                                 <hr>
                                 <a class="btn btn-primary btn-sm" href="{{route('pricing')}}" role="button">Renew Package</a>
                                
                                 
                                 
                                 @else
-                                <h4 class="alert-heading">Limit Reached</h4>
-                                <p class="mb-0">Sorry, you have reached the maximum number of jobs allowed for your plan ({{$allowed_jobs}} jobs). To add more jobs, please delete unused jobs or upgrade your plan using the link below.</p>
+                                <h4 class="alert-heading">Limite atteinte</h4>
+                                <p class="mb-0">Désolé, vous avez atteint le nombre maximum d'emplois autorisés pour votre plan ({{$allowed_jobs}} emplois). Pour ajouter plus d'emplois, veuillez supprimer les emplois inutilisés ou mettre à niveau votre plan en utilisant le lien ci-dessous.</p>
                                 <hr>
                                 <a class="btn btn-primary btn-sm" href="{{route('pricing')}}" role="button">Upgrade Plan</a>
                                 @endif

@@ -1,20 +1,21 @@
 @extends('front.layout.app')
 
-@section('seo_title') 
-    Blog
+@section('seo_title')
+Blog
 @endsection
 
-@section('seo_meta_description') 
-    Blog
+@section('seo_meta_description')
+Blog
 @endsection
 
 @section('main_content')
+
 <div class="page-top" style="background-image: url('{{ asset('uploads/banner.jpg') }}')">
     <div class="bg"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Latest News</h2>
+                <h2>Dernières actualités</h2>
             </div>
         </div>
     </div>
@@ -39,7 +40,7 @@
                         </div>
                         <div class="button">
                             <a href="{{ route('post',$item->slug) }}" class="btn btn-primary"
-                                >Read More</a
+                                >Lire la suite</a
                             >
                         </div>
                     </div>

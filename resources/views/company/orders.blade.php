@@ -1,14 +1,15 @@
 @extends('front.layout.app')
 
-@section('seo_title') 
-    Make Payment
+@section('seo_title')
+Effectuer un paiement
 @endsection
 
-@section('seo_meta_description') 
-     
+@section('seo_meta_description')
+
 @endsection
 
 @section('main_content')
+
 <div
             class="page-top"
             style="background-image: url('{{asset('uploads/banner.jpg')}}')"
@@ -17,12 +18,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Orders</h2>
+                        <h2>Commandes</h2>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="page-content user-panel">
             <div class="container">
                 <div class="row">
@@ -38,12 +38,12 @@
                                 <tbody>
                                     <tr>
                                         <th>SL</th>
-                                        <th>Order No</th>
-                                        <th>Plan Name</th>
-                                        <th>Price</th>
-                                        <th>Order Date</th>
-                                        <th>Expire Date</th>
-                                        <th>Payment Method</th>
+                                        <th>Numéro de commande</th>
+                                        <th>Nom du plan</th>
+                                        <th>Prix</th>
+                                        <th>Date de commande</th>
+                                        <th>Date d'expiration</th>
+                                        <th>Méthode de paiement</th>
                                        
                                     </tr>
                                     @foreach($orders as $item)
@@ -52,10 +52,10 @@
                                         <td>{{$item->order_no}}</td>
                                         <td>{{$item->rPackage->package_name}} @if($item->currently_active == 1)
                                             <span class="badge bg-success"
-                                                >Active</span
+                                                >Actif</span
                                             >
                                         @endif</td>
-                                        <td>{{$item->paid_amount}}$</td>
+                                        <td>{{$item->paid_amount}} DH</td>
                                         <td>{{$item->start_date}}</td>
                                         <td>{{$item->expire_date}}</td>
                                         <td>{{$item->payment_method}}</td>
@@ -67,9 +67,9 @@
                             </table>
                             @else
                             <div class="card-body d-flex flex-column align-items-center justify-content-center">
-                                <h3 class="card-title text-center mb-4">No orders available</h3>
+                                <h3 class="card-title text-center mb-4">Aucune commande disponible</h3>
                                 <i class="fas fa-exclamation-triangle text-warning fa-4x mb-3"></i>
-                                <p class="card-text text-center">There are no orders available for your account.</p>
+                                <p class="card-text text-center">Il n'y a aucune commande disponible pour votre compte.</p>
                             </div>
                             
                             @endif
@@ -78,6 +78,8 @@
                 </div>
             </div>
         </div>
+        @endsection
 
 
-@endsection
+
+

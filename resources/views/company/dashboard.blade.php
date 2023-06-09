@@ -60,36 +60,33 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                 <div class="col-md-4">
                     <div class="box1">
                         <h4>{{$opened_jobs}}</h4>
-                        <p>Open Jobs</p>
+                        <p>Emplois ouverts</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="box2">
                         <h4>{{$featured_jobs}}</h4>
-                        <p>Featured Jobs</p>
+                        <p>Emplois en vedette</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="box3">
                         <h4>{{$urgent_jobs}}</h4>
-                        <p>Urgent Jobs</p>
+                        <p>Emplois urgents</p>
                     </div>
                 </div>
             </div>
-
-            <h3 class="mt-5">Recent Jobs</h3>
+            <h3 class="mt-5">Emplois récents</h3>
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
                             <th>SL</th>
-                            <th>Job Title</th>
-                            <th>Category</th>
-                            <th>Location</th>
-                            <th>Is Featured?</th>
-                            <th>Is Urgent?</th>
-
-                       
+                            <th>Titre de l'emploi</th>
+                            <th>Catégorie</th>
+                            <th>Emplacement</th>
+                            <th>fetured ?</th>
+                            <th>Urgent ?</th>
                         </tr>
                         @foreach($jobs as $job)
                         <tr>
@@ -99,31 +96,20 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                             <td>{{$job->rJobLocation->name}}</td>
                             <td>
                                 @if($job->is_featured == 1)
-                                <span class="badge bg-success"
-                                    >Featured</span
-                                >
+                                <span class="badge bg-success">featured</span>
                                 @else
-                                <span class="badge bg-danger"
-                                    >Not Featured</span
-                                >
+                                <span class="badge bg-danger">Not featured</span>
                                 @endif
                             </td>
                             <td>
                                 @if($job->is_urgent == 1)
-                                <span class="badge bg-danger"
-                                    >Urgent</span
-                                >
+                                <span class="badge bg-danger">Urgent</span>
                                 @else
-                                <span class="badge bg-primary"
-                                    >Not Urgent</span
-                                >
+                                <span class="badge bg-primary">Non urgent</span>
                                 @endif
                             </td>
-                           
                         </tr>
                         @endforeach
-                       
-                     
                     </tbody>
                 </table>
             </div>

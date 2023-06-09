@@ -90,44 +90,44 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
             <div class="left-item">
                 <h2>
                     <i class="fas fa-file-invoice"></i>
-                    About Company
+                    À propos de l'entreprise
                 </h2>
                 {!! $company->description !!}
             </div>
             <div class="left-item">
                 <h2>
                     <i class="fas fa-file-invoice"></i>
-                    Opening Hours
+                    Heures d'ouverture
                 </h2>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <td>Monday</td>
+                                <td>Lundi</td>
                                 <td>{{ $company->oh_monday ? $company->oh_monday : 'Opening hours not specified' }}</td>
                             </tr>
                             <tr>
-                                <td>Tuesday</td>
+                                <td>Mardi</td>
                                 <td>{{ $company->oh_tuesday ? $company->oh_tuesday : 'Opening hours not specified' }}</td>
                             </tr>
                             <tr>
-                                <td>Wednesday</td>
+                                <td>Mercredi</td>
                                 <td>{{ $company->oh_wednesday ? $company->oh_wednesday : 'Opening hours not specified' }}</td>
                             </tr>
                             <tr>
-                                <td>Thursday</td>
+                                <td>Jeudi</td>
                                 <td>{{ $company->oh_thursday ? $company->oh_thursday : 'Opening hours not specified' }}</td>
                             </tr>
                             <tr>
-                                <td>Friday</td>
+                                <td>Vendredi</td>
                                 <td>{{ $company->oh_friday ? $company->oh_friday : 'Opening hours not specified' }}</td>
                             </tr>
                             <tr>
-                                <td>Saturday</td>
+                                <td>Samedi</td>
                                 <td>{{ $company->oh_saturday ? $company->oh_saturday : 'Opening hours not specified' }}</td>
                             </tr>
                             <tr>
-                                <td>Sunday</td>
+                                <td>Dimanche</td>
                                 <td>{{ $company->oh_sunday ? $company->oh_sunday : 'Opening hours not specified' }}</td>
                             </tr>
                             
@@ -292,8 +292,7 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                             @endforeach
                             @else
                             <div class="col-12">
-                                <p class="text-center">No Open Positions available for this company.</p>
-                            </div>
+                                <p class="text-center">Aucun poste vacant n'est disponible pour cette entreprise.</p>                            </div>
                             @endif
 
                         </div>
@@ -305,56 +304,56 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
             <div class="right-item">
                 <h2>
                     <i class="fas fa-file-invoice"></i>
-                    Company Overview
+                    Aperçu de l'entreprise
                 </h2>
+               
                 <div class="summary">
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <tr>
-                                <td><b>Contact Person:</b></td>
+                                <td><b>Personne de contact :</b></td>
                                 <td>{{$company->person_name ?? 'N/A'}}</td>
                             </tr>
                             <tr>
-                                <td><b>Category:</b></td>
+                                <td><b>Catégorie :</b></td>
                                 <td>{{$company->rCompanyIndustry->name ?? 'N/A'}}</td>
                             </tr>
                             <tr>
-                                <td><b>Email:</b></td>
+                                <td><b>Email :</b></td>
                                 <td>{{$company->email ?? 'N/A'}}</td>
                             </tr>
                             <tr>
-                                <td><b>Phone:</b></td>
+                                <td><b>Téléphone :</b></td>
                                 <td>{{$company->phone ?? 'N/A'}}</td>
                             </tr>
                             <tr>
-                                <td><b>Address:</b></td>
+                                <td><b>Adresse :</b></td>
                                 <td>{{$company->address ?? 'N/A'}}</td>
                             </tr>
                             {{-- <tr>
-                                <td><b>Country:</b></td>
+                                <td><b>Pays :</b></td>
                                 <td>{{$company->country ?? 'N/A'}}</td>
                             </tr> --}}
                             <tr>
-                                <td><b>Website:</b></td>
+                                <td><b>Site web :</b></td>
                                 <td>{{$company->website ?? 'N/A'}}</td>
                             </tr>
                             <tr>
-                                <td><b>Company Size:</b></td>
+                                <td><b>Taille de l'entreprise :</b></td>
                                 <td>{{$company->rCompanySize->name ?? 'N/A'}}</td>
                             </tr>
                             <tr>
-                                <td><b>Founded On:</b></td>
+                                <td><b>Fondée le :</b></td>
                                 <td>{{$company->founded_on ?? 'N/A'}}</td>
                             </tr>
                         </table>
-                        
                     </div>
                 </div>
             </div>
             <div class="right-item">
                 <h2>
                     <i class="fas fa-file-invoice"></i>
-                    Location Map
+                    Carte de localisation
                 </h2>
                 <div class="location-map">
                     <iframe
@@ -371,31 +370,34 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
             <div class="right-item">
                 <h2>
                     <i class="fas fa-file-invoice"></i>
-                    Contact Company
+                    Contacter l'entreprise
                 </h2>
                 <div class="enquery-form">
                     <form action="{{route('company_enquery_send_email')}}" method="post">
                         @csrf
-                        
                         <input type="hidden" name="company_email" value="{{$company->email}}">
                         <div class="mb-3">
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Nom" required>
                         </div>
                         <div class="mb-3">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Email Address" required>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Adresse e-mail" required>
                         </div>
                         <div class="mb-3">
-                            <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone Number" required>
+                            <input type="text" id="phone" name="phone" class="form-control" placeholder="Numéro de téléphone" required>
                         </div>
                         <div class="mb-3">
                             <textarea id="message" name="message" class="form-control h-150" rows="3" placeholder="Message" required></textarea>
                         </div>
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Envoyer</button>
                         </div>
                     </form>
                 </div>
             </div>
+
+
+
+
         </div>
     </div>
 </div>

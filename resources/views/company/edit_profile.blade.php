@@ -1,11 +1,11 @@
 @extends('front.layout.app')
 
-@section('seo_title') 
-    Edit Profile
+@section('seo_title')
+Modifier le profil
 @endsection
 
-@section('seo_meta_description') 
-    company edit profile
+@section('seo_meta_description')
+Modifier le profil de l'entreprise
 @endsection
 
 @section('main_content')
@@ -17,7 +17,7 @@ style="background-image: url({{asset('uploads/banner.jpg')}})"
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2>Edit Profile</h2>
+            <h2>Modifier le profil</h2>
         </div>
     </div>
 </div>
