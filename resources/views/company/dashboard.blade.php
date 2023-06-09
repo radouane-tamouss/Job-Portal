@@ -33,16 +33,27 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
             </div>
         </div>
         <div class="col-lg-9 col-md-12">
-            <h3>Hello, {{Auth::guard('company')->user()->person_name}} ({{Auth::guard('company')->user()->company_name}})</h3>
-            <p>See all the statistics at a glance:</p>
-            @if(date('Y-m-d') > $order_data->expire_date)
-            <div class="alert alert-danger" role="alert">
-                <h4 class="alert-heading">Package Expired</h4>
-                <p class="mb-0">Your current package has expired on {{ \Carbon\Carbon::parse($order_data->expire_date)->format('F j, Y') }}. To continue accessing all features, please renew your package using the link below.</p>
-                <hr>
-                <a class="btn btn-primary btn-sm" href="{{ route('pricing') }}" role="button">Renew Package</a>
-            </div>
-            
+            <h3>Bonjour, {{ Auth::guard('company')->user()->person_name }} ({{ Auth::guard('company')->user()->company_name }})</h3>
+            <p>Consultez toutes les statistiques en un coup d'œil :</p>
+
+            @if ($order_data)
+                @if (date('Y-m-d') > $order_data->expire_date)
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Forfait Expiré</h4>
+                        <p class="mb-0">Votre forfait actuel a expiré le {{ \Carbon\Carbon::parse($order_data->expire_date)->format('j F Y') }}. Pour continuer à accéder à toutes les fonctionnalités, veuillez renouveler votre forfait en utilisant le lien ci-dessous.</p>
+                        <hr>
+                        <a class="btn btn-primary btn-sm" href="{{ route('pricing') }}" role="button">Renouveler le Forfait</a>
+                    </div>
+                @endif
+            @else
+                <div class="alert alert-info" role="alert">
+                    <h4 class="alert-heading">Aucun Forfait</h4>
+                    <p class="mb-0">Vous n'avez pas encore souscrit à un forfait. Veuillez choisir un plan en utilisant le lien ci-dessous pour accéder à toutes les fonctionnalités.</p>
+                    <hr>
+                    <a class="btn btn-primary btn-sm" href="{{ route('pricing') }}" role="button">Choisir un Forfait</a>
+                </div>
+        
+                
                
             @endif
             <div class="row box-items">

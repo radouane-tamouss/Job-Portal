@@ -60,7 +60,7 @@ style="background-image: url({{asset('uploads/banner.jpg')}})"
                                 type="text"
                                 name="company_name"
                                 class="form-control"
-                                value="{{Auth::guard('company')->user()->company_name}}"
+                                value="{{ old('company_name', Auth::guard('company')->user()->company_name) }}"
                             />
                         </div>
                     </div>
@@ -71,7 +71,7 @@ style="background-image: url({{asset('uploads/banner.jpg')}})"
                                 type="text"
                                 name="person_name"
                                 class="form-control"
-                                value="{{Auth::guard('company')->user()->person_name}}"
+                                value="{{ old('person_name', Auth::guard('company')->user()->person_name) }}"
                             />
                         </div>
                     </div>
@@ -82,7 +82,8 @@ style="background-image: url({{asset('uploads/banner.jpg')}})"
                                 type="text"
                                 name="username"
                                 class="form-control"
-                                value="{{Auth::guard('company')->user()->username}}"
+                                value="{{ old('username', Auth::guard('company')->user()->username) }}"
+
                             />
                         </div>
                     </div>
@@ -93,8 +94,8 @@ style="background-image: url({{asset('uploads/banner.jpg')}})"
                                 type="text"
                                 name="email"
                                 class="form-control"
-                                value="{{Auth::guard('company')->user()->email}}"
-                            />
+                                value="{{ old('email', Auth::guard('company')->user()->email) }}"
+                                />
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -104,7 +105,8 @@ style="background-image: url({{asset('uploads/banner.jpg')}})"
                                 type="text"
                                 name="phone"
                                 class="form-control"
-                                value="{{Auth::guard('company')->user()->phone}}"
+                                value="{{ old('phone', Auth::guard('company')->user()->phone) }}"
+
                             />
                         </div>
                     </div>
@@ -115,7 +117,8 @@ style="background-image: url({{asset('uploads/banner.jpg')}})"
                                 type="text"
                                 name="address"
                                 class="form-control"
-                                value="{{Auth::guard('company')->user()->address}}"
+                                value="{{ old('address', Auth::guard('company')->user()->address) }}"
+
                             />
                         </div>
                     </div>
@@ -203,8 +206,7 @@ style="background-image: url({{asset('uploads/banner.jpg')}})"
                                 type="text"
                                 name="oh_monday"
                                 class="form-control"
-                                value="{{Auth::guard('company')->user()->oh_monday}}"
-
+                                value="{{ old('oh_monday', Auth::guard('company')->user()->oh_monday) }}"
                             />
                         </div>
                     </div>
@@ -295,8 +297,8 @@ style="background-image: url({{asset('uploads/banner.jpg')}})"
                                 type="text"
                                 name="website"
                                 class="form-control"
-                                value="{{Auth::guard('company')->user()->website}}"
-                            />
+                                value="{{ old('website', Auth::guard('company')->user()->website) }}"
+                                />
                         </div>
                     </div>
 
@@ -323,8 +325,8 @@ style="background-image: url({{asset('uploads/banner.jpg')}})"
                                 type="text"
                                 name="facebook"
                                 class="form-control"
-                                value="{{Auth::guard('company')->user()->facebook}}"
-                            />
+                                value="{{ old('facebook', Auth::guard('company')->user()->facebook) }}"
+                                />
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -334,8 +336,8 @@ style="background-image: url({{asset('uploads/banner.jpg')}})"
                                 type="text"
                                 name="twitter"
                                 class="form-control"
-                                value="{{Auth::guard('company')->user()->twitter}}"
-                            />
+                                value="{{ old('twitter', Auth::guard('company')->user()->twitter) }}"
+                                />
                         </div>
                     </div>
 
@@ -346,8 +348,8 @@ style="background-image: url({{asset('uploads/banner.jpg')}})"
                                 type="text"
                                 name="linkedin"
                                 class="form-control"
-                                value="{{Auth::guard('company')->user()->linkedin}}"
-                            />
+                                value="{{ old('linkedin', Auth::guard('company')->user()->linkedin) }}"
+                                />
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -357,8 +359,8 @@ style="background-image: url({{asset('uploads/banner.jpg')}})"
                                 type="text"
                                 name="instagram"
                                 class="form-control"
-                                value="{{Auth::guard('company')->user()->instagram}}"
-                            />
+                                value="{{ old('instagram', Auth::guard('company')->user()->instagram) }}"
+                                />
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
