@@ -255,12 +255,15 @@ style="background-image: url('{{asset('uploads/banner.jpg')}}')"
                                 
                                 <td>
                                     @php
-                                        $dt = DateTime::createFromFormat('d/m/Y',$job->deadline);
-                                        @endphp
-                                        {{$dt->format('d F, Y');}}  
-                                    {{-- {{$job->deadline}} --}}
+                                        $dt = DateTime::createFromFormat('d/m/Y', $job->deadline);
+                                    @endphp
+                                    @if ($dt instanceof DateTime)
+                                        {{$dt->format('d F, Y')}}
+                                    @else
+                                        {{$job->deadline}}
+                                    @endif
                                 </td>
-
+                                
                             </tr>
                             <tr>
                                 <td><b>Vacancy:</b></td>

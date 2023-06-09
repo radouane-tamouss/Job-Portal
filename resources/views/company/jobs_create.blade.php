@@ -149,10 +149,10 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="job_gender" class="form-label">Gender *</label>
                                     <select name="job_gender" class="form-control select2">
-                                        <option value="" selected>Select Gender</option>
+                                        
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
-                                        <option value="any">Any</option>
+                                        <option value="any" selected>Any</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">

@@ -55,7 +55,7 @@ class CompanyController extends Controller
         }else{
             $obj->password = hash::make($request->new_password);
             $obj->update();
-            return redirect()->back()->with('success','Password is updated successfully');
+            return redirect()->back()->with('success', 'Le mot de passe a été mis à jour avec succès');
         }
         
     }
@@ -182,14 +182,14 @@ class CompanyController extends Controller
         $obj->company_id = Auth::guard('company')->user()->id;
         $obj->save();
 
-        return redirect()->back()->with('success','video link added succesffully');
+        return redirect()->back()->with('success', 'Le lien de la vidéo a été ajouté avec succès !');
     }
 
     public function video_delete($id){
         $vid = CompanyVideo::where('id',$id)->first();
         
         CompanyVideo::where('id',$id)->delete();
-        return redirect()->route('company_videos')->with('success','video Deleted Succesfully!');
+        return redirect()->route('company_videos')->with('success', 'La vidéo a été supprimée avec succès !');
     }
 
 
@@ -230,14 +230,14 @@ class CompanyController extends Controller
         $obj->company_id = Auth::guard('company')->user()->id;
         $obj->save();
 
-        return redirect()->back()->with('success','photo added succesffully');
+        return redirect()->back()->with('success', 'La photo a été ajoutée avec succès !');
     }
 
     public function photo_delete($id){
         $pic = CompanyPhoto::where('id',$id)->first();
         unlink(public_path('uploads/companies_photos/'.$pic->photo));
         CompanyPhoto::where('id',$id)->delete();
-        return redirect()->route('company_photos')->with('success','Photo Deleted Succesfully!');
+        return redirect()->route('company_photos')->with('success', 'La photo a été supprimée avec succès !');
     }
 
     public function make_payment(){
@@ -267,7 +267,7 @@ class CompanyController extends Controller
             "purchase_units" => [
                 [
                     "amount" => [
-                        "currency_code" => "USD",
+                        "currency_code" => "MAD",
                         "value" => $signle_package_data->package_price //get package price
                     ]
                 ]
@@ -330,7 +330,7 @@ class CompanyController extends Controller
             session()->forget('package_price');
             session()->forget('package_days');
 
-            return redirect()->route('company_make_payment')->with('succes','Payment is successful!');
+            return redirect()->route('company_make_payment')->with('success', 'Le paiement a été effectué avec succès !');
         } else {
             return redirect()->route('company_paypal_cancel');
         }
@@ -338,7 +338,7 @@ class CompanyController extends Controller
 
     public function paypal_cancel()
     {
-        return redirect()->route('company_make_payment')->with('error','Payment is cancelled!');
+        return redirect()->route('company_make_payment')->with('error', 'Le paiement a été annulé !');
     }
 
 
@@ -355,7 +355,7 @@ class CompanyController extends Controller
             'line_items' => [
                 [
                     'price_data' => [
-                        'currency' => 'usd',
+                        'currency' => 'mad',
                         'product_data' => [
                             'name' => $signle_package_data->package_name
                         ],
@@ -563,12 +563,13 @@ class CompanyController extends Controller
         $job->update();
         
        
-        return redirect()->route('company_jobs')->with('success', 'Job updated successfully');
+        return redirect()->route('company_jobs')->with('success', 'Le poste a été mis à jour avec succès');
     }
 
     public function delete_job($id){
         Job::where('id',$id)->delete();
-        return redirect()->route('company_jobs')->with('success', 'Job type deleted successfully');
+        return redirect()->route('company_jobs')->with('success', 'Le type de poste a été supprimé avec succès');
+
     }
 
     public function candidate_applications(){
@@ -589,37 +590,39 @@ class CompanyController extends Controller
         if($obj->status == 'approved'){
         $subject = 'Job Application Approved';
         $message = '
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-                <title>Job Application Approved</title>
-            </head>
-            <body>
-                <div class="container">
-                    <div class="jumbotron" style="background-color: #f2f3f8;">
-                        <h1 class="display-4" style="color: #1e1e2d;">Job Application Approved for '. $obj->rJob->title .'</h1>
-                        <p class="lead" style="color: #455056;">Dear ' . $obj->rCandidate->name . ',</p>
-                        <p style="color: #455056;">We are pleased to inform you that your job application for the position of '.$obj->rJob->title.' has been approved by the company.</p>
-                        <hr class="my-4" style="border-color: #cecece;">
-                        <h5 style="color: #1e1e2d;">Application Details:</h5>
-                        <ul>
-                            <li><strong>Company:</strong> '.$obj->rJob->rCompany->company_name.'</li>
-                            <li><strong>Email:</strong> '. $obj->rJob->rCompany->email.'</li>
-                            <li><strong>View Apllications: </strong> <a href="'.route('applied_jobs').'"> all jobs applications </a>
-                        </ul>
-                        <p style="color: #455056;">Thank you for your interest and congratulations on your successful application. We will be in touch with you soon regarding the next steps of the hiring process.</p>
-                        <hr class="my-4" style="border-color: #cecece;">
-                        <p style="color: #455056;">Best regards,</p>
-                        <p style="color: #455056;">AZ-NETWORKING</p>
-                    </div>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <title>Candidature acceptée</title>
+        </head>
+        <body>
+            <div class="container">
+                <div class="jumbotron" style="background-color: #f2f3f8;">
+                    <h1 class="display-4" style="color: #1e1e2d;">Candidature acceptée pour le poste de '. $obj->rJob->title .'</h1>
+                    <p class="lead" style="color: #455056;">Cher(e) ' . $obj->rCandidate->name . ',</p>
+                    <p style="color: #455056;">Nous avons le plaisir de vous informer que votre candidature pour le poste de '.$obj->rJob->title.' a été acceptée par l\'entreprise.</p>
+                    <hr class="my-4" style="border-color: #cecece;">
+                    <h5 style="color: #1e1e2d;">Détails de la candidature :</h5>
+                    <ul>
+                        <li><strong>Entreprise :</strong> '.$obj->rJob->rCompany->company_name.'</li>
+                        <li><strong>Email :</strong> '. $obj->rJob->rCompany->email.'</li>
+                        <li><strong>Voir les candidatures :</strong> <a href="'.route('applied_jobs').'">toutes les candidatures</a>
+                    </ul>
+                    <p style="color: #455056;">Nous vous remercions pour votre intérêt et vous félicitons pour votre candidature réussie. Nous vous contacterons bientôt concernant les prochaines étapes du processus de recrutement.</p>
+                    <hr class="my-4" style="border-color: #cecece;">
+                    <p style="color: #455056;">Cordialement,</p>
+                    <p style="color: #455056;">AZ-NETWORKING</p>
                 </div>
-            </body>';
+            </div>
+        </body>';
+
 
             \Mail::to($obj->rCandidate->email)->send(new Websitemail($subject,$message));
         }
         
-       return redirect()->back()->with('success','Application status changed successfully');
+        return redirect()->back()->with('success', 'Le statut de la candidature a été modifié avec succès');
+
     }
 
     public function applicant_resume($id){

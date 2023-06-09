@@ -45,11 +45,11 @@ class CandidateController extends Controller
 
         $obj = Candidate::where('id', Auth::guard('candidate')->user()->id)->first();
         if(!Hash::check($request->old_password, $obj->password)){
-            return redirect()->back()->with('error', 'old password not match');
+            return redirect()->back()->with('error', 'Ancien mot de passe incorrect');
         }else{
             $obj->password = hash::make($request->new_password);
             $obj->update();
-            return redirect()->back()->with('success','Password is updated successfully');
+            return redirect()->back()->with('success','Le mot de passe a été mis à jour avec succès');
         }
         
     }
@@ -93,7 +93,7 @@ class CandidateController extends Controller
         $candidate->website = $request->website;
         
         $candidate->update();
-        return redirect()->back()->with('success', 'Candidate Profile Updated Successfully');
+        return redirect()->back()->with('success', 'Profil du candidat mis à jour avec succès');
     }
 
     public function education(){
@@ -120,7 +120,7 @@ class CandidateController extends Controller
 
         $education->save();
 
-        return redirect()->route('candidate_education')->with('success','Education added succefully');
+        return redirect()->route('candidate_education')->with('success', 'Formation ajoutée avec succès');
     }
 
     public function education_edit($id){
@@ -142,12 +142,12 @@ class CandidateController extends Controller
         $education->passing_year = $request->passing_year;
         $education->update();
 
-        return redirect()->route('candidate_education')->with('success','Education updated succefully');
+        return redirect()->route('candidate_education')->with('success', 'Formation mise à jour avec succès');
     }
 
     public function education_delete($id){
         $education = CandidateEducation::where('id',$id)->first()->delete();
-        return redirect()->back()->with('success','Education deleted successfully');
+        return redirect()->back()->with('success', 'Formation supprimée avec succès');
     }
 
     public function skills(){
@@ -172,7 +172,7 @@ class CandidateController extends Controller
 
         $skill->save();
 
-        return redirect()->route('candidate_skills')->with('success','skill added succefully');
+        return redirect()->route('candidate_skills')->with('success', 'Compétence ajoutée avec succès');
     }
 
     public function skill_edit($id){
@@ -190,7 +190,7 @@ class CandidateController extends Controller
         $skill->percentage = $request->percentage;
         $skill->update();
 
-        return redirect()->route('candidate_skills')->with('success','skill updated succefully');
+        return redirect()->route('candidate_skills')->with('success', 'Compétence mise à jour avec succès');
     }
 
     public function skill_delete($id){
@@ -225,7 +225,7 @@ class CandidateController extends Controller
 
         $experience->save();
 
-        return redirect()->route('candidate_experience')->with('success','experience added succefully');
+        return redirect()->route('candidate_experience')->with('success', 'Expérience ajoutée avec succès');
     }
 
     public function experience_edit($id){
@@ -247,12 +247,12 @@ class CandidateController extends Controller
         $experience->end_date = $request->end_date;
         $experience->update();
 
-        return redirect()->route('candidate_experience')->with('success','experience updated succefully');
+        return redirect()->route('candidate_experience')->with('success', 'Expérience mise à jour avec succès');
     }
 
     public function experience_delete($id){
         $experience = CandidateExperience::where('id',$id)->first()->delete();
-        return redirect()->back()->with('success','experience deleted successfully');
+        return redirect()->back()->with('success', 'Expérience supprimée avec succès');
     }
 
      // resumes
@@ -282,7 +282,7 @@ class CandidateController extends Controller
 
         $resume->save();
 
-        return redirect()->route('candidate_resume')->with('success','resume added succefully');
+        return redirect()->route('candidate_resume')->with('success', 'Document ajouté avec succès');
     }
 
     public function resume_edit($id){
@@ -310,21 +310,21 @@ class CandidateController extends Controller
         $resume->name = $request->name;
         $resume->update();
 
-        return redirect()->route('candidate_resume')->with('success','resume updated succefully');
+        return redirect()->route('candidate_resume')->with('success', 'document mis à jour avec succès');
     }
 
     public function resume_delete($id){
         $resume = CandidateResume::where('id',$id)->first();
         unlink(public_path('uploads/resumes/'.$resume->file));
         CandidateResume::where('id',$id)->first()->delete();
-        return redirect()->back()->with('success','resume deleted successfully');
+        return redirect()->back()->with('success', 'CV supprimé avec succès');
     }
 
     public function bookmark_add($id){
         
         $execting_check = CandidateBookmark::where('candidate_id',Auth::guard('candidate')->user()->id)->where('job_id',$id)->count();
         if($execting_check > 0){
-            return redirect()->back()->with('error','job already bookmarked');
+            return redirect()->back()->with('error', 'Emploi déjà ajouté aux favoris');
         }
 
         $obj = new CandidateBookmark();
@@ -332,7 +332,7 @@ class CandidateController extends Controller
         $obj->candidate_id = Auth::guard('candidate')->user()->id;
         $obj->save();
 
-        return redirect()->back()->with('success','job bookmarked successfully');
+        return redirect()->back()->with('success', 'Emploi ajouté aux favoris avec succès');
     }
 
     public function bookmark(){
@@ -342,13 +342,13 @@ class CandidateController extends Controller
 
     public function bookmark_delete($id){
         CandidateBookmark::where('id',$id)->first()->delete();
-        return redirect()->back()->with('success','bookmark deleted succesfully!');
+        return redirect()->back()->with('success', 'Signet supprimé avec succès');
        
     }
     public function apply($id){
         $execting_check = CandidateAppliedJob::where('candidate_id',Auth::guard('candidate')->user()->id)->where('job_id',$id)->count();
         if($execting_check > 0){
-            return redirect()->back()->with('error','you are already applied to this job!');
+            return redirect()->back()->with('error', 'Vous avez déjà postulé à cet emploi !');
         }
         $job = Job::where('id',$id)->first();
         return view('candidate.apply',compact('job'));
@@ -367,41 +367,42 @@ class CandidateController extends Controller
         $obj->save();
 
        
-            $subject = 'New Job Application in the '.$obj->rJob->title .' Job';
-            $message = '
-            
-                <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-                <title>New Job Application</title>
-                </head>
+        $subject = 'Nouvelle candidature pour l\'offre '.$obj->rJob->title;
 
-            <body>
+        $message = '
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+            <title>Nouvelle candidature</title>
+        </head>
+        <body>
             <div class="container">
                 <div class="jumbotron" style="background-color: #f2f3f8;">
-                    <h1 class="display-4" style="color: #1e1e2d;">New Job Application</h1>
-                    <p class="lead" style="color: #455056;">Dear'. $obj->rJob->rCompany->company_name.',</p>
-                    <p style="color: #455056;">We wanted to inform you that a new job application has been submitted for the position of '. $obj->rJob->title.'.</p>
+                    <h1 class="display-4" style="color: #1e1e2d;">Nouvelle candidature</h1>
+                    <p class="lead" style="color: #455056;">Cher ' . $obj->rJob->rCompany->company_name . ',</p>
+                    <p style="color: #455056;">Nous tenons à vous informer qu\'une nouvelle candidature a été soumise pour le poste de ' . $obj->rJob->title . '.</p>
                     <hr class="my-4" style="border-color: #cecece;">
-                    <h5 style="color: #1e1e2d;">Details of the applicant:</h5>
+                    <h5 style="color: #1e1e2d;">Détails du candidat :</h5>
                     <ul>
-                        <li><strong>Name:</strong> '.$obj->rCandidate->name.'</li>
-                        <li><strong>Email:</strong> '.$obj->rCandidate->email.'</li>
-                        <li><strong>Resume/CV:</strong> <a href="'.route('applicant_resume',$obj->candidate_id).'" style="color: #20e277;">Click here to view</a></li>
+                        <li><strong>Nom :</strong> ' . $obj->rCandidate->name . '</li>
+                        <li><strong>Email :</strong> ' . $obj->rCandidate->email . '</li>
+                        <li><strong>CV :</strong> <a href="'.route('applicant_resume',$obj->candidate_id).'" style="color: #20e277;">Cliquez ici pour voir</a></li>
                     </ul>
-                    <p style="color: #455056;">Please review the application and take the necessary steps for further evaluation and consideration.</p>
-                    <a class="btn btn-primary" href="'.route('job_applicants',$obj->job_id).'" role="button" style="background-color: #20e277; color: #fff; text-transform: uppercase; font-weight: 500; margin-top: 15px; border-radius: 50px;">View All Job Applications</a>
+                    <p style="color: #455056;">Veuillez examiner la candidature et prendre les mesures nécessaires pour l\'évaluation et la considération ultérieures.</p>
+                    <a class="btn btn-primary" href="'.route('job_applicants',$obj->job_id).'" role="button" style="background-color: #20e277; color: #fff; text-transform: uppercase; font-weight: 500; margin-top: 15px; border-radius: 50px;">Voir toutes les candidatures</a>
                     <hr class="my-4" style="border-color: #cecece;">
-                    <p style="color: #455056;">Thank you for your attention.</p>
-                    <p style="color: #455056;">Sincerely,</p>
+                    <p style="color: #455056;">Merci de votre attention.</p>
+                    <p style="color: #455056;">Cordialement,</p>
                 </div>
             </div>
         </body>';
+    
             
             \Mail::to($obj->rJob->rCompany->email)->send(new Websitemail($subject,$message));
 
-        return redirect()->route('job',$id)->with('success','you applied to this job successfully');
+            return redirect()->route('job', $id)->with('success', 'Vous avez postulé à ce poste avec succès');
+
     }
 
     public function applied_jobs(){
